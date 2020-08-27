@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AlbumRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -56,6 +58,16 @@ class Album
      * @ORM\Column(type="string", length=1024, nullable=true)
      */
     private $coverArtPath;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Artist::class, mappedBy="albums")
+     */
+    private $artists;
+
+    public function __construct()
+    {
+        $this->artists = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,6 +166,34 @@ class Album
     public function setCoverArtPath(?string $coverArtPath): self
     {
         $this->coverArtPath = $coverArtPath;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Artist[]
+     */
+    public function getArtists(): Collection
+    {
+        return $this->artists;
+    }
+
+    public function addArtist(Artist $artist): self
+    {
+        if (!$this->artists->contains($artist)) {
+            $this->artists[] = $artist;
+            $artist->addAlbum($this);
+        }
+
+        return $this;
+    }
+
+    public function removeArtist(Artist $artist): self
+    {
+        if ($this->artists->contains($artist)) {
+            $this->artists->removeElement($artist);
+            $artist->removeAlbum($this);
+        }
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ArtistRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Artist
      * @ORM\Column(type="string", length=1024, nullable=true)
      */
     private $coveArtPath;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Album::class, inversedBy="artists")
+     */
+    private $albums;
+
+    public function __construct()
+    {
+        $this->albums = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -86,6 +98,32 @@ class Artist
     public function setCoveArtPath(?string $coveArtPath): self
     {
         $this->coveArtPath = $coveArtPath;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Album[]
+     */
+    public function getAlbums(): Collection
+    {
+        return $this->albums;
+    }
+
+    public function addAlbum(Album $album): self
+    {
+        if (!$this->albums->contains($album)) {
+            $this->albums[] = $album;
+        }
+
+        return $this;
+    }
+
+    public function removeAlbum(Album $album): self
+    {
+        if ($this->albums->contains($album)) {
+            $this->albums->removeElement($album);
+        }
 
         return $this;
     }
