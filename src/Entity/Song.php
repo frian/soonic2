@@ -52,6 +52,18 @@ class Song
      */
     private $duration;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Album::class, inversedBy="songs")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $album;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Artist::class)
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $artist;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -137,6 +149,30 @@ class Song
     public function setDuration(string $duration): self
     {
         $this->duration = $duration;
+
+        return $this;
+    }
+
+    public function getAlbum(): ?Album
+    {
+        return $this->album;
+    }
+
+    public function setAlbum(?Album $album): self
+    {
+        $this->album = $album;
+
+        return $this;
+    }
+
+    public function getArtist(): ?Artist
+    {
+        return $this->artist;
+    }
+
+    public function setArtist(?Artist $artist): self
+    {
+        $this->artist = $artist;
 
         return $this;
     }

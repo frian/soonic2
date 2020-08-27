@@ -64,9 +64,15 @@ class Album
      */
     private $artists;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Song::class, mappedBy="album")
+     */
+    private $songs;
+
     public function __construct()
     {
         $this->artists = new ArrayCollection();
+        $this->songs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -193,6 +199,37 @@ class Album
         if ($this->artists->contains($artist)) {
             $this->artists->removeElement($artist);
             $artist->removeAlbum($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Song[]
+     */
+    public function getSongs(): Collection
+    {
+        return $this->songs;
+    }
+
+    public function addSong(Song $song): self
+    {
+        if (!$this->songs->contains($song)) {
+            $this->songs[] = $song;
+            $song->setAlbum($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSong(Song $song): self
+    {
+        if ($this->songs->contains($song)) {
+            $this->songs->removeElement($song);
+            // set the owning side to null (unless already changed)
+            if ($song->getAlbum() === $this) {
+                $song->setAlbum(null);
+            }
         }
 
         return $this;
