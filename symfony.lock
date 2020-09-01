@@ -81,6 +81,9 @@
     "egulias/email-validator": {
         "version": "2.1.19"
     },
+    "james-heinrich/getid3": {
+        "version": "v1.9.20"
+    },
     "laminas/laminas-code": {
         "version": "3.4.1"
     },
