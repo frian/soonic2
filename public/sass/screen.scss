@@ -1,0 +1,372 @@
+/*
+  -- Default styling ----------------------------------------------------------
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700,900');
+@import url('https://fonts.googleapis.com/css?family=Muli:300,400,600,700');
+
+@import "compass/reset";
+
+$fg-color: #111;
+$bg-color: #eee;
+$hover-active: #ddd;
+$bg-alternate: #ddd;
+$border-color: #666;
+$default-gradient: linear-gradient(to top, rgba(34,34,34, 0.2), rgba(51,51,51, 0.1) );
+$hover-gradient: linear-gradient(to top, rgba(34,34,34, 0.1), rgba(51,51,51, 0) );
+$red-gradient: linear-gradient(to top, rgba(204,0,0, 1), rgba(204,0,0, 0.5) );
+
+$debug: 0;
+
+
+/*
+  -- Global -------------------------------------------------------------------
+*/
+html, body {
+    font-family: 'Lato', sans-serif;
+}
+
+body {
+    color: $fg-color;
+    background-color: $bg-color;
+}
+
+// body:before {
+//   content: "";
+//   position: absolute;
+//   left: 0; right: 0;
+//   top: 0; bottom: 0;
+//   background: rgba(0,0,0, 0.8);
+//   z-index: -1;
+// }
+
+a {
+    color: $fg-color;
+    text-decoration: none;
+    line-height: 1.2em;
+    font-weight: 700;
+}
+
+h1 {
+    border-bottom: 1px solid ;
+    text-align: center;
+    padding: 30px 0;
+    font-family: 'Muli', sans-serif;
+    font-size: 1.6em;
+    letter-spacing: 1px;
+}
+
+h2 {
+    padding: 10px 20px;
+    font-family: 'Muli', sans-serif;
+    font-size: 1.4em;
+    letter-spacing: 1px;
+    border-bottom: 1px solid $border-color;
+}
+
+
+/*
+  -- Topbar -------------------------------------------------------------------
+*/
+.topbar {
+    border-bottom-color: $border-color;
+
+    .logo {
+        font-family: 'Muli', sans-serif;
+        letter-spacing: 1px;
+        font-size: 1.2em;
+        font-weight: 700;
+    }
+
+    .songInfo {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .songTitle {
+        font-weight: 900;
+        font-size: 120%;
+    }
+
+    .songArtist {
+        color: #333;
+    }
+
+    .timeInfo {
+        font-family: 'Muli', sans-serif;
+        font-weight: 700;
+        font-size: 80%;
+        padding: 0 10px;
+        letter-spacing: 1px;
+    }
+}
+
+#searchForm {
+    input[type="submit"] {
+        font-family: 'Lato', sans-serif;
+        font-weight: 700;
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+}
+
+
+nav.topbarNav {
+    a {
+        font-size: 18px;
+        display: inline-block;
+        padding: 0 20px;
+        letter-spacing: 1px;
+        background: $default-gradient;
+    }
+
+    a:hover {
+        background: $hover-gradient;
+    }
+}
+
+
+/*
+  -- Artists navigation -------------------------------------------------------
+*/
+.artists-navigation {
+    .song {
+        background-color: #fff;
+    }
+}
+
+.filter {
+    background-color: #ddd;
+
+    label {
+        font-size: 110%;
+        padding: 0 0 0 10px;
+
+        font-family: 'Muli', sans-serif;
+        letter-spacing: 0.6px;
+        font-size: 1.1em;
+        font-weight: 600;
+    }
+
+    input {
+        background-color: black;
+        padding: 0 0 0 10px;
+    }
+}
+
+a.active {
+    background-color: #ddd!important;
+}
+
+
+/*
+  -- Songs and playlist panels ------------------------------------------------
+*/
+.playlist-header {
+    font-family: 'Muli', sans-serif;
+    font-weight: 700;
+    font-size: 80%;
+    letter-spacing: 1px;
+    background-color: #ddd;
+}
+
+.list {
+    thead {
+        font-family: 'Muli', sans-serif;
+        font-weight: 700;
+        background-color: #ddd;
+        tr {
+            th {
+                padding: 0 10px;
+                font-family: 'Muli', sans-serif;
+                font-weight: 700;
+                font-size: 80%;
+                letter-spacing: 1px;
+            }
+        }
+    }
+
+    tbody {
+        font-family: 'Lato', sans-serif;
+        tr {
+            cursor: pointer;
+            td {
+                padding: 5px;
+            }
+        };
+        tr:nth-child(even) {
+            background-color: $bg-alternate;
+        }
+    }
+
+    tr.playing {
+        background-color: $hover-active!important;
+    }
+
+    .icon-plus, .icon-minus {
+        color: #aaa;
+    }
+}
+
+
+/*
+  -- Radios -------------------------------------------------------------------
+*/
+.radio {
+    .radioName {
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+        border: #{$debug}px solid red;
+    }
+
+    .radioUrl {
+        font-family: 'Lato', sans-serif;
+        font-weight: 300;
+    }
+
+    .icon-play, .icon-pause {
+        cursor: pointer;
+        font-size: 4em;
+    }
+
+    &.activeRadio {
+        background-color: $hover-active!important;
+    }
+}
+
+.radio:nth-child(4n+2), .radio:nth-child(4n+3), {
+    background-color: $bg-alternate;
+}
+
+
+/*
+  -- Context menus ------------------------------------------------------------
+*/
+.songsContextMenu, .playlistContextMenu {
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
+
+    .menu-options {
+        list-style: none;
+        padding: 10px 0;
+        background-color: $bg-color;
+
+        .menu-option {
+            font-family: 'Muli', sans-serif;
+            letter-spacing: 1px;
+            padding: 10px 40px 10px 20px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $hover-active;
+            }
+        }
+    }
+}
+
+
+/*
+  -- Settings -----------------------------------------------------------------
+*/
+.settings {
+    padding-bottom: 20px;
+    border-bottom: 1px solid $border-color!important;
+
+    table {
+        font-family: 'Muli', sans-serif;
+        font-size: 1.2em;
+    }
+}
+
+.settings a {
+    font-size: 18px;
+}
+
+
+/*
+  -- Forms ---------------------------------------------------------------
+*/
+input[type="text"] {
+    color: $fg-color;
+    background-color: $bg-color;
+    font-family: 'Muli', sans-serif;
+    font-size: 18px;
+    border: 1px solid #555!important;
+}
+
+.input-reset {
+    background-color: #ddd;
+}
+
+.input-reset:after {
+    color: $fg-color;
+    background-color: #ddd;
+}
+
+
+/*
+  -- Crud forms ---------------------------------------------------------------
+*/
+form div div label {
+    font-family: 'Lato', sans-serif;
+    font-size: 1.2em;
+    letter-spacing: 0.6px;
+}
+
+form div div input {
+    font-size: 1.2em;
+    letter-spacing: 0.6px;
+    padding: 5px 10px;
+    width: 300px;
+    border: 1px solid $border-color;
+}
+
+.button {
+    color: $fg-color;
+    font-family: 'Lato', sans-serif;
+    font-size: 1em;
+    font-weight: 700;
+    text-align: center;
+    vertical-align: top;
+    background: $default-gradient;
+}
+
+.button:hover {
+    background: $hover-gradient;
+
+    &.danger:hover {
+        background: $red-gradient;
+    }
+}
+
+.running {
+    background: $red-gradient;
+
+    &:hover {
+        background: $red-gradient;
+    }
+}
+
+/*
+  -- Media query 1024px -------------------------------------------------------
+*/
+@media all and (min-width: 1024px) {
+
+    /* -- Radios -- */
+    .radio {
+        .radioName {
+            font-size: 2em;
+        }
+        .radioUrl {
+            font-size: 1.2em;
+        }
+    }
+
+    /* -- Crud forms -- */
+    form div div label {
+        text-align: right;
+        display: inline-block;
+        padding: 20px 50px;
+        width: calc(50% - 100px);
+    }
+}

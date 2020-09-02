@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>radio</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ radio.name }}</td>
+            </tr>
+            <tr>
+                <th>Streamurl</th>
+                <td>{{ radio.streamUrl }}</td>
+            </tr>
+            <tr>
+                <th>Homepageurl</th>
+                <td>{{ radio.homepageUrl }}</td>
+            </tr>
+            <tr>
+                <th>Enabled</th>
+                <td>{% if radio.enabled %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Changed</th>
+                <td>{% if radio.changed %}{{ radio.changed|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ radio.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('radio_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('radio_edit', { 'id': radio.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

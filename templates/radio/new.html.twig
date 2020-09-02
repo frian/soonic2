@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>{{ 'radio.new'|trans }}</h1>
+
+    {{ form_start(form) }}
+
+        {{ form_widget(form) }}
+
+        <div class="buttonWrapper">
+            <input class="button" type="submit" value="{{ 'create'|trans }}" />
+        </div>
+
+    {{ form_end(form) }}
+
+    <div class="buttonWrapper">
+        <a class="button" href="{{ path('radio_index') }}">{{ 'back.tolist'|trans }}</a>
+    </div>
+{% endblock %}

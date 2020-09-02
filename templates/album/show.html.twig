@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Album</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ album.name }}</td>
+            </tr>
+            <tr>
+                <th>Artist</th>
+                <td>{{ album.artists[0] }}</td>
+            </tr>
+            <tr>
+                <th>Songcount</th>
+                <td>{{ album.songCount }}</td>
+            </tr>
+            <tr>
+                <th>Duration</th>
+                <td>{{ album.duration }}</td>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <td>{{ album.year }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ album.genre }}</td>
+            </tr>
+            <tr>
+                <th>Coverartpath</th>
+                <td>{{ album.coverArtPath }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('album_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

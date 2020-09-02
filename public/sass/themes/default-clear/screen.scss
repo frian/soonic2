@@ -1,0 +1,179 @@
+/*
+  -- Default clear theme -------------------------------------------------------
+*/
+
+$fg-color: #111;
+$bg-color: #eee;
+$hover-active: #bfff00;
+$bg-alternate: #c8c8c8;
+$header-color: #ccc;
+$border-color: #666;
+$default-gradient: linear-gradient(to top, rgba(221,221,221, 1), rgba(204,204,204, 0.9) );
+$hover-gradient: linear-gradient(to top, rgba(191,255,0, 1), rgba(191,255,0, 0.5) );
+
+/*
+  -- Global -------------------------------------------------------------------
+*/
+body {
+    color: $fg-color;
+    background-color: $bg-color;
+    background: linear-gradient(to bottom right,
+        rgba(221,221,221, 1),
+        rgba(221,221,221, 0.8)
+    );
+}
+
+a {
+    color: $fg-color;
+}
+
+h1 {
+    border-bottom: 1px solid $border-color;
+}
+
+h2 {
+    border-bottom: 1px solid $border-color;
+}
+
+
+/*
+  -- Topbar -------------------------------------------------------------------
+*/
+.topbar {
+    border-bottom-color: $border-color;
+
+    .songArtist {
+        color: #333;
+    }
+}
+
+nav.topbarNav {
+    a {
+        background: $default-gradient;
+    }
+
+    a:hover {
+        background: $hover-gradient;
+    }
+}
+
+/*
+  -- Artists navigation -------------------------------------------------------
+*/
+.artists-navigation {
+    .song {
+        background-color: $header-color;
+    }
+}
+
+.filter {
+    background-color: $header-color;
+
+    input {
+        background-color: white;
+    }
+}
+
+a.active {
+    background-color: $hover-active!important;
+}
+
+
+/*
+  -- Songs and playlist panels ------------------------------------------------
+*/
+.playlist-header {
+    background-color: $header-color;
+}
+
+.list {
+    thead {
+        background-color: $header-color;
+    }
+
+    tbody {
+        tr:nth-child(even) {
+            background-color: $bg-alternate;
+        }
+    }
+
+    tr.playing {
+        background-color: $hover-active!important;
+    }
+
+    .icon-plus, .icon-minus {
+        color: #aaa;
+    }
+}
+
+
+/*
+  -- Radios -------------------------------------------------------------------
+*/
+.radio {
+    &.activeRadio {
+        background-color: $hover-active!important;
+    }
+}
+
+.radio:nth-child(4n+2), .radio:nth-child(4n+3), {
+    background-color: $bg-alternate;
+}
+
+
+/*
+  -- Context menus ------------------------------------------------------------
+*/
+.songsContextMenu, .playlistContextMenu {
+    box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
+
+    .menu-options {
+        background-color: white;
+
+        .menu-option {
+            &:hover {
+                background: rgba(191,255,0, 0.8);
+            }
+        }
+    }
+}
+
+
+/*
+  -- Settings -----------------------------------------------------------------
+*/
+
+/*
+  -- Forms ---------------------------------------------------------------
+*/
+input[type="text"] {
+    color: $fg-color;
+    background-color: $bg-color;
+    border: 1px solid #555!important;
+}
+
+.input-reset {
+    background-color: $bg-color;
+}
+
+.input-reset:after {
+    color: $fg-color;
+    background-color: $bg-color;
+}
+
+
+/*
+  -- Crud forms ---------------------------------------------------------------
+*/
+form div div input {
+    border: 1px solid $border-color;
+}
+
+.button {
+    color: $fg-color;
+    background: $default-gradient;
+}
+
+.button:hover {
+    background: $hover-gradient;
+}

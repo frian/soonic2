@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Mediafile</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Path</th>
+                <td>{{ mediaFile.path }}</td>
+            </tr>
+            <tr>
+                <th>Folder</th>
+                <td>{{ mediaFile.folder }}</td>
+            </tr>
+            <tr>
+                <th>Type</th>
+                <td>{{ mediaFile.type }}</td>
+            </tr>
+            <tr>
+                <th>Format</th>
+                <td>{{ mediaFile.format }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ mediaFile.title }}</td>
+            </tr>
+            <tr>
+                <th>Album</th>
+                <td>{{ mediaFile.album }}</td>
+            </tr>
+            <tr>
+                <th>Artist</th>
+                <td>{{ mediaFile.artist }}</td>
+            </tr>
+            <tr>
+                <th>Albumartist</th>
+                <td>{{ mediaFile.albumArtist }}</td>
+            </tr>
+            <tr>
+                <th>Discnumber</th>
+                <td>{{ mediaFile.discNumber }}</td>
+            </tr>
+            <tr>
+                <th>Tracknumber</th>
+                <td>{{ mediaFile.trackNumber }}</td>
+            </tr>
+            <tr>
+                <th>Year</th>
+                <td>{{ mediaFile.year }}</td>
+            </tr>
+            <tr>
+                <th>Genre</th>
+                <td>{{ mediaFile.genre }}</td>
+            </tr>
+            <tr>
+                <th>Bitrate</th>
+                <td>{{ mediaFile.bitRate }}</td>
+            </tr>
+            <tr>
+                <th>Variablebitrate</th>
+                <td>{% if mediaFile.variableBitRate %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Durationseconds</th>
+                <td>{{ mediaFile.durationSeconds }}</td>
+            </tr>
+            <tr>
+                <th>Filesize</th>
+                <td>{{ mediaFile.fileSize }}</td>
+            </tr>
+            <tr>
+                <th>Width</th>
+                <td>{{ mediaFile.width }}</td>
+            </tr>
+            <tr>
+                <th>Height</th>
+                <td>{{ mediaFile.height }}</td>
+            </tr>
+            <tr>
+                <th>Coverartpath</th>
+                <td>{{ mediaFile.coverArtPath }}</td>
+            </tr>
+            <tr>
+                <th>Parentpath</th>
+                <td>{{ mediaFile.parentPath }}</td>
+            </tr>
+            <tr>
+                <th>Playcount</th>
+                <td>{{ mediaFile.playCount }}</td>
+            </tr>
+            <tr>
+                <th>Lastplayed</th>
+                <td>{% if mediaFile.lastPlayed %}{{ mediaFile.lastPlayed|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Comment</th>
+                <td>{{ mediaFile.comment }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{% if mediaFile.created %}{{ mediaFile.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Changed</th>
+                <td>{% if mediaFile.changed %}{{ mediaFile.changed|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Lastscanned</th>
+                <td>{% if mediaFile.lastScanned %}{{ mediaFile.lastScanned|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Childrenlastupdated</th>
+                <td>{% if mediaFile.childrenLastUpdated %}{{ mediaFile.childrenLastUpdated|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Present</th>
+                <td>{% if mediaFile.present %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Version</th>
+                <td>{{ mediaFile.version }}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ mediaFile.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('mediafile_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

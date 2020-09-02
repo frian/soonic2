@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block js %}
+<script src="/js/main.js"></script>
+{% endblock %}
+
+{% block body %}
+<h1>{{ 'settings'|trans }}</h1>
+<section class="settings clearfix">
+
+    <h2>{{ 'library'|trans }}</h2>
+
+    <table class="libraryInfo">
+        <tr>
+            <td>{{ 'files'|trans }}</td>
+            <td id="numFiles">{{ infos[0] }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'artists'|trans }}</td>
+            <td id="numArtists">{{ infos[1] }}</td>
+        </tr>
+        <tr>
+            <td>{{ 'albums'|trans }}</td>
+            <td id="numAlbums">{{ infos[2] }}</td>
+        </tr>
+    </table>
+
+    <div class="buttonWrapper">
+        <a id="scanButton" class="button" href="{{ path('radio_index') }}">{{ 'scan'|trans }}</a>
+    </div>
+
+</section>
+
+<section class="settings clearfix">
+
+    <h2>{{ 'language'|trans }}</h2>
+
+    <form name="appbundle_config" method="post" action="{{ path('config_edit', { 'id': 1 }) }}">
+
+        {{ form_widget(edit_form) }}
+
+        <div class="buttonWrapper">
+            <input class="button" type="submit" value="{{ 'save'|trans }}" />
+        </div>
+
+    {{ form_end(edit_form) }}
+
+</section>
+
+<!-- <section class="settings clearfix">
+
+    <h2>Theme</h2>
+
+    TODO
+
+</section> -->
+
+{% endblock %}

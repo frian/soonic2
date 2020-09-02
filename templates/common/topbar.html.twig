@@ -1,0 +1,60 @@
+<section class="topbar">
+
+    <div class="logo">Soonic</div>
+
+    {% if app.request.get('_route') == 'library' %}
+
+        <i class="icon-to-start"></i><i id="startStopButton" class="icon-play"></i><i class="icon-to-end"></i>
+
+        <audio id="player" preload="none">
+            <source id="mpegSource" src="" type="audio/mpeg"/>
+        </audio>
+
+        <div class="timeInfo">
+            <span id="currentTime">00:00 /</span>
+            <span id="duration"> 00:00</span>
+        </div>
+
+        <div class="songInfo">
+            <span id="songTitle" class="songTitle"></span>
+            <span id="songArtist" class="songArtist"></span>
+        </div>
+
+    {% else %}
+
+    {% endif %}
+
+    <nav class="topbarNav">
+
+        {% if app.request.get('_route') == 'library' %}
+
+            {{ render(controller( 'AppBundle\\Controller\\SearchController::showSearchAction' )) }}
+
+            <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
+
+        {% else %}
+
+            {% if 'radio' in app.request.get('_route') and app.request.get('_route') != 'radio_new' %}
+                <a href="{{ path('radio_new') }}">{{ 'radio.new'|trans }}</a>
+
+                {% endif %}
+            {% if app.request.get('_route') == 'radio_new' %}
+                <a href="{{ path('radio_index') }}">{{ 'back'|trans }}</a>
+            {% endif %}
+
+            {% if app.request.get('_route') == 'settings_index' %}
+                <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
+            {% endif %}
+
+            <a href="{{ path('library') }}">{{ 'music'|trans }}</a>
+        {% endif %}
+
+        {% if app.request.get('_route') != 'settings_index' %}
+            <a href="{{ path('settings_index') }}">
+                <i class="icon-cog button"></i>
+            </a>
+        {% endif %}
+
+    </nav>
+
+</section>

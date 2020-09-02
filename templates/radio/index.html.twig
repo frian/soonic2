@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block js %}
+<script src="/js/radio.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<section id="radios" class="radios">
+
+
+        {% for radio in radios %}
+
+        <section class="radio clearfix">
+            <div class="buttonWrapper">
+                <i class="icon-play"></i>
+                <audio preload="none">
+                    <source src="{{ radio.streamUrl }}" type="audio/mpeg"/>
+                </audio>
+            </div>
+
+            <div class="radioName">{{ radio.name }}</div>
+            <div class="radioUrl">{{ radio.homepageUrl }}</div>
+        </section>
+
+
+
+        {% endfor %}
+
+    <!-- <ul>
+        <li>
+            <a href="{{ path('radio_new') }}">Create a new radio</a>
+        </li>
+    </ul> -->
+
+    <!-- <audio id="player" controls preload="none">
+        <source id="mpegSource" src="http://streaming.radionomy.com/Eurodance-90" type="audio/mpeg"/>
+    </audio> -->
+
+</section>
+{% endblock %}

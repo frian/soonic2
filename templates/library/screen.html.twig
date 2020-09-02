@@ -1,0 +1,43 @@
+{# artist/index #}
+{% extends 'base.html.twig' %}
+
+{% block js %}
+<script src="/js/main.js"></script>
+<script src="/js/player.js"></script>
+{% endblock %}
+
+{% block body %}
+<nav class="artists-navigation">
+
+    <div class="filter">
+        <form class="filterForm" method="post">
+            <label for="filter">{{ 'filter'|trans }}</label><input type="text" class="filterInput" name="filter" value="" placeholder="{{ 'filter.placeholder'|trans }}" required="required" autocomplete="off">
+            <button class="input-reset" type="reset"></button>
+        </form>
+    </div>
+
+    {% include('library/artist-nav-list.html.twig') %}
+
+    <div class="mobileForwardButton">
+        <i class="icon-right-open"></i>
+    </div>
+
+</nav>
+
+{{ include('library/songs.html.twig') }}
+{{ include('library/playlist.html.twig') }}
+
+
+<div class="songsContextMenu">
+  <ul class="menu-options">
+    <li id="addToPlaylist" class="menu-option">{{ 'playlist.add'|trans }}</li>
+  </ul>
+</div>
+
+<div class="playlistContextMenu">
+  <ul class="menu-options">
+    <li id="removeFromPlaylist" class="menu-option">{{ 'playlist.remove'|trans }}</li>
+  </ul>
+</div>
+
+{% endblock %}
