@@ -32,7 +32,7 @@ class FileExistsExtension extends AbstractExtension
     public function fileExists(string $path): bool
     {
         if (!$this->fileSystem->isAbsolutePath($path)) {
-            $path = "{$this->projectDir}/web/{$path}";
+            $path = "{$this->projectDir}/public/{$path}";
         }
 
         return $this->fileSystem->exists($path);

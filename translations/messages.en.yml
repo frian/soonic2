@@ -1,0 +1,34 @@
+album: album
+albums: albums
+artist: artist
+artists: artists
+back: back
+back.tolist: 'back to the list'
+create: create
+delete: delete
+duration: duration
+edit: edit
+files: files
+filter: filter
+filter.placeholder: 'min 3 chars'
+found: found
+homePage: homepage
+genre: genre
+language: language
+library: library
+music: music
+name: name
+playlist: playlist
+playlist.add: 'add to playlist'
+playlist.remove: 'remove from playlist'
+radio: radio
+radio.new: 'new radio'
+radio.edit: 'edit radio'
+save: enregistrer
+scan: 'scan library'
+search: search
+search.placeholder: 'min 3 chars'
+settings: settings
+streamUrl: 'stream url'
+title: title
+year: year

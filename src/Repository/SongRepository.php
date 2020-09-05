@@ -19,6 +19,21 @@ class SongRepository extends ServiceEntityRepository
         parent::__construct($registry, Song::class);
     }
 
+    public function findByKeyword($keyword) {
+        return $this->createQueryBuilder('s')
+            ->join('s.album', 'al')
+            ->join('s.artist', 'ar')
+            ->where('s.title like :keyword')
+            ->orWhere('al.name like :keyword')
+            ->orWhere('ar.name like :keyword')
+            ->setParameter('keyword', '%'.$keyword.'%')
+            ->orderBy('s.artist', 'ASC')
+            ->addOrderBy('s.album', 'ASC')
+            ->addOrderBy('s.title', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Song[] Returns an array of Song objects
     //  */

@@ -1,6 +1,6 @@
 <section class="topbar">
 
-    <div class="logo">Soonic</div>
+    <div class="logo">Soonic1</div>
 
     {% if app.request.get('_route') == 'library' %}
 
@@ -24,11 +24,13 @@
 
     {% endif %}
 
-    <nav class="topbarNav">
+    <nav class="topbarNav">POLO
+        {{ 'POLO' }}
+        {{ app.request.get('_route') }}
 
         {% if app.request.get('_route') == 'library' %}
 
-            {{ render(controller( 'AppBundle\\Controller\\SearchController::showSearchAction' )) }}
+            {{ render(controller( 'App\\Controller\\SearchController::showSearch' )) }}
 
             <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
 

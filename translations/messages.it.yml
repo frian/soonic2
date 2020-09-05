@@ -1,0 +1,34 @@
+album: album
+albums: album
+artist: artist
+artists: artisti
+back: indietro
+back.tolist: 'torna alla lista'
+create: creare
+delete: elimina
+duration: durata
+edit: modificare
+files: file
+filter: filtro
+filter.placeholder: 'minimo 3 caratteri'
+found: trovato
+homePage: homepage
+genre: genere
+language: linguaggio
+library: biblioteca
+music: musica
+name: nome
+playlist: 'playlist'
+playlist.add: 'Aggiungi alla playlist'
+playlist.remove: 'rimuovi dalla playlist'
+radio: radio
+radio.new: 'nuova radio'
+radio.edit: 'modifica la radio'
+save: salvare
+scan: 'scansione della libreria'
+search: ricerca
+search.placeholder: 'minimo 3 caratteri'
+settings: impostazioni
+streamUrl: 'url del flusso'
+title: titolo
+year: anno
