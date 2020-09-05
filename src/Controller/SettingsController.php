@@ -14,7 +14,7 @@ class SettingsController extends AbstractController
      * @Route("/", name="settings_index")
      * @Method("GET")
      */
-    public function indexAction(Request $request)
+    public function index(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 

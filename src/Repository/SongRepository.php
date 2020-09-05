@@ -34,6 +34,20 @@ class SongRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+
+    public function findByArtistAndAlbum($artist, $album) {
+        return $this->createQueryBuilder('s')
+            ->join('s.artist', 'ar')
+            ->join('s.album', 'al')
+            ->where('ar.name = :artist')
+            ->andWhere('al.name = :album')
+            ->setParameter('artist', $artist)
+            ->setParameter('album', $album)
+            ->orderBy('s.trackNumber', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Song[] Returns an array of Song objects
     //  */
