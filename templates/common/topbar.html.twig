@@ -24,9 +24,7 @@
 
     {% endif %}
 
-    <nav class="topbarNav">POLO
-        {{ 'POLO' }}
-        {{ app.request.get('_route') }}
+    <nav class="topbarNav">
 
         {% if app.request.get('_route') == 'library' %}
 
@@ -38,8 +36,8 @@
 
             {% if 'radio' in app.request.get('_route') and app.request.get('_route') != 'radio_new' %}
                 <a href="{{ path('radio_new') }}">{{ 'radio.new'|trans }}</a>
+            {% endif %}
 
-                {% endif %}
             {% if app.request.get('_route') == 'radio_new' %}
                 <a href="{{ path('radio_index') }}">{{ 'back'|trans }}</a>
             {% endif %}
@@ -52,7 +50,7 @@
         {% endif %}
 
         {% if app.request.get('_route') != 'settings_index' %}
-            <a href="{{ path('settings_index') }}">
+            <a class="noPadding" href="{{ path('settings_index') }}">
                 <i class="icon-cog button"></i>
             </a>
         {% endif %}

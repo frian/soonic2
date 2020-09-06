@@ -32,6 +32,13 @@ class Radio
      */
     private $homepageUrl;
 
+    public function __toString() {
+        if(is_null($this->name)) {
+            return 'NULL';
+        }
+        return $this->name;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

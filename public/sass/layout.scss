@@ -20,6 +20,9 @@ table {
     display: table;
 }
 
+.noPadding {
+    padding: 0!important;
+}
 
 /*
   -- Topbar -------------------------------------------------------------------
@@ -119,7 +122,9 @@ nav.topbarNav {
         background-color: #666;
     }
 
+
     a {
+        vertical-align: top;
         box-sizing: border-box;
         height: $topbar-size;
         line-height: $topbar-size;
@@ -188,7 +193,7 @@ nav.topbarNav {
   -- Songs and playlist panels ------------------------------------------------
 */
 .songs, .playlist {
-    display: none;
+    // display: none;
     overflow-y: scroll;
 
     table {
@@ -490,6 +495,7 @@ form {
         font-size: 16px!important;
         display: inline-block;
         width: 50%;
+
     }
 }
 

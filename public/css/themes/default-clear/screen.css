@@ -1,1 +1,167 @@
-body{color:#111;background-color:#eee;background:linear-gradient(to bottom right, #ddd, rgba(221,221,221,0.8))}a{color:#111}h1{border-bottom:1px solid #666}h2{border-bottom:1px solid #666}.topbar{border-bottom-color:#666}.topbar .songArtist{color:#333}nav.topbarNav a{background:linear-gradient(to top, #ddd, rgba(204,204,204,0.9))}nav.topbarNav a:hover{background:linear-gradient(to top, #bfff00, rgba(191,255,0,0.5))}.artists-navigation .song{background-color:#ccc}.filter{background-color:#ccc}.filter input{background-color:white}a.active{background-color:#bfff00 !important}.playlist-header{background-color:#ccc}.list thead{background-color:#ccc}.list tbody tr:nth-child(even){background-color:#c8c8c8}.list tr.playing{background-color:#bfff00 !important}.list .icon-plus,.list .icon-minus{color:#aaa}.radio.activeRadio{background-color:#bfff00 !important}.radio:nth-child(4n+2),.radio:nth-child(4n+3){background-color:#c8c8c8}.songsContextMenu,.playlistContextMenu{box-shadow:0 0 5px 3px rgba(255,255,255,0.2)}.songsContextMenu .menu-options,.playlistContextMenu .menu-options{background-color:white}.songsContextMenu .menu-options .menu-option:hover,.playlistContextMenu .menu-options .menu-option:hover{background:rgba(191,255,0,0.8)}input[type="text"]{color:#111;background-color:#eee;border:1px solid #555 !important}.input-reset{background-color:#eee}.input-reset:after{color:#111;background-color:#eee}form div div input{border:1px solid #666}.button{color:#111;background:linear-gradient(to top, #ddd, rgba(204,204,204,0.9))}.button:hover{background:linear-gradient(to top, #bfff00, rgba(191,255,0,0.5))}
+/*
+  -- Default clear theme -------------------------------------------------------
+*/
+/*
+  -- Global -------------------------------------------------------------------
+*/
+/* line 17, ../../../sass/themes/default-clear/screen.scss */
+body {
+  color: #111;
+  background-color: #eee;
+  background: linear-gradient(to bottom right, #dddddd, rgba(221, 221, 221, 0.8));
+}
+
+/* line 26, ../../../sass/themes/default-clear/screen.scss */
+a {
+  color: #111;
+}
+
+/* line 30, ../../../sass/themes/default-clear/screen.scss */
+h1 {
+  border-bottom: 1px solid #666;
+}
+
+/* line 34, ../../../sass/themes/default-clear/screen.scss */
+h2 {
+  border-bottom: 1px solid #666;
+}
+
+/*
+  -- Topbar -------------------------------------------------------------------
+*/
+/* line 42, ../../../sass/themes/default-clear/screen.scss */
+.topbar {
+  border-bottom-color: #666;
+}
+/* line 45, ../../../sass/themes/default-clear/screen.scss */
+.topbar .songArtist {
+  color: #333;
+}
+
+/* line 51, ../../../sass/themes/default-clear/screen.scss */
+nav.topbarNav a {
+  background: linear-gradient(to top, #dddddd, rgba(204, 204, 204, 0.9));
+}
+/* line 55, ../../../sass/themes/default-clear/screen.scss */
+nav.topbarNav a:hover {
+  background: linear-gradient(to top, #bfff00, rgba(191, 255, 0, 0.5));
+}
+
+/*
+  -- Artists navigation -------------------------------------------------------
+*/
+/* line 64, ../../../sass/themes/default-clear/screen.scss */
+.artists-navigation .song {
+  background-color: #ccc;
+}
+
+/* line 69, ../../../sass/themes/default-clear/screen.scss */
+.filter {
+  background-color: #ccc;
+}
+/* line 72, ../../../sass/themes/default-clear/screen.scss */
+.filter input {
+  background-color: white;
+}
+
+/* line 77, ../../../sass/themes/default-clear/screen.scss */
+a.active {
+  background-color: #bfff00 !important;
+}
+
+/*
+  -- Songs and playlist panels ------------------------------------------------
+*/
+/* line 85, ../../../sass/themes/default-clear/screen.scss */
+.playlist-header {
+  background-color: #ccc;
+}
+
+/* line 90, ../../../sass/themes/default-clear/screen.scss */
+.list thead {
+  background-color: #ccc;
+}
+/* line 95, ../../../sass/themes/default-clear/screen.scss */
+.list tbody tr:nth-child(even) {
+  background-color: #c8c8c8;
+}
+/* line 100, ../../../sass/themes/default-clear/screen.scss */
+.list tr.playing {
+  background-color: #bfff00 !important;
+}
+/* line 104, ../../../sass/themes/default-clear/screen.scss */
+.list .icon-plus, .list .icon-minus {
+  color: #aaa;
+}
+
+/*
+  -- Radios -------------------------------------------------------------------
+*/
+/* line 114, ../../../sass/themes/default-clear/screen.scss */
+.radio.activeRadio {
+  background-color: #bfff00 !important;
+}
+
+/* line 119, ../../../sass/themes/default-clear/screen.scss */
+.radio:nth-child(4n+2), .radio:nth-child(4n+3) {
+  background-color: #c8c8c8;
+}
+
+/*
+  -- Context menus ------------------------------------------------------------
+*/
+/* line 127, ../../../sass/themes/default-clear/screen.scss */
+.songsContextMenu, .playlistContextMenu {
+  box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
+}
+/* line 130, ../../../sass/themes/default-clear/screen.scss */
+.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
+  background-color: white;
+}
+/* line 134, ../../../sass/themes/default-clear/screen.scss */
+.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
+  background: rgba(191, 255, 0, 0.8);
+}
+
+/*
+  -- Settings -----------------------------------------------------------------
+*/
+/*
+  -- Forms ---------------------------------------------------------------
+*/
+/* line 149, ../../../sass/themes/default-clear/screen.scss */
+input[type="text"] {
+  color: #111;
+  background-color: #eee;
+  border: 1px solid #555 !important;
+}
+
+/* line 155, ../../../sass/themes/default-clear/screen.scss */
+.input-reset {
+  background-color: #eee;
+}
+
+/* line 159, ../../../sass/themes/default-clear/screen.scss */
+.input-reset:after {
+  color: #111;
+  background-color: #eee;
+}
+
+/*
+  -- Crud forms ---------------------------------------------------------------
+*/
+/* line 168, ../../../sass/themes/default-clear/screen.scss */
+form div div input {
+  border: 1px solid #666;
+}
+
+/* line 172, ../../../sass/themes/default-clear/screen.scss */
+.button {
+  color: #111;
+  background: linear-gradient(to top, #dddddd, rgba(204, 204, 204, 0.9));
+}
+
+/* line 177, ../../../sass/themes/default-clear/screen.scss */
+.button:hover {
+  background: linear-gradient(to top, #bfff00, rgba(191, 255, 0, 0.5));
+}

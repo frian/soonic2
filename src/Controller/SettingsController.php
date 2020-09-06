@@ -5,6 +5,13 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
+
+/**
+ * Settings controller.
+ *
+ * @Route("settings")
+ */
 
 class SettingsController extends AbstractController
 {
