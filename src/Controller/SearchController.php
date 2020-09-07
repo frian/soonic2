@@ -26,7 +26,7 @@ class SearchController extends AbstractController
 
              $em = $this->getDoctrine()->getManager();
 
-             $results = $em->getRepository('AppBundle:Song')->findByKeyword($data['keyword']);
+             $results = $em->getRepository('App:Song')->findByKeyword($data['keyword']);
 
              return $this->render('common/songs-list.html.twig', array(
                  'mediaFiles' => $results,

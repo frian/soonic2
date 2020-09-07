@@ -631,7 +631,7 @@ class SoonicScanCommand extends Command
         }
     }
 
-    private function logErrorMessage(string $error, string $file, int $logFile) {
+    private function logErrorMessage(string $error, string $file, $logFile) {
         fwrite($logFile, "[error]$error;$file;skipping file\n");
     }
 
