@@ -10,8 +10,10 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Filesystem\Filesystem;
 
 use Doctrine\ORM\EntityManagerInterface;
+
 
 require_once(dirname(__FILE__).'/../../vendor/james-heinrich/getid3/getid3/getid3.php');
 
@@ -22,10 +24,11 @@ class SoonicScanCommand extends Command
     private $entityManager;
     private $projectDir;
 
-    public function __construct(EntityManagerInterface $entityManager, string $projectDir)
+    public function __construct(EntityManagerInterface $entityManager, string $projectDir, Filesystem $fileSystem)
     {
         $this->entityManager = $entityManager;
         $this->projectDir = $projectDir;
+        $this->fileSystem = $fileSystem;
 
         parent::__construct();
     }
@@ -114,7 +117,14 @@ class SoonicScanCommand extends Command
          * -- Scan variables
          */
         // -- folder to scan
-        $root = $webPath.'/music';
+        $root = $webPath.DIRECTORY_SEPARATOR.'music';
+
+        if (!$this->fileSystem->exists($root)) {
+            $output->writeln('<error>  music folder not found');
+            unlink($lockFile);
+            exit(1);
+        }
+
         // -- file types
         $types = array("mp3", "mp4", "oga", "wma", "wav", "mpg", "mpc", "m4a", "m4p", "flac");
         // -- counters
@@ -151,12 +161,14 @@ class SoonicScanCommand extends Command
         fwrite($sqlFile['artist_album'], 'artist_id,album_id'.PHP_EOL);
 
 
+
+
         // -- scan
         try {
             $di = new \RecursiveDirectoryIterator($root,\RecursiveDirectoryIterator::FOLLOW_SYMLINKS);
         }
         catch(Exception $e) {
-            $output->writeln('<error>'.$e->getMessage());
+            $output->writeln('<error> !!! '.$e->getMessage());
             unlink($lockFile);
             exit(1);
         }
