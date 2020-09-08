@@ -47,7 +47,7 @@ class SoonicScanCommand extends Command
     {
         $start_time = microtime(true);
 
-        $webPath = $this->projectDir.'/public';
+        $webPath = $this->projectDir.DIRECTORY_SEPARATOR.'public';
         $lockFile = $webPath.'/soonic.lock';
 
         // -- exit if there is a lock file
