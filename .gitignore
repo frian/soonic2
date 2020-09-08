@@ -9,11 +9,11 @@
 /vendor/
 ###< symfony/framework-bundle ###
 
-###> symfony/phpunit-bridge ###
+###> symfony/phpunit-bridge ##ic#
 .phpunit
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
 /public/music/
-!/public/music/.gitkeep
+/public/*.sql
