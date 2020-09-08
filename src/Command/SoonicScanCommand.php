@@ -47,7 +47,7 @@ class SoonicScanCommand extends Command
     {
         $start_time = microtime(true);
 
-        $webPath = $this->projectDir.DIRECTORY_SEPARATOR.'public';
+        $webPath = str_replace('\\', '/', $this->projectDir.'/public');
         $lockFile = $webPath.'/soonic.lock';
 
         // -- exit if there is a lock file
@@ -117,7 +117,7 @@ class SoonicScanCommand extends Command
          * -- Scan variables
          */
         // -- folder to scan
-        $root = $webPath.DIRECTORY_SEPARATOR.'music';
+        $root = $webPath.'/music';
 
         if (!$this->fileSystem->exists($root)) {
             $output->writeln('<error>  music folder not found');
@@ -148,7 +148,7 @@ class SoonicScanCommand extends Command
         $sqlFiles = array();
         $sqlFilesPathes = array();
         foreach ($tables as $table) {
-            $sqlFilesPathes[$table] = $webPath.'/soonic-'.$table.'.sql';
+            $sqlFilesPathes[$table] = str_replace('\\', '/', $webPath.'/soonic-'.$table.'.sql');
             $sqlFile[$table] = $this->openFile($sqlFilesPathes[$table], $output, $lockFile);
         }
 
@@ -177,6 +177,8 @@ class SoonicScanCommand extends Command
 
         foreach($it as $file) {
             if ( in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), $types) ) {
+
+                $file = str_replace('\\', '/', $file);
 
                 $fileCount++;
                 $folderFileCount++;
