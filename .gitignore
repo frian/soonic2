@@ -15,5 +15,5 @@
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
 
-/public/music/
+/public/music
 /public/*.sql
