@@ -111,6 +111,7 @@ $(function() {
             $(".songs").css('display', 'block');
             $(".songs").css('width', '100%');
             $(".playlist").css('display', 'none');
+            $(".mobileSongsToArtistsButton").css('display', 'initial');
         }
     });
 
@@ -230,24 +231,28 @@ $(function() {
     /**
      * Back to artists list
      */
-    $(document).on("click", ".mobileBackButton", function(e) {
+    $(document).on("click", ".mobileSongsToArtistsButton", function(e) {
 
         $(".songs, .playlist").css('display', 'none');
         $(".artists-navigation").css('display', 'block');
-
-        console.log('clicked');
+        $(".mobileArtistsToSongsButton").css('display', 'initial');
+        $(".mobileSongsToArtistsButton").css('display', 'none');
+        console.log('clicked 2');
     });
 
 
     /**
      * Forward to songs list/playlist
      */
-    $(document).on("click", ".mobileForwardButton", function(e) {
+    $(document).on("click", ".mobileArtistsToSongsButton", function(e) {
 
-        $(".songs, .playlist").css('display', 'block');
+        $(".songs").css('display', 'block');
+        $(".playlist").css('display', 'none');
         $(".artists-navigation").css('display', 'none');
+        $(".mobileArtistsToSongsButton").css('display', 'none');
+        $(".mobileSongsToArtistsButton").css('display', 'initial');
 
-        console.log('clicked');
+        console.log('clicked 1');
     });
 
 
