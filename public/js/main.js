@@ -108,7 +108,9 @@ $(function() {
 
         if (screenWidth < 1024) {
             $(".artists-navigation").css('display', 'none');
-            $(".songs, .playlist").css('display', 'block');
+            $(".songs").css('display', 'block');
+            $(".songs").css('width', '100%');
+            $(".playlist").css('display', 'none');
         }
     });
 

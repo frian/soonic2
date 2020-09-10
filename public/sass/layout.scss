@@ -114,6 +114,7 @@ $topbar-border-size: 1px;
 }
 
 nav.topbarNav {
+    display: none!important;
     font-size: 0;
     float: right;
     height: $topbar-size;
@@ -218,6 +219,28 @@ nav.topbarNav {
         font-size: 0!important;
     }
 }
+
+
+thead {
+    display: none;
+}
+
+tbody {
+    tr {
+        td {
+            height: 48px;
+            // padding-left: 10px!important;
+        }
+        td:nth-child(1) { width: 48px; text-align: center;}
+        td:nth-child(2) { display: none }
+        td:nth-child(3) { display: none }
+        td:nth-child(5) { display: none }
+        td:nth-child(6) { display: none }
+        td:nth-child(7) { display: none }
+        td:nth-child(8) { display: none }
+    }
+}
+
 
 .playlist-header {
     height: 22px;
@@ -462,7 +485,7 @@ form {
     thead {
         tr {
             th { border: #{$debug}px solid red; }
-            th:nth-child(1) { width: 15px;}
+            th:nth-child(1) { width: 15px; }
             th:nth-child(2) { width: 25px; }
             th:nth-child(3) { width: 20%; }
             th:nth-child(4) { width: 35%; }
