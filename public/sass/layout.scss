@@ -3,6 +3,8 @@
 */
 $debug : 0;
 
+$mobileButtonSize: 48px;
+
 /*
   -- Global -------------------------------------------------------------------
 */
@@ -156,8 +158,8 @@ nav.topbarNav {
         white-space: nowrap;
         text-overflow: ellipsis;
         padding-left: 10px;
-        height : 48px;
-        line-height: 48px;
+        height : $mobileButtonSize;
+        line-height: $mobileButtonSize;
         @if $debug != 0 {
             background-color: #500;
         }
@@ -228,10 +230,10 @@ thead {
 tbody {
     tr {
         td {
-            height: 48px;
+            height: $mobileButtonSize;
             // padding-left: 10px!important;
         }
-        td:nth-child(1) { width: 48px; text-align: center;}
+        td:nth-child(1) { width: $mobileButtonSize; text-align: center;}
         td:nth-child(2) { display: none }
         td:nth-child(3) { display: none }
         td:nth-child(5) { display: none }
@@ -267,9 +269,9 @@ tbody {
 */
 .mobileButton {
     border: 1px solid grey;
-    height: 48px;
-    line-height: 48px;
-    width: 48px;
+    height: $mobileButtonSize;
+    line-height: $mobileButtonSize;
+    width: $mobileButtonSize;
     position: fixed;
     top: calc(100% - 100px);
     text-align: center;
@@ -289,7 +291,7 @@ tbody {
     left: 0;
 }
 
-.mobileSongsToArtistsButton {
+.mobileSongsToArtistsButton, .mobileSongsToPlaylistButton, .mobilePlaylistToSongsButton {
     display: none;
 }
 

@@ -4,24 +4,24 @@
 /*
   -- Global -------------------------------------------------------------------
 */
-/* line 9, ../sass/layout.scss */
+/* line 11, ../sass/layout.scss */
 html, body {
   height: 100%;
 }
 
-/* line 13, ../sass/layout.scss */
+/* line 15, ../sass/layout.scss */
 table {
   table-layout: fixed;
 }
 
-/* line 17, ../sass/layout.scss */
+/* line 19, ../sass/layout.scss */
 .clearfix::after {
   content: "";
   clear: both;
   display: table;
 }
 
-/* line 23, ../sass/layout.scss */
+/* line 25, ../sass/layout.scss */
 .noPadding {
   padding: 0 !important;
 }
@@ -29,14 +29,14 @@ table {
 /*
   -- Topbar -------------------------------------------------------------------
 */
-/* line 33, ../sass/layout.scss */
+/* line 35, ../sass/layout.scss */
 .topbar {
   height: 49px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
   /* -- Artists navigation -- */
 }
-/* line 41, ../sass/layout.scss */
+/* line 43, ../sass/layout.scss */
 .topbar > div {
   display: inline-block;
   box-sizing: border-box;
@@ -45,12 +45,12 @@ table {
   line-height: 49px;
   border: 0px solid red;
 }
-/* line 50, ../sass/layout.scss */
+/* line 52, ../sass/layout.scss */
 .topbar .logo {
   padding: 0 20px;
   border: 0px solid red;
 }
-/* line 56, ../sass/layout.scss */
+/* line 58, ../sass/layout.scss */
 .topbar [class^="icon-"] {
   display: inline-block;
   box-sizing: border-box;
@@ -61,21 +61,21 @@ table {
   cursor: pointer;
   border: 0px solid red;
 }
-/* line 67, ../sass/layout.scss */
+/* line 69, ../sass/layout.scss */
 .topbar .icon-play, .topbar .icon-pause {
   font-size: 150%;
 }
-/* line 71, ../sass/layout.scss */
+/* line 73, ../sass/layout.scss */
 .topbar .icon-to-end {
   margin-left: -2px;
 }
-/* line 75, ../sass/layout.scss */
+/* line 77, ../sass/layout.scss */
 .topbar .icon-cog {
   height: 100%;
   font-size: 26px;
   text-align: center;
 }
-/* line 81, ../sass/layout.scss */
+/* line 83, ../sass/layout.scss */
 .topbar .songInfo {
   margin-left: 10px;
   overflow: hidden;
@@ -83,14 +83,14 @@ table {
   text-overflow: ellipsis;
 }
 
-/* line 89, ../sass/layout.scss */
+/* line 91, ../sass/layout.scss */
 #searchForm {
   display: inline-block;
   vertical-align: top;
   height: 49px;
   line-height: 49px;
 }
-/* line 95, ../sass/layout.scss */
+/* line 97, ../sass/layout.scss */
 #searchForm input[type="text"] {
   display: inline-block;
   vertical-align: middle;
@@ -101,7 +101,7 @@ table {
   padding: 0 10px;
   border: 0px solid lime;
 }
-/* line 106, ../sass/layout.scss */
+/* line 108, ../sass/layout.scss */
 #searchForm input[type="submit"] {
   display: inline-block;
   border: 0;
@@ -111,7 +111,7 @@ table {
   border: 0px solid lime;
 }
 
-/* line 116, ../sass/layout.scss */
+/* line 118, ../sass/layout.scss */
 nav.topbarNav {
   display: none !important;
   font-size: 0;
@@ -119,7 +119,7 @@ nav.topbarNav {
   height: 49px;
   line-height: 49px;
 }
-/* line 127, ../sass/layout.scss */
+/* line 129, ../sass/layout.scss */
 nav.topbarNav a {
   vertical-align: top;
   box-sizing: border-box;
@@ -128,7 +128,7 @@ nav.topbarNav a {
   border: 0px solid lime;
 }
 
-/* line 136, ../sass/layout.scss */
+/* line 138, ../sass/layout.scss */
 .icon-cog {
   float: right;
 }
@@ -136,14 +136,14 @@ nav.topbarNav a {
 /*
   -- Artists navigation -------------------------------------------------------
 */
-/* line 144, ../sass/layout.scss */
+/* line 146, ../sass/layout.scss */
 .artists-navigation {
   float: left;
   width: 100%;
   height: calc(100% - (49px + 1px));
   overflow-y: scroll;
 }
-/* line 153, ../sass/layout.scss */
+/* line 155, ../sass/layout.scss */
 .artists-navigation a {
   display: block;
   overflow: hidden;
@@ -154,20 +154,20 @@ nav.topbarNav a {
   line-height: 48px;
 }
 
-/* line 167, ../sass/layout.scss */
+/* line 169, ../sass/layout.scss */
 .filter {
   height: 40px;
   line-height: 40px;
   border: 0px solid red;
 }
-/* line 172, ../sass/layout.scss */
+/* line 174, ../sass/layout.scss */
 .filter label {
   display: inline-block;
   box-sizing: border-box;
   width: calc(30%);
   border: 0px solid cyan;
 }
-/* line 179, ../sass/layout.scss */
+/* line 181, ../sass/layout.scss */
 .filter input {
   position: relative;
   top: 3px;
@@ -183,74 +183,74 @@ nav.topbarNav a {
 /*
   -- Songs and playlist panels ------------------------------------------------
 */
-/* line 196, ../sass/layout.scss */
+/* line 198, ../sass/layout.scss */
 .songs, .playlist {
   overflow-y: scroll;
 }
-/* line 200, ../sass/layout.scss */
+/* line 202, ../sass/layout.scss */
 .songs table, .playlist table {
   width: 100%;
 }
 
-/* line 216, ../sass/layout.scss */
+/* line 218, ../sass/layout.scss */
 .playlist thead tr {
   height: 0 !important;
   line-height: 0 !important;
   font-size: 0 !important;
 }
 
-/* line 224, ../sass/layout.scss */
+/* line 226, ../sass/layout.scss */
 thead {
   display: none;
 }
 
-/* line 230, ../sass/layout.scss */
+/* line 232, ../sass/layout.scss */
 tbody tr td {
   height: 48px;
 }
-/* line 234, ../sass/layout.scss */
+/* line 236, ../sass/layout.scss */
 tbody tr td:nth-child(1) {
   width: 48px;
   text-align: center;
 }
-/* line 235, ../sass/layout.scss */
+/* line 237, ../sass/layout.scss */
 tbody tr td:nth-child(2) {
   display: none;
 }
-/* line 236, ../sass/layout.scss */
+/* line 238, ../sass/layout.scss */
 tbody tr td:nth-child(3) {
   display: none;
 }
-/* line 237, ../sass/layout.scss */
+/* line 239, ../sass/layout.scss */
 tbody tr td:nth-child(5) {
   display: none;
 }
-/* line 238, ../sass/layout.scss */
+/* line 240, ../sass/layout.scss */
 tbody tr td:nth-child(6) {
   display: none;
 }
-/* line 239, ../sass/layout.scss */
+/* line 241, ../sass/layout.scss */
 tbody tr td:nth-child(7) {
   display: none;
 }
-/* line 240, ../sass/layout.scss */
+/* line 242, ../sass/layout.scss */
 tbody tr td:nth-child(8) {
   display: none;
 }
 
-/* line 245, ../sass/layout.scss */
+/* line 247, ../sass/layout.scss */
 .playlist-header {
   height: 22px;
   line-height: 20px;
   padding-left: 10px;
 }
-/* line 250, ../sass/layout.scss */
+/* line 252, ../sass/layout.scss */
 .playlist-header .icon-trash {
   float: right;
   cursor: pointer;
 }
 
-/* line 258, ../sass/layout.scss */
+/* line 260, ../sass/layout.scss */
 .list thead tr {
   height: 22px;
   line-height: 22px;
@@ -259,7 +259,7 @@ tbody tr td:nth-child(8) {
 /*
   -- Small screen buttons -----------------------------------------------------
 */
-/* line 268, ../sass/layout.scss */
+/* line 270, ../sass/layout.scss */
 .mobileButton {
   border: 1px solid grey;
   height: 48px;
@@ -271,43 +271,43 @@ tbody tr td:nth-child(8) {
   cursor: pointer;
   background-color: #333;
 }
-/* line 278, ../sass/layout.scss */
+/* line 280, ../sass/layout.scss */
 .mobileButton:hover {
   background-color: #111;
 }
 
-/* line 284, ../sass/layout.scss */
+/* line 286, ../sass/layout.scss */
 .mobileForwardButton {
   right: 0;
 }
 
-/* line 288, ../sass/layout.scss */
+/* line 290, ../sass/layout.scss */
 .mobileBackButton {
   left: 0;
 }
 
-/* line 292, ../sass/layout.scss */
-.mobileSongsToArtistsButton {
+/* line 294, ../sass/layout.scss */
+.mobileSongsToArtistsButton, .mobileSongsToPlaylistButton, .mobilePlaylistToSongsButton {
   display: none;
 }
 
 /*
   -- Radios -------------------------------------------------------------------
 */
-/* line 300, ../sass/layout.scss */
+/* line 302, ../sass/layout.scss */
 .radios {
   font-size: 0;
   height: calc(100% - (49px + 1px));
   overflow-y: scroll;
 }
 
-/* line 306, ../sass/layout.scss */
+/* line 308, ../sass/layout.scss */
 .radio {
   font-size: 16px;
   box-sizing: border-box;
   border: 0px solid red;
 }
-/* line 311, ../sass/layout.scss */
+/* line 313, ../sass/layout.scss */
 .radio .radioName, .radio .radioUrl {
   overflow: hidden;
   white-space: nowrap;
@@ -316,21 +316,21 @@ tbody tr td:nth-child(8) {
   width: calc(100% - 150px);
   box-sizing: border-box;
 }
-/* line 320, ../sass/layout.scss */
+/* line 322, ../sass/layout.scss */
 .radio .radioName {
   height: 100px;
   padding-left: 30px;
   line-height: 100px;
   border: 0px solid lime;
 }
-/* line 327, ../sass/layout.scss */
+/* line 329, ../sass/layout.scss */
 .radio .radioUrl {
   height: 50px;
   line-height: 50px;
   padding: 0 10px 0 20px;
   border: 0px solid cyan;
 }
-/* line 334, ../sass/layout.scss */
+/* line 336, ../sass/layout.scss */
 .radio .buttonWrapper {
   float: left;
   height: 150px;
@@ -342,7 +342,7 @@ tbody tr td:nth-child(8) {
   border: 0px solid yellow;
 }
 
-/* line 346, ../sass/layout.scss */
+/* line 348, ../sass/layout.scss */
 label[for=appbundle_radio_enabled], #appbundle_radio_enabled,
 label[for=appbundle_radio_changed], #appbundle_radio_changed {
   display: none !important;
@@ -351,29 +351,29 @@ label[for=appbundle_radio_changed], #appbundle_radio_changed {
 /*
   -- Settings -----------------------------------------------------------------
 */
-/* line 355, ../sass/layout.scss */
+/* line 357, ../sass/layout.scss */
 .settings {
   border: 0px solid red;
 }
-/* line 360, ../sass/layout.scss */
+/* line 362, ../sass/layout.scss */
 .settings table tr td {
   padding: 15px 50px;
   text-align: right;
   border: 0px solid lime;
 }
-/* line 365, ../sass/layout.scss */
+/* line 367, ../sass/layout.scss */
 .settings table tr td:nth-child(1) {
   padding: 0;
   padding-left: 30px;
   text-align: right !important;
 }
 
-/* line 376, ../sass/layout.scss */
+/* line 378, ../sass/layout.scss */
 .info {
   border: 0px solid red;
 }
 
-/* line 380, ../sass/layout.scss */
+/* line 382, ../sass/layout.scss */
 .libraryInfo {
   margin-top: 20px;
 }
@@ -382,12 +382,12 @@ label[for=appbundle_radio_changed], #appbundle_radio_changed {
   -- Forms ---------------------------------------------------------------
 */
 /* neede for reset button */
-/* line 388, ../sass/layout.scss */
+/* line 390, ../sass/layout.scss */
 form {
   position: relative;
 }
 
-/* line 392, ../sass/layout.scss */
+/* line 394, ../sass/layout.scss */
 .input-reset {
   position: absolute;
   display: inline-block;
@@ -399,7 +399,7 @@ form {
   border: 0;
 }
 
-/* line 403, ../sass/layout.scss */
+/* line 405, ../sass/layout.scss */
 .input-reset:after {
   content: "\e805";
   transform: rotate(45deg);
@@ -421,18 +421,18 @@ form {
   cursor: pointer;
 }
 
-/* line 424, ../sass/layout.scss */
+/* line 426, ../sass/layout.scss */
 .filterInput:not(:valid) ~ .input-reset {
   display: none;
 }
 
-/* line 429, ../sass/layout.scss */
+/* line 431, ../sass/layout.scss */
 .filterForm .input-reset {
   top: 5px;
   right: 5px;
 }
 
-/* line 436, ../sass/layout.scss */
+/* line 438, ../sass/layout.scss */
 #searchForm .input-reset {
   top: 10px;
   right: 125px;
@@ -441,14 +441,14 @@ form {
 /*
   -- Crud forms ---------------------------------------------------------------
 */
-/* line 446, ../sass/layout.scss */
+/* line 448, ../sass/layout.scss */
 .buttonWrapper {
   padding: 20px 0;
   text-align: center;
   border: 0px solid red;
 }
 
-/* line 452, ../sass/layout.scss */
+/* line 454, ../sass/layout.scss */
 .button {
   box-sizing: border-box;
   height: 50px;
@@ -461,7 +461,7 @@ form {
 /*
   -- Context menus ------------------------------------------------------------
 */
-/* line 465, ../sass/layout.scss */
+/* line 467, ../sass/layout.scss */
 .songsContextMenu, .playlistContextMenu {
   position: absolute;
   display: none;
@@ -472,112 +472,112 @@ form {
 */
 @media all and (min-width: 1023px) {
   /* -- Topbar -- */
-  /* line 477, ../sass/layout.scss */
+  /* line 479, ../sass/layout.scss */
   .songInfo {
     width: 250px;
   }
 
-  /* line 481, ../sass/layout.scss */
+  /* line 483, ../sass/layout.scss */
   #form_keyword {
     width: 100px;
   }
 
   /* -- Artists navigation -- */
-  /* line 489, ../sass/layout.scss */
+  /* line 491, ../sass/layout.scss */
   .artists-navigation {
     height: calc(100% - (49px + 1px));
     width: 240px;
     overflow-y: scroll;
   }
-  /* line 494, ../sass/layout.scss */
+  /* line 496, ../sass/layout.scss */
   .artists-navigation a {
     height: auto;
     line-height: 1.3em;
     border: 0px solid white;
   }
-  /* line 499, ../sass/layout.scss */
+  /* line 501, ../sass/layout.scss */
   .artists-navigation a.song {
     line-height: 1.4em;
   }
-  /* line 504, ../sass/layout.scss */
+  /* line 506, ../sass/layout.scss */
   .artists-navigation > ul {
     margin-top: 5px;
   }
 
   /* -- Songs and playlist panels -- */
-  /* line 511, ../sass/layout.scss */
+  /* line 513, ../sass/layout.scss */
   .songs, .playlist {
     display: block;
     height: calc((100% - (49px + 1px)) / 2);
   }
 
-  /* line 518, ../sass/layout.scss */
+  /* line 520, ../sass/layout.scss */
   thead tr th {
     border: 0px solid red;
   }
-  /* line 519, ../sass/layout.scss */
+  /* line 521, ../sass/layout.scss */
   thead tr th:nth-child(1) {
     width: 15px;
   }
-  /* line 520, ../sass/layout.scss */
+  /* line 522, ../sass/layout.scss */
   thead tr th:nth-child(2) {
     width: 25px;
   }
-  /* line 521, ../sass/layout.scss */
+  /* line 523, ../sass/layout.scss */
   thead tr th:nth-child(3) {
     width: 20%;
   }
-  /* line 522, ../sass/layout.scss */
+  /* line 524, ../sass/layout.scss */
   thead tr th:nth-child(4) {
     width: 35%;
   }
-  /* line 523, ../sass/layout.scss */
+  /* line 525, ../sass/layout.scss */
   thead tr th:nth-child(5) {
     width: 20%;
   }
-  /* line 524, ../sass/layout.scss */
+  /* line 526, ../sass/layout.scss */
   thead tr th:nth-child(6) {
     width: 60px;
   }
-  /* line 525, ../sass/layout.scss */
+  /* line 527, ../sass/layout.scss */
   thead tr th:nth-child(7) {
     width: 60px;
     display: none;
   }
-  /* line 526, ../sass/layout.scss */
+  /* line 528, ../sass/layout.scss */
   thead tr th:nth-child(8) {
     width: 60px;
     display: none;
   }
 
-  /* line 532, ../sass/layout.scss */
+  /* line 534, ../sass/layout.scss */
   tbody tr td {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
     border: 0px solid red;
   }
-  /* line 539, ../sass/layout.scss */
+  /* line 541, ../sass/layout.scss */
   tbody tr td:nth-child(1) {
     text-align: center;
     padding-left: 2px;
   }
-  /* line 540, ../sass/layout.scss */
+  /* line 542, ../sass/layout.scss */
   tbody tr td:nth-child(6) {
     text-align: center;
   }
-  /* line 541, ../sass/layout.scss */
+  /* line 543, ../sass/layout.scss */
   tbody tr td:nth-child(7) {
     text-align: center;
     display: none;
   }
-  /* line 542, ../sass/layout.scss */
+  /* line 544, ../sass/layout.scss */
   tbody tr td:nth-child(8) {
     display: none;
   }
 
   /* -- Radios -- */
-  /* line 548, ../sass/layout.scss */
+  /* line 550, ../sass/layout.scss */
   .radio {
     font-size: 16px !important;
     display: inline-block;
@@ -589,32 +589,32 @@ form {
 */
 @media all and (min-width: 1200px) {
   /* -- Topbar -- */
-  /* line 563, ../sass/layout.scss */
+  /* line 565, ../sass/layout.scss */
   .songInfo {
     width: 400px;
   }
 
   /* -- Artists navigation -- */
-  /* line 571, ../sass/layout.scss */
+  /* line 573, ../sass/layout.scss */
   .artists-navigation {
     width: 360px;
   }
 
   /* -- Songs and playlist panels -- */
-  /* line 579, ../sass/layout.scss */
+  /* line 581, ../sass/layout.scss */
   thead tr th:nth-child(7) {
     display: table-cell;
   }
-  /* line 583, ../sass/layout.scss */
+  /* line 585, ../sass/layout.scss */
   thead tr th:nth-child(8) {
     display: table-cell;
   }
 
-  /* line 591, ../sass/layout.scss */
+  /* line 593, ../sass/layout.scss */
   tbody tr td:nth-child(7) {
     display: table-cell;
   }
-  /* line 595, ../sass/layout.scss */
+  /* line 597, ../sass/layout.scss */
   tbody tr td:nth-child(8) {
     display: table-cell;
   }
@@ -624,12 +624,12 @@ form {
 */
 @media all and (min-width: 1600px) {
   /* -- Topbar -- */
-  /* line 609, ../sass/layout.scss */
+  /* line 611, ../sass/layout.scss */
   .songInfo {
     width: 600px;
   }
 
-  /* line 614, ../sass/layout.scss */
+  /* line 616, ../sass/layout.scss */
   #searchForm input[type="text"] {
     width: 200px;
   }

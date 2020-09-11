@@ -112,6 +112,7 @@ $(function() {
             $(".songs").css('width', '100%');
             $(".playlist").css('display', 'none');
             $(".mobileSongsToArtistsButton").css('display', 'initial');
+            $(".mobileSongsToPlaylist").css('display', 'initial');
         }
     });
 
@@ -229,20 +230,7 @@ $(function() {
 
 
     /**
-     * Back to artists list
-     */
-    $(document).on("click", ".mobileSongsToArtistsButton", function(e) {
-
-        $(".songs, .playlist").css('display', 'none');
-        $(".artists-navigation").css('display', 'block');
-        $(".mobileArtistsToSongsButton").css('display', 'initial');
-        $(".mobileSongsToArtistsButton").css('display', 'none');
-        console.log('clicked 2');
-    });
-
-
-    /**
-     * Forward to songs list/playlist
+     * Forward to songs list
      */
     $(document).on("click", ".mobileArtistsToSongsButton", function(e) {
 
@@ -251,9 +239,46 @@ $(function() {
         $(".artists-navigation").css('display', 'none');
         $(".mobileArtistsToSongsButton").css('display', 'none');
         $(".mobileSongsToArtistsButton").css('display', 'initial');
+        $(".mobileSongsToPlaylistButton").css('display', 'initial');
 
         console.log('clicked 1');
     });
 
 
+    /**
+     * Back to artists list
+     */
+    $(document).on("click", ".mobileSongsToArtistsButton", function(e) {
+
+        $(".songs, .playlist").css('display', 'none');
+        $(".artists-navigation").css('display', 'block');
+        $(".mobileSongsToArtistsButton").css('display', 'none');
+        $(".mobileSongsToPlaylistButton").css('display', 'none');
+        $(".mobileArtistsToSongsButton").css('display', 'initial');
+        console.log('clicked 2');
+    });
+
+
+    /**
+     * Forward to playlist
+     */
+    $(document).on("click", ".mobileSongsToPlaylistButton", function(e) {
+        $(".songs").css('display', 'none');
+        $(".playlist").css('display', 'initial');
+        $(".mobileArtistsToSongsButton").css('display', 'none');
+        $(".mobileSongsToPlaylistButton").css('display', 'none');
+        $(".mobilePlaylistToSongsButton").css('display', 'initial');
+        console.log('clicked 3');
+    });
+
+
+    /**
+     * Back to songs list
+     */
+     $(document).on("click", ".mobilePlaylistToSongsButton", function(e) {
+         $(".songs").css('display', 'initial');
+         $(".playlist").css('display', 'none');
+         $(".mobileSongsToPlaylistButton").css('display', 'initial');
+         console.log('clicked 4');
+     });
 });
