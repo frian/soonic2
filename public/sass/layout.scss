@@ -81,6 +81,7 @@ $topbar-border-size: 1px;
     }
 
     .songInfo {
+        display: inline-block;
         margin-left: 10px;
         overflow: hidden;
         white-space: nowrap;
@@ -477,6 +478,7 @@ form {
 
     /* -- Topbar -- */
     .songInfo {
+        display: block;
         width: 250px;
     }
 

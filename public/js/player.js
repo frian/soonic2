@@ -48,13 +48,12 @@ $(function() {
         $(this).addClass('playing');
 
         if (screenWidth < 1024) {
-
-            if ($(".songInfo").css('display') === 'none') {
-                $(".songInfo").css('display', 'inline-block');
-                // -- adapt height to obove
-                $(".playlist").css('height', ($(".playlist").height() - $(".songInfo").height()) + 'px');
-            }
-
+            // if ($(".songInfo").css('display') === 'none') {
+            //     // $(".songInfo").css('display', 'inline-block');
+            //     // -- adapt height to obove
+            //     $(".playlist").css('height', ($(".playlist").height() - $(".songInfo").height()) + 'px');
+            // }
+            $(".songInfo").css('display', 'none');
         }
     });
 
