@@ -273,7 +273,7 @@ tbody {
     line-height: $mobileButtonSize;
     width: $mobileButtonSize;
     position: fixed;
-    top: calc(100% - 100px);
+    top: calc(100% - #{$mobileButtonSize}); // calc(100% - 100px) for debug
     text-align: center;
     cursor: pointer;
     background-color: #333;

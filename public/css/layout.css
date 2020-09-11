@@ -266,7 +266,7 @@ tbody tr td:nth-child(8) {
   line-height: 48px;
   width: 48px;
   position: fixed;
-  top: calc(100% - 100px);
+  top: calc(100% - 48px);
   text-align: center;
   cursor: pointer;
   background-color: #333;
