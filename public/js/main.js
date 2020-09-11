@@ -112,7 +112,7 @@ $(function() {
             $(".songs").css('width', '100%');
             $(".playlist").css('display', 'none');
             $(".mobileSongsToArtistsButton").css('display', 'initial');
-            $(".mobileSongsToPlaylist").css('display', 'initial');
+            $(".mobileSongsToPlaylistButton").css('display', 'block');
         }
     });
 
