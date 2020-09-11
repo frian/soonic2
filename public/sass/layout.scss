@@ -1,3 +1,5 @@
+@import "hamburger";
+
 /*
   -- Default layout -----------------------------------------------------------
 */
@@ -117,7 +119,7 @@ $topbar-border-size: 1px;
 }
 
 nav.topbarNav {
-    display: none!important;
+    display: none;
     font-size: 0;
     float: right;
     height: $topbar-size;
@@ -482,8 +484,16 @@ form {
         width: 250px;
     }
 
+    nav.topbarNav {
+        display: initial;
+    }
+
     #form_keyword {
         width: 100px;
+    }
+
+    .hamburger {
+        display: none;
     }
 
 
@@ -534,6 +544,7 @@ form {
     tbody {
         tr {
             td {
+                height: 22px;
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;

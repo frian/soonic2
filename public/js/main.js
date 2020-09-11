@@ -275,10 +275,15 @@ $(function() {
     /**
      * Back to songs list
      */
-     $(document).on("click", ".mobilePlaylistToSongsButton", function(e) {
-         $(".songs").css('display', 'initial');
-         $(".playlist").css('display', 'none');
-         $(".mobileSongsToPlaylistButton").css('display', 'initial');
-         console.log('clicked 4');
-     });
+    $(document).on("click", ".mobilePlaylistToSongsButton", function(e) {
+        $(".songs").css('display', 'initial');
+        $(".playlist").css('display', 'none');
+        $(".mobileSongsToPlaylistButton").css('display', 'initial');
+        console.log('clicked 4');
+    });
+
+    var $hamburger = $(".hamburger");
+    $hamburger.on("click", function(e) {
+        $hamburger.toggleClass("is-active");
+    });
 });
