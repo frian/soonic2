@@ -298,6 +298,10 @@ tbody {
     display: none;
 }
 
+button:active, button:focus {
+    border: none!important;
+}
+
 
 /*
   -- Radios -------------------------------------------------------------------
