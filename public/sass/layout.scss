@@ -547,6 +547,10 @@ form {
         }
     }
 
+    /* -- Small screen buttons -- */
+    .mobileButton {
+        display: none;
+    }
 
     /* -- Radios -- */
     .radio {

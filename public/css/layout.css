@@ -578,8 +578,14 @@ form {
     display: none;
   }
 
+  /* -- Small screen buttons -- */
+  /* line 551, ../sass/layout.scss */
+  .mobileButton {
+    display: none;
+  }
+
   /* -- Radios -- */
-  /* line 552, ../sass/layout.scss */
+  /* line 556, ../sass/layout.scss */
   .radio {
     font-size: 16px !important;
     display: inline-block;
@@ -591,32 +597,32 @@ form {
 */
 @media all and (min-width: 1200px) {
   /* -- Topbar -- */
-  /* line 567, ../sass/layout.scss */
+  /* line 571, ../sass/layout.scss */
   .songInfo {
     width: 400px;
   }
 
   /* -- Artists navigation -- */
-  /* line 575, ../sass/layout.scss */
+  /* line 579, ../sass/layout.scss */
   .artists-navigation {
     width: 360px;
   }
 
   /* -- Songs and playlist panels -- */
-  /* line 583, ../sass/layout.scss */
+  /* line 587, ../sass/layout.scss */
   thead tr th:nth-child(7) {
     display: table-cell;
   }
-  /* line 587, ../sass/layout.scss */
+  /* line 591, ../sass/layout.scss */
   thead tr th:nth-child(8) {
     display: table-cell;
   }
 
-  /* line 595, ../sass/layout.scss */
+  /* line 599, ../sass/layout.scss */
   tbody tr td:nth-child(7) {
     display: table-cell;
   }
-  /* line 599, ../sass/layout.scss */
+  /* line 603, ../sass/layout.scss */
   tbody tr td:nth-child(8) {
     display: table-cell;
   }
@@ -626,12 +632,12 @@ form {
 */
 @media all and (min-width: 1600px) {
   /* -- Topbar -- */
-  /* line 613, ../sass/layout.scss */
+  /* line 617, ../sass/layout.scss */
   .songInfo {
     width: 600px;
   }
 
-  /* line 618, ../sass/layout.scss */
+  /* line 622, ../sass/layout.scss */
   #searchForm input[type="text"] {
     width: 200px;
   }
