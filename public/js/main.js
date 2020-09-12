@@ -282,6 +282,10 @@ $(function() {
         console.log('clicked 4');
     });
 
+
+    /**
+     * handle mobile menu
+     */
     var hamburger = $(".hamburger");
     var state = 'closed';
     hamburger.on("click", function(e) {

@@ -1,38 +1,5 @@
 @import "hamburger";
 
-ul.topNav {
-    position: relative;
-    // border: 2px solid lime;
-    width: 100%!important;
-    background-color: #555;
-
-    &.is-active {
-        position: absolute;
-        top: 50px;
-        left: 0;
-        width: 100%;
-        z-index: 10;
-
-        li {
-            text-align: center;
-            float: none;
-
-            a {
-                width: 100%;
-                text-align: center;
-
-                .icon-cog {
-                    float: none;
-                }
-            }
-        }
-    }
-
-    li {
-        float: left;
-    }
-}
-
 
 /*
   -- Default layout -----------------------------------------------------------
@@ -393,6 +360,53 @@ button:active, button:focus {
 label[for=appbundle_radio_enabled], #appbundle_radio_enabled,
 label[for=appbundle_radio_changed], #appbundle_radio_changed {
     display: none!important;
+}
+
+
+/*
+  -- Mobile menu --------------------------------------------------------------
+*/
+ul.topNav {
+    position: relative;
+    // border: 2px solid lime;
+    width: 100%!important;
+    background-color: #555;
+
+    &.is-active {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+
+        li {
+            text-align: center;
+            float: none;
+
+            a {
+                width: 100%;
+                text-align: center;
+
+                .icon-cog {
+                    float: none;
+                }
+            }
+        }
+        form {
+            width: 100%;
+            input[type='text'] {
+                width: 60%!important;
+            }
+            input[type='submit'] {
+                float: right;
+            }
+        }
+    }
+
+    li {
+        float: left;
+    }
+
 }
 
 
