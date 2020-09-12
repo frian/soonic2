@@ -1,5 +1,39 @@
 @import "hamburger";
 
+ul.topNav {
+    position: relative;
+    // border: 2px solid lime;
+    width: 100%!important;
+    background-color: #555;
+
+    &.is-active {
+        position: absolute;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+
+        li {
+            text-align: center;
+            float: none;
+
+            a {
+                width: 100%;
+                text-align: center;
+
+                .icon-cog {
+                    float: none;
+                }
+            }
+        }
+    }
+
+    li {
+        float: left;
+    }
+}
+
+
 /*
   -- Default layout -----------------------------------------------------------
 */
@@ -128,6 +162,10 @@ nav.topbarNav {
         background-color: #666;
     }
 
+    &.is-active {
+        display: block;
+    }
+
 
     a {
         vertical-align: top;
@@ -199,7 +237,7 @@ nav.topbarNav {
   -- Songs and playlist panels ------------------------------------------------
 */
 .songs, .playlist {
-    // display: none;
+    display: none;
     overflow-y: scroll;
 
     table {

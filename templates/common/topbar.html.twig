@@ -26,35 +26,42 @@
 
     <nav class="topbarNav">
 
+        <ul class="topNav">
         {% if app.request.get('_route') == 'library' %}
-
-            {{ render(controller( 'App\\Controller\\SearchController::showSearch' )) }}
-
-            <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
-
-        {% else %}
-
-            {% if 'radio' in app.request.get('_route') and app.request.get('_route') != 'radio_new' %}
-                <a href="{{ path('radio_new') }}">{{ 'radio.new'|trans }}</a>
-            {% endif %}
-
-            {% if app.request.get('_route') == 'radio_new' %}
-                <a href="{{ path('radio_index') }}">{{ 'back'|trans }}</a>
-            {% endif %}
-
-            {% if app.request.get('_route') == 'settings_index' %}
+            <li>
+                {{ render(controller( 'App\\Controller\\SearchController::showSearch' )) }}
+            </li>
+            <li>
                 <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
-            {% endif %}
-
-            <a href="{{ path('library') }}">{{ 'music'|trans }}</a>
+            </li>
+        {% else %}
+            <li>
+                {% if 'radio' in app.request.get('_route') and app.request.get('_route') != 'radio_new' %}
+                    <a href="{{ path('radio_new') }}">{{ 'radio.new'|trans }}</a>
+                {% endif %}
+            </li>
+            <li>
+                {% if app.request.get('_route') == 'radio_new' %}
+                    <a href="{{ path('radio_index') }}">{{ 'back'|trans }}</a>
+                {% endif %}
+            </li>
+            <li>
+                {% if app.request.get('_route') == 'settings_index' %}
+                    <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
+                {% endif %}
+            </li>
+            <li>
+                <a href="{{ path('library') }}">{{ 'music'|trans }}</a>
+            </li>
         {% endif %}
-
-        {% if app.request.get('_route') != 'settings_index' %}
-            <a class="noPadding" href="{{ path('settings_index') }}">
-                <i class="icon-cog button"></i>
-            </a>
-        {% endif %}
-
+            <li>
+                {% if app.request.get('_route') != 'settings_index' %}
+                    <a class="noPadding" href="{{ path('settings_index') }}">
+                        <i class="icon-cog button"></i>
+                    </a>
+                {% endif %}
+            </li>
+        </ul>
     </nav>
 
 

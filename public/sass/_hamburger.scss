@@ -9,7 +9,7 @@
 .hamburger {
     padding: 10px;
     display: inline-block;
-    float: right;
+    position: absolute;
     cursor: pointer;
     transition-property: opacity, filter;
     transition-duration: 0.15s;

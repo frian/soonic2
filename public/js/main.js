@@ -282,8 +282,15 @@ $(function() {
         console.log('clicked 4');
     });
 
-    var $hamburger = $(".hamburger");
-    $hamburger.on("click", function(e) {
-        $hamburger.toggleClass("is-active");
+    var hamburger = $(".hamburger");
+    var state = 'closed';
+    hamburger.on("click", function(e) {
+
+        $(".topbarNav").toggleClass("is-active");
+        $(".topNav").toggleClass("is-active");
+
+        state = state == 'closed' ? 'open': 'closed';
+        hamburger.toggleClass("is-active");
+        console.log(state);
     });
 });
