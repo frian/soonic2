@@ -1,6 +1,7 @@
 $(function() {
 
     var screenWidth = $(window).width();
+    var state = 'closed';
 
     /**
      * Returns a album list for an artist or remove album list (close)
@@ -125,6 +126,8 @@ $(function() {
 
         e.preventDefault();
 
+        console.log('search');
+
         var keyword = $("#form_keyword").val().length;
 
         if ($("#form_keyword").val().length < 3) {
@@ -141,6 +144,23 @@ $(function() {
             success: function(data) {
                 $("#songs table tbody").remove();
                 $("#songs table").append(data);
+                if ($("#topBarNav").hasClass('is-active')) {
+                    console.log('is-active');
+                    $("#topBarNav").toggleClass('is-active');
+                    $(".topNav").toggleClass('is-active');
+                    $(".songs").css('display', 'initial');
+                    $(".playlist").css('display', 'none');
+                    $(".artists-navigation").css('display', 'none');
+                    $(".mobileSongsToArtistsButton").css('display', 'initial');
+                    $(".mobileSongsToPlaylistButton").css('display', 'initial');
+                    hamburger.toggleClass("is-active");
+
+                    state = state == 'closed' ? 'open': 'closed';
+                }
+                else {
+                    console.log('NOT is-active');
+                    console.log($(".topBarNav"));
+                }
             },
             error: function(data) {
                 console.log("error");
@@ -287,14 +307,13 @@ $(function() {
      * handle mobile menu
      */
     var hamburger = $(".hamburger");
-    var state = 'closed';
     hamburger.on("click", function(e) {
 
         $(".topbarNav").toggleClass("is-active");
         $(".topNav").toggleClass("is-active");
+        hamburger.toggleClass("is-active");
 
         state = state == 'closed' ? 'open': 'closed';
-        hamburger.toggleClass("is-active");
         console.log(state);
     });
 });
