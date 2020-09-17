@@ -13,8 +13,7 @@ class LibraryController extends AbstractController
     /**
      * @Route("/", name="library")
      */
-    public function index(ArtistRepository $artistRepository)
-    {
+    public function index(ArtistRepository $artistRepository) {
         return $this->render('library/screen.html.twig', [
             'artists' => $artistRepository->findAll(),
         ]);
@@ -52,10 +51,8 @@ class LibraryController extends AbstractController
 
         $songs = $em->getRepository('App:Song')->findByArtistAndAlbum($artist->getName(), $album->getName());
 
-        // $songs = $album->getSongs();
-
         return $this->render('common/songs-list.html.twig', array(
-            'mediaFiles' => $songs
+            'songs' => $songs
         ));
     }
 
@@ -74,6 +71,23 @@ class LibraryController extends AbstractController
 
         return $this->render('library/artist-nav-list.html.twig', array(
             'artists' => $artists,
+        ));
+    }
+
+    /**
+     * Load random songs.
+     *
+     * @Route("/songs/random", name="random_songs")
+     * @Method("GET")
+     */
+    public function randomSongs($number = 20) {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $songs = $em->getRepository('App:Song')->getRandom($number);
+
+        return $this->render('common/songs-list.html.twig', array(
+            'songs' => $songs
         ));
     }
 }

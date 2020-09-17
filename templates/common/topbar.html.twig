@@ -32,6 +32,9 @@
                 {{ render(controller( 'App\\Controller\\SearchController::showSearch' )) }}
             </li>
             <li>
+                <a id="random" href="{{ path('random_songs') }}">{{ 'random'|trans }}</a>
+            </li>
+            <li>
                 <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
             </li>
         {% else %}

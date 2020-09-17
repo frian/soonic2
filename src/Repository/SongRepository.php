@@ -48,32 +48,21 @@ class SongRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // /**
-    //  * @return Song[] Returns an array of Song objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
-    /*
-    public function findOneBySomeField($value): ?Song
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
+    public function getRandom($number) {
+
+        $maxId = $this->createQueryBuilder('s')
+            ->select('MAX(s.id)')
             ->getQuery()
-            ->getOneOrNullResult()
-        ;
+            ->getSingleScalarResult();
+
+        $qb = $this->createQueryBuilder('s');
+
+        for ($i = 1; $i <= $number ; $i++) {
+            $qb->orWhere("s.id = :num_".$i);
+            $qb->setParameter("num_".$i, random_int(1, $maxId));
+        }
+
+        return $qb->getQuery()->getResult();
     }
-    */
 }

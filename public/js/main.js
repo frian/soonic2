@@ -126,8 +126,6 @@ $(function() {
 
         e.preventDefault();
 
-        console.log('search');
-
         var keyword = $("#form_keyword").val().length;
 
         if ($("#form_keyword").val().length < 3) {
@@ -145,7 +143,6 @@ $(function() {
                 $("#songs table tbody").remove();
                 $("#songs table").append(data);
                 if ($("#topBarNav").hasClass('is-active')) {
-                    console.log('is-active');
                     $("#topBarNav").toggleClass('is-active');
                     $(".topNav").toggleClass('is-active');
                     $(".songs").css('display', 'initial');
@@ -157,10 +154,6 @@ $(function() {
 
                     state = state == 'closed' ? 'open': 'closed';
                 }
-                else {
-                    console.log('NOT is-active');
-                    console.log($(".topBarNav"));
-                }
             },
             error: function(data) {
                 console.log("error");
@@ -168,6 +161,41 @@ $(function() {
         });
     });
 
+
+    /**
+     * Returns search results
+     * Updates the songs panel
+     */
+    $(document).on("click", "#random", function(e) {
+
+        e.preventDefault();
+
+        var url = "/songs/random";
+
+        $.ajax({
+            url: url,
+            cache: true,
+            success: function(data) {
+                $("#songs table tbody").remove();
+                $("#songs table").append(data);
+                if ($("#topBarNav").hasClass('is-active')) {
+                    $("#topBarNav").toggleClass('is-active');
+                    $(".topNav").toggleClass('is-active');
+                    $(".songs").css('display', 'initial');
+                    $(".playlist").css('display', 'none');
+                    $(".artists-navigation").css('display', 'none');
+                    $(".mobileSongsToArtistsButton").css('display', 'initial');
+                    $(".mobileSongsToPlaylistButton").css('display', 'initial');
+                    hamburger.toggleClass("is-active");
+
+                    state = state == 'closed' ? 'open': 'closed';
+                }
+            },
+            error: function(data) {
+                console.log("error");
+            }
+        });
+    });
 
     /**
      * Start scan
