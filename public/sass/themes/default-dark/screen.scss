@@ -54,6 +54,9 @@ nav.topbarNav {
 
     a:hover {
         background: $hover-gradient;
+        .icon-cog {
+            background: $hover-gradient;
+        }
     }
 }
 
@@ -116,7 +119,7 @@ a.active {
     }
 }
 
-.radio:nth-child(4n+2), .radio:nth-child(4n+3), {
+.radio:nth-child(4n+2), .radio:nth-child(4n+3) {
     background-color: $bg-alternate;
 }
 

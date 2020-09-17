@@ -117,6 +117,11 @@ $topbar-border-size: 1px;
         vertical-align: top;
         border: #{$debug}px solid lime;
     }
+
+    .formElementContainer {
+        display: inline-block;
+        position: relative;
+    }
 }
 
 nav.topbarNav {
@@ -395,7 +400,7 @@ ul.topNav {
         form {
             width: 100%;
             input[type='text'] {
-                width: 60%!important;
+                width: 90%!important;
             }
             input[type='submit'] {
                 float: right;
@@ -496,7 +501,7 @@ form {
 #searchForm {
     .input-reset {
         top: 10px;
-        right: 125px;
+        right: 5px;
     }
 }
 

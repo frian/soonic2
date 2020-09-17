@@ -235,7 +235,7 @@ a.active {
     }
 }
 
-.radio:nth-child(4n+2), .radio:nth-child(4n+3), {
+.radio:nth-child(4n+2), .radio:nth-child(4n+3) {
     background-color: $bg-alternate;
 }
 

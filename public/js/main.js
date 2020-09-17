@@ -232,6 +232,15 @@ $(function() {
                 $("nav.artists-navigation").append(data);
             }
         });
+        $('.filterInput').focus();
+    });
+
+
+    /**
+     * set focus on search input on clear
+     */
+    $(document).on("click", "#searchForm .input-reset", function(e) {
+        $('#form_keyword').focus();
     });
 
 
