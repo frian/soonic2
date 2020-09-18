@@ -240,7 +240,7 @@ thead {
     display: none;
 }
 
-tbody {
+.songs tbody, .playlist tbody {
     tr {
         td {
             height: $mobileButtonSize;
@@ -505,6 +505,25 @@ form {
     }
 }
 
+table.form {
+    width: 100%;
+    margin-top: 20px;
+    tr {
+        td {
+            padding : 5px;
+        }
+        td:nth-child(1) { text-align: right; width: 40%}
+        td {
+            input[type='text'] {
+                width: 80%;
+            }
+        }
+        td.buttonRow {
+            text-align: center;
+            padding-top: 20px;
+        }
+    }
+}
 
 /*
   -- Crud forms ---------------------------------------------------------------
@@ -637,6 +656,26 @@ form {
         display: inline-block;
         width: 50%;
 
+    }
+
+    /* -- Forms -- */
+    table.form {
+
+        tr {
+            td {
+                padding : 10px;
+            }
+            td:nth-child(1) { text-align: right; width: 40%}
+            td {
+                input[type='text'] {
+                    width: 40%;
+                }
+            }
+            td.buttonRow {
+                text-align: center;
+                padding-top: 20px;
+            }
+        }
     }
 }
 
