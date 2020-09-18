@@ -703,45 +703,50 @@ form {
   }
 
   /* line 593, ../sass/layout.scss */
+  thead {
+    width: 100%;
+    display: table-header-group;
+  }
+  /* line 597, ../sass/layout.scss */
   thead tr th {
     border: 0px solid red;
   }
-  /* line 594, ../sass/layout.scss */
+  /* line 598, ../sass/layout.scss */
   thead tr th:nth-child(1) {
     width: 15px;
   }
-  /* line 595, ../sass/layout.scss */
+  /* line 599, ../sass/layout.scss */
   thead tr th:nth-child(2) {
     width: 25px;
   }
-  /* line 596, ../sass/layout.scss */
+  /* line 600, ../sass/layout.scss */
   thead tr th:nth-child(3) {
     width: 20%;
   }
-  /* line 597, ../sass/layout.scss */
+  /* line 601, ../sass/layout.scss */
   thead tr th:nth-child(4) {
     width: 35%;
   }
-  /* line 598, ../sass/layout.scss */
+  /* line 602, ../sass/layout.scss */
   thead tr th:nth-child(5) {
     width: 20%;
   }
-  /* line 599, ../sass/layout.scss */
+  /* line 603, ../sass/layout.scss */
   thead tr th:nth-child(6) {
     width: 60px;
   }
-  /* line 600, ../sass/layout.scss */
+  /* line 604, ../sass/layout.scss */
   thead tr th:nth-child(7) {
     width: 60px;
     display: none;
   }
-  /* line 601, ../sass/layout.scss */
+  /* line 605, ../sass/layout.scss */
   thead tr th:nth-child(8) {
     width: 60px;
     display: none;
   }
 
-  /* line 607, ../sass/layout.scss */
+  /* line 611, ../sass/layout.scss */
   tbody tr td {
     height: 22px;
     overflow: hidden;
@@ -749,33 +754,46 @@ form {
     white-space: nowrap;
     border: 0px solid red;
   }
-  /* line 615, ../sass/layout.scss */
+  /* line 619, ../sass/layout.scss */
   tbody tr td:nth-child(1) {
     text-align: center;
     padding-left: 2px;
   }
-  /* line 616, ../sass/layout.scss */
+  /* line 620, ../sass/layout.scss */
+  tbody tr td:nth-child(2) {
+    display: table-cell;
+  }
+  /* line 621, ../sass/layout.scss */
+  tbody tr td:nth-child(3) {
+    display: table-cell;
+  }
+  /* line 622, ../sass/layout.scss */
+  tbody tr td:nth-child(5) {
+    display: table-cell;
+  }
+  /* line 623, ../sass/layout.scss */
   tbody tr td:nth-child(6) {
+    display: table-cell;
     text-align: center;
   }
-  /* line 617, ../sass/layout.scss */
+  /* line 624, ../sass/layout.scss */
   tbody tr td:nth-child(7) {
     text-align: center;
     display: none;
   }
-  /* line 618, ../sass/layout.scss */
+  /* line 625, ../sass/layout.scss */
   tbody tr td:nth-child(8) {
     display: none;
   }
 
   /* -- Small screen buttons -- */
-  /* line 623, ../sass/layout.scss */
+  /* line 630, ../sass/layout.scss */
   .mobileButton {
     display: none;
   }
 
   /* -- Radios -- */
-  /* line 628, ../sass/layout.scss */
+  /* line 635, ../sass/layout.scss */
   .radio {
     font-size: 16px !important;
     display: inline-block;
@@ -787,32 +805,32 @@ form {
 */
 @media all and (min-width: 1200px) {
   /* -- Topbar -- */
-  /* line 643, ../sass/layout.scss */
+  /* line 650, ../sass/layout.scss */
   .songInfo {
     width: 400px;
   }
 
   /* -- Artists navigation -- */
-  /* line 651, ../sass/layout.scss */
+  /* line 658, ../sass/layout.scss */
   .artists-navigation {
     width: 360px;
   }
 
   /* -- Songs and playlist panels -- */
-  /* line 659, ../sass/layout.scss */
+  /* line 666, ../sass/layout.scss */
   thead tr th:nth-child(7) {
     display: table-cell;
   }
-  /* line 663, ../sass/layout.scss */
+  /* line 670, ../sass/layout.scss */
   thead tr th:nth-child(8) {
     display: table-cell;
   }
 
-  /* line 671, ../sass/layout.scss */
+  /* line 678, ../sass/layout.scss */
   tbody tr td:nth-child(7) {
     display: table-cell;
   }
-  /* line 675, ../sass/layout.scss */
+  /* line 682, ../sass/layout.scss */
   tbody tr td:nth-child(8) {
     display: table-cell;
   }
@@ -822,12 +840,12 @@ form {
 */
 @media all and (min-width: 1600px) {
   /* -- Topbar -- */
-  /* line 689, ../sass/layout.scss */
+  /* line 696, ../sass/layout.scss */
   .songInfo {
     width: 600px;
   }
 
-  /* line 694, ../sass/layout.scss */
+  /* line 701, ../sass/layout.scss */
   #searchForm input[type="text"] {
     width: 200px;
   }

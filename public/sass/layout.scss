@@ -588,7 +588,11 @@ form {
         height: calc((100% - (#{$topbar-size} + #{$topbar-border-size})) / 2);
     }
 
+
+
     thead {
+        width: 100%;
+        display: table-header-group;
         tr {
             th { border: #{$debug}px solid red; }
             th:nth-child(1) { width: 15px; }
@@ -613,7 +617,10 @@ form {
             }
 
             td:nth-child(1) { text-align: center; padding-left: 2px; }
-            td:nth-child(6) { text-align: center; }
+            td:nth-child(2) { display: table-cell}
+            td:nth-child(3) { display: table-cell}
+            td:nth-child(5) { display: table-cell}
+            td:nth-child(6) { display: table-cell; text-align: center; }
             td:nth-child(7) { text-align: center; display: none; }
             td:nth-child(8) { display: none; }
         }
