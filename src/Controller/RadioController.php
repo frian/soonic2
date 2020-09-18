@@ -74,7 +74,7 @@ class RadioController extends AbstractController
 
         return $this->render('radio/edit.html.twig', [
             'radio' => $radio,
-            'form' => $form->createView(),
+            'edit_form' => $form->createView(),
         ]);
     }
 

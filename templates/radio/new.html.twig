@@ -1,5 +1,11 @@
 {% extends 'base.html.twig' %}
 
+{% form_theme form _self %}
+
+{% block radio_widget %}
+    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked is defined %} checked="checked"{% endif %} />
+{% endblock radio_widget %}
+
 {% block body %}
 
     <h1>{{ 'radio.new'|trans }}</h1>

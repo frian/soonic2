@@ -1,4 +1,10 @@
-    {% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% form_theme edit_form _self %}
+
+{% block radio_widget %}
+    <input type="radio" {{ block('widget_attributes') }}{% if value is defined %} value="{{ value }}"{% endif %}{% if checked is defined %} checked="checked"{% endif %} />
+{% endblock radio_widget %}
 
 {% block body %}
 
@@ -13,11 +19,5 @@
         </div>
 
     {{ form_end(edit_form) }}
-
-    <div class="buttonWrapper">
-        {{ form_start(delete_form) }}
-            <input class="button danger" type="submit" value="{{ 'delete'|trans }}">
-        {{ form_end(delete_form) }}
-    </div>
 
 {% endblock %}
