@@ -37,6 +37,17 @@
 
     <form name="appbundle_config" method="post" action="{{ path('config_edit', { 'id': 1 }) }}">
 
+        <table class="libraryInfo">
+            <tr>
+                <td>{{ form_label(edit_form.language) }}</td>
+                <td>{{ form_widget(edit_form.language) }}</td>
+            </tr>
+            <tr>
+                <td>{{ form_label(edit_form.theme) }}</td>
+                <td>{{ form_widget(edit_form.theme) }}</td>
+            </tr>
+        </table>
+
         {{ form_widget(edit_form) }}
 
         <div class="buttonWrapper">
