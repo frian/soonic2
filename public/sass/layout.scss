@@ -625,7 +625,7 @@ table.form {
         }
     }
 
-    tbody {
+    .songs tbody, .playlist tbody {
         tr {
             td {
                 height: 22px;
@@ -724,7 +724,7 @@ table.form {
         }
     }
 
-    tbody {
+    .songs tbody, .playlist tbody {
         tr {
             td:nth-child(7) {
                 display: table-cell;

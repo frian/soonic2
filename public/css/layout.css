@@ -771,7 +771,7 @@ table.form tr td.buttonRow {
   }
 
   /* line 630, ../sass/layout.scss */
-  tbody tr td {
+  .songs tbody tr td, .playlist tbody tr td {
     height: 22px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -779,34 +779,34 @@ table.form tr td.buttonRow {
     border: 0px solid red;
   }
   /* line 638, ../sass/layout.scss */
-  tbody tr td:nth-child(1) {
+  .songs tbody tr td:nth-child(1), .playlist tbody tr td:nth-child(1) {
     text-align: center;
     padding-left: 2px;
   }
   /* line 639, ../sass/layout.scss */
-  tbody tr td:nth-child(2) {
+  .songs tbody tr td:nth-child(2), .playlist tbody tr td:nth-child(2) {
     display: table-cell;
   }
   /* line 640, ../sass/layout.scss */
-  tbody tr td:nth-child(3) {
+  .songs tbody tr td:nth-child(3), .playlist tbody tr td:nth-child(3) {
     display: table-cell;
   }
   /* line 641, ../sass/layout.scss */
-  tbody tr td:nth-child(5) {
+  .songs tbody tr td:nth-child(5), .playlist tbody tr td:nth-child(5) {
     display: table-cell;
   }
   /* line 642, ../sass/layout.scss */
-  tbody tr td:nth-child(6) {
+  .songs tbody tr td:nth-child(6), .playlist tbody tr td:nth-child(6) {
     display: table-cell;
     text-align: center;
   }
   /* line 643, ../sass/layout.scss */
-  tbody tr td:nth-child(7) {
+  .songs tbody tr td:nth-child(7), .playlist tbody tr td:nth-child(7) {
     text-align: center;
     display: none;
   }
   /* line 644, ../sass/layout.scss */
-  tbody tr td:nth-child(8) {
+  .songs tbody tr td:nth-child(8), .playlist tbody tr td:nth-child(8) {
     display: none;
   }
 
@@ -885,11 +885,11 @@ table.form tr td.buttonRow {
   }
 
   /* line 729, ../sass/layout.scss */
-  tbody tr td:nth-child(7) {
+  .songs tbody tr td:nth-child(7), .playlist tbody tr td:nth-child(7) {
     display: table-cell;
   }
   /* line 733, ../sass/layout.scss */
-  tbody tr td:nth-child(8) {
+  .songs tbody tr td:nth-child(8), .playlist tbody tr td:nth-child(8) {
     display: table-cell;
   }
 
