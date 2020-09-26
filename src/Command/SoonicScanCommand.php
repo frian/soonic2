@@ -565,8 +565,12 @@ class SoonicScanCommand extends Command
             }
         }
 
+        fclose($sqlFile['album']);
+        $sqlAlbumFile = $this->openFile($sqlFilesPathes['album'], $output, $lockFile);
+        fwrite($sqlAlbumFile, 'id,name,album_slug,song_count,duration,year,genre,path,cover_art_path'.PHP_EOL);
+
         // -- output last folder
-        $this->outputAlbumInfo($currentFolderFilesTags, $sqlFile['album'], $sqlFile['artist_album'], $artists, $albums);
+        $this->outputAlbumInfo($currentFolderFilesTags, $sqlAlbumFile, $sqlFile['artist_album'], $artists, $albums);
 
         fclose($sqlFile['artist']);
         $sqlArtistFile = $this->openFile($sqlFilesPathes['artist'], $output, $lockFile);
