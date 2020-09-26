@@ -26,27 +26,50 @@ h2 {
   border-bottom: 1px solid #666;
 }
 
+/* line 38, ../../../sass/themes/default-dark/screen.scss */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #666 #111;
+}
+
+/* line 42, ../../../sass/themes/default-dark/screen.scss */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* line 45, ../../../sass/themes/default-dark/screen.scss */
+*::-webkit-scrollbar-track {
+  background: #111;
+}
+
+/* line 48, ../../../sass/themes/default-dark/screen.scss */
+*::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 20px;
+  border: 3px solid #111;
+}
+
 /*
   -- Topbar -------------------------------------------------------------------
 */
-/* line 42, ../../../sass/themes/default-dark/screen.scss */
+/* line 58, ../../../sass/themes/default-dark/screen.scss */
 .topbar {
   border-bottom-color: #666;
 }
-/* line 45, ../../../sass/themes/default-dark/screen.scss */
+/* line 61, ../../../sass/themes/default-dark/screen.scss */
 .topbar .songArtist {
   color: #ddd;
 }
 
-/* line 51, ../../../sass/themes/default-dark/screen.scss */
+/* line 67, ../../../sass/themes/default-dark/screen.scss */
 nav.topbarNav a {
   background: linear-gradient(to top, #222222, rgba(51, 51, 51, 0.9));
 }
-/* line 55, ../../../sass/themes/default-dark/screen.scss */
+/* line 71, ../../../sass/themes/default-dark/screen.scss */
 nav.topbarNav a:hover {
   background: linear-gradient(to top, #006600, rgba(0, 102, 0, 0.5));
 }
-/* line 57, ../../../sass/themes/default-dark/screen.scss */
+/* line 73, ../../../sass/themes/default-dark/screen.scss */
 nav.topbarNav a:hover .icon-cog {
   background: linear-gradient(to top, #006600, rgba(0, 102, 0, 0.5));
 }
@@ -54,21 +77,21 @@ nav.topbarNav a:hover .icon-cog {
 /*
   -- Artists navigation -------------------------------------------------------
 */
-/* line 67, ../../../sass/themes/default-dark/screen.scss */
+/* line 83, ../../../sass/themes/default-dark/screen.scss */
 .artists-navigation .song {
   background-color: #333;
 }
 
-/* line 72, ../../../sass/themes/default-dark/screen.scss */
+/* line 88, ../../../sass/themes/default-dark/screen.scss */
 .filter {
   background-color: #333;
 }
-/* line 75, ../../../sass/themes/default-dark/screen.scss */
+/* line 91, ../../../sass/themes/default-dark/screen.scss */
 .filter input {
   background-color: black;
 }
 
-/* line 80, ../../../sass/themes/default-dark/screen.scss */
+/* line 96, ../../../sass/themes/default-dark/screen.scss */
 a.active {
   background-color: #060 !important;
 }
@@ -76,24 +99,24 @@ a.active {
 /*
   -- Songs and playlist panels ------------------------------------------------
 */
-/* line 88, ../../../sass/themes/default-dark/screen.scss */
+/* line 104, ../../../sass/themes/default-dark/screen.scss */
 .playlist-header {
   background-color: #333;
 }
 
-/* line 94, ../../../sass/themes/default-dark/screen.scss */
+/* line 110, ../../../sass/themes/default-dark/screen.scss */
 .list thead th {
   background-color: #333;
 }
-/* line 100, ../../../sass/themes/default-dark/screen.scss */
+/* line 116, ../../../sass/themes/default-dark/screen.scss */
 .list tbody tr:nth-child(even) {
   background-color: #111;
 }
-/* line 105, ../../../sass/themes/default-dark/screen.scss */
+/* line 121, ../../../sass/themes/default-dark/screen.scss */
 .list tr.playing {
   background-color: #060 !important;
 }
-/* line 109, ../../../sass/themes/default-dark/screen.scss */
+/* line 125, ../../../sass/themes/default-dark/screen.scss */
 .list .icon-plus, .list .icon-minus {
   color: #aaa;
 }
@@ -101,12 +124,12 @@ a.active {
 /*
   -- Radios -------------------------------------------------------------------
 */
-/* line 119, ../../../sass/themes/default-dark/screen.scss */
+/* line 135, ../../../sass/themes/default-dark/screen.scss */
 .radio.activeRadio {
   background-color: #060 !important;
 }
 
-/* line 124, ../../../sass/themes/default-dark/screen.scss */
+/* line 140, ../../../sass/themes/default-dark/screen.scss */
 .radio:nth-child(4n+2), .radio:nth-child(4n+3) {
   background-color: #111;
 }
@@ -114,15 +137,15 @@ a.active {
 /*
   -- Context menus ------------------------------------------------------------
 */
-/* line 132, ../../../sass/themes/default-dark/screen.scss */
+/* line 148, ../../../sass/themes/default-dark/screen.scss */
 .songsContextMenu, .playlistContextMenu {
   box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
 }
-/* line 135, ../../../sass/themes/default-dark/screen.scss */
+/* line 151, ../../../sass/themes/default-dark/screen.scss */
 .songsContextMenu .menu-options, .playlistContextMenu .menu-options {
   background-color: black;
 }
-/* line 139, ../../../sass/themes/default-dark/screen.scss */
+/* line 155, ../../../sass/themes/default-dark/screen.scss */
 .songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
   background: rgba(0, 102, 0, 0.8);
 }
@@ -133,19 +156,19 @@ a.active {
 /*
   -- Forms ---------------------------------------------------------------
 */
-/* line 154, ../../../sass/themes/default-dark/screen.scss */
+/* line 170, ../../../sass/themes/default-dark/screen.scss */
 input[type="text"] {
   color: #eee;
   background-color: #111;
   border: 1px solid #555 !important;
 }
 
-/* line 160, ../../../sass/themes/default-dark/screen.scss */
+/* line 176, ../../../sass/themes/default-dark/screen.scss */
 .input-reset {
   background-color: #111;
 }
 
-/* line 164, ../../../sass/themes/default-dark/screen.scss */
+/* line 180, ../../../sass/themes/default-dark/screen.scss */
 .input-reset:after {
   color: #eee;
   background-color: #111;
@@ -154,18 +177,18 @@ input[type="text"] {
 /*
   -- Crud forms ---------------------------------------------------------------
 */
-/* line 173, ../../../sass/themes/default-dark/screen.scss */
+/* line 189, ../../../sass/themes/default-dark/screen.scss */
 form div div input {
   border: 1px solid #666;
 }
 
-/* line 177, ../../../sass/themes/default-dark/screen.scss */
+/* line 193, ../../../sass/themes/default-dark/screen.scss */
 .button {
   color: #eee;
   background: linear-gradient(to top, #222222, rgba(51, 51, 51, 0.9));
 }
 
-/* line 182, ../../../sass/themes/default-dark/screen.scss */
+/* line 198, ../../../sass/themes/default-dark/screen.scss */
 .button:hover {
   background: linear-gradient(to top, #006600, rgba(0, 102, 0, 0.5));
 }
