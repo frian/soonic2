@@ -17,3 +17,5 @@
 
 /public/music
 /public/*.sql
+/public/*.log
+public/.sass-cache/
