@@ -157,6 +157,11 @@ $(function() {
         $(icon).attr('class', 'icon-minus');
         $("#playlist tbody").append(copy);
 
+        if ($("#playlist").height() + 20 > $("#playlistSection").height()) {
+            console.log('scroll');
+            $('#playlistSection').scrollTop($('#playlistSection').prop("scrollHeight"));
+        }
+
         updatePlaylistInfo(copy);
     });
 
