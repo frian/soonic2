@@ -23,6 +23,7 @@ class SoonicScanCommand extends Command
 
     private $entityManager;
     private $projectDir;
+    private $filfileSystem;
 
     public function __construct(EntityManagerInterface $entityManager, string $projectDir, Filesystem $fileSystem)
     {
@@ -371,7 +372,7 @@ class SoonicScanCommand extends Command
                 if (!\array_key_exists($tags['artist'], $artists)) {
                     $artists[$tags['artist']] = 0;
                     $artistId = count($artists);
-                    fwrite($sqlFile['artist'], ''.PHP_EOL); // empty line used for scsn progress
+                    fwrite($sqlFile['artist'], ''.PHP_EOL); // empty line used for scan progress
                 }
                 else {
                     $artistId = array_search($tags['artist'],array_keys($artists)) + 1;
@@ -386,6 +387,7 @@ class SoonicScanCommand extends Command
                 if (!\array_key_exists($tags['album'], $albums)) {
                     $albums[$tags['album']] = 0;
                     $albumId = count($albums);
+                    fwrite($sqlFile['album'], ''.PHP_EOL); // empty line used for scan progress
                 }
                 else {
                     $albumId = array_search($tags['album'],array_keys($albums)) + 1;
