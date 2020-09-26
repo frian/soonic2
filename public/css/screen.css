@@ -388,11 +388,11 @@ form div div input {
 
 /* line 342, ../sass/screen.scss */
 .running {
-  background: linear-gradient(to top, #cc0000, rgba(204, 0, 0, 0.5));
+  background: linear-gradient(to top, #cc0000, rgba(204, 0, 0, 0.5)) !important;
 }
 /* line 345, ../sass/screen.scss */
 .running:hover {
-  background: linear-gradient(to top, #cc0000, rgba(204, 0, 0, 0.5));
+  background: linear-gradient(to top, #cc0000, rgba(204, 0, 0, 0.5)) !important;
 }
 
 /*

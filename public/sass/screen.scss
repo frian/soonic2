@@ -340,10 +340,10 @@ form div div input {
 }
 
 .running {
-    background: $red-gradient;
+    background: $red-gradient!important;
 
     &:hover {
-        background: $red-gradient;
+        background: $red-gradient!important;
     }
 }
 
