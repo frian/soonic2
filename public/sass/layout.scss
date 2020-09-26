@@ -54,7 +54,12 @@ $topbar-border-size: 1px;
 
     .logo {
         padding: 0 20px;
+        margin-top: -3px;
         border: #{$debug}px solid red;
+
+        > span {
+            display: none;
+        }
     }
 
     /* -- Artists navigation -- */
@@ -180,6 +185,9 @@ nav.topbarNav {
 }
 
 .filter {
+    position: sticky;
+    top: 0;
+    width: 100%;
     height: 40px;
     line-height: 40px;
     border: #{$debug}px solid red;
@@ -562,6 +570,14 @@ table.form {
 @media all and (min-width: 1023px) {
 
     /* -- Topbar -- */
+    .topbar {
+        .logo {
+            > span {
+                display: inline-block;
+            }
+        }
+    }
+
     .songInfo {
         display: block;
         width: 200px;
