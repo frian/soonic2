@@ -1,5 +1,22 @@
 $(function() {
 
+    if ($(location).attr('pathname') === '/settings/') {
+
+        var $loop;
+
+        $.get({
+            url: '/scan/progress',
+            cache: true,
+            success: function(data) {
+                if (data.status == 'running') {
+                    $("#scanButton").toggleClass('running');
+                    $loop = setInterval(myTimer, 1000);
+                }
+            }
+        });
+    }
+
+
     var screenWidth = $(window).width();
     var state = 'closed';
 
@@ -223,27 +240,7 @@ $(function() {
         $("#numAlbums").text("0");
         $("#scanStatus").text('scanning');
 
-        var $loop = setInterval(myTimer, 1000);
-
-        function myTimer() {
-            $.get({
-                url: '/scan/progress',
-                cache: true,
-                success: function(data) {
-                    if (data.status == 'stopped') {
-                        $("#numFiles").text(data.data.media_file);
-                        $("#numArtists").text(data.data.artist);
-                        $("#numAlbums").text(data.data.album);
-                        clearInterval($loop);
-                        $("#scanButton").toggleClass('running');
-                        return;
-                    }
-                    $("#numFiles").text(data.data.media);
-                    $("#numArtists").text(data.data.artist);
-                    $("#numAlbums").text(data.data.album);
-                }
-            });
-        }
+        $loop = setInterval(myTimer, 1000);
     });
 
 
@@ -353,4 +350,22 @@ $(function() {
         state = state == 'closed' ? 'open': 'closed';
         console.log(state);
     });
+
+
+    function myTimer() {
+        $.get({
+            url: '/scan/progress',
+            cache: true,
+            success: function(data) {
+                if (data.status == 'stopped') {
+                    clearInterval($loop);
+                    $("#scanButton").toggleClass('running');
+                }
+                $("#numFiles").text(data.data.song);
+                $("#numArtists").text(data.data.artist);
+                $("#numAlbums").text(data.data.album);
+            }
+        });
+    }
+
 });
