@@ -41,13 +41,14 @@ class Artist
 
     /**
      * @ORM\ManyToMany(targetEntity=Album::class, inversedBy="artists")
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     private $albums;
 
     public function __toString() {
         return $this->name;
     }
-    
+
     public function __construct()
     {
         $this->albums = new ArrayCollection();
