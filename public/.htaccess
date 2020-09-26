@@ -64,3 +64,8 @@ DirectoryIndex index.php
         # RedirectTemp cannot be used instead
     </IfModule>
 </IfModule>
+
+<FilesMatch "\.(?:sql|log)$">
+Order Allow,Deny
+Deny from all
+</FilesMatch>
