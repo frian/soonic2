@@ -262,6 +262,9 @@ thead {
     line-height: 20px;
     padding-left: 10px;
 
+    position: sticky;
+    top: 0;
+
     .icon-trash {
         float: right;
         cursor: pointer;
@@ -613,7 +616,11 @@ table.form {
         width: 100%;
         display: table-header-group;
         tr {
-            th { border: #{$debug}px solid red; }
+            th {
+                border: #{$debug}px solid red;
+                position: sticky;
+                top: 0;
+            }
             th:nth-child(1) { width: 15px; }
             th:nth-child(2) { width: 25px; }
             th:nth-child(3) { width: 20%; }

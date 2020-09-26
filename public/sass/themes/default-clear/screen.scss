@@ -88,7 +88,9 @@ a.active {
 
 .list {
     thead {
-        background-color: $header-color;
+        th {
+            background-color: $header-color;
+        }
     }
 
     tbody {

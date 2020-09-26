@@ -81,19 +81,19 @@ a.active {
   background-color: #333;
 }
 
-/* line 93, ../../../sass/themes/default-dark/screen.scss */
-.list thead {
+/* line 94, ../../../sass/themes/default-dark/screen.scss */
+.list thead th {
   background-color: #333;
 }
-/* line 98, ../../../sass/themes/default-dark/screen.scss */
+/* line 100, ../../../sass/themes/default-dark/screen.scss */
 .list tbody tr:nth-child(even) {
   background-color: #111;
 }
-/* line 103, ../../../sass/themes/default-dark/screen.scss */
+/* line 105, ../../../sass/themes/default-dark/screen.scss */
 .list tr.playing {
   background-color: #060 !important;
 }
-/* line 107, ../../../sass/themes/default-dark/screen.scss */
+/* line 109, ../../../sass/themes/default-dark/screen.scss */
 .list .icon-plus, .list .icon-minus {
   color: #aaa;
 }
@@ -101,12 +101,12 @@ a.active {
 /*
   -- Radios -------------------------------------------------------------------
 */
-/* line 117, ../../../sass/themes/default-dark/screen.scss */
+/* line 119, ../../../sass/themes/default-dark/screen.scss */
 .radio.activeRadio {
   background-color: #060 !important;
 }
 
-/* line 122, ../../../sass/themes/default-dark/screen.scss */
+/* line 124, ../../../sass/themes/default-dark/screen.scss */
 .radio:nth-child(4n+2), .radio:nth-child(4n+3) {
   background-color: #111;
 }
@@ -114,15 +114,15 @@ a.active {
 /*
   -- Context menus ------------------------------------------------------------
 */
-/* line 130, ../../../sass/themes/default-dark/screen.scss */
+/* line 132, ../../../sass/themes/default-dark/screen.scss */
 .songsContextMenu, .playlistContextMenu {
   box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
 }
-/* line 133, ../../../sass/themes/default-dark/screen.scss */
+/* line 135, ../../../sass/themes/default-dark/screen.scss */
 .songsContextMenu .menu-options, .playlistContextMenu .menu-options {
   background-color: black;
 }
-/* line 137, ../../../sass/themes/default-dark/screen.scss */
+/* line 139, ../../../sass/themes/default-dark/screen.scss */
 .songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
   background: rgba(0, 102, 0, 0.8);
 }
@@ -133,19 +133,19 @@ a.active {
 /*
   -- Forms ---------------------------------------------------------------
 */
-/* line 152, ../../../sass/themes/default-dark/screen.scss */
+/* line 154, ../../../sass/themes/default-dark/screen.scss */
 input[type="text"] {
   color: #eee;
   background-color: #111;
   border: 1px solid #555 !important;
 }
 
-/* line 158, ../../../sass/themes/default-dark/screen.scss */
+/* line 160, ../../../sass/themes/default-dark/screen.scss */
 .input-reset {
   background-color: #111;
 }
 
-/* line 162, ../../../sass/themes/default-dark/screen.scss */
+/* line 164, ../../../sass/themes/default-dark/screen.scss */
 .input-reset:after {
   color: #eee;
   background-color: #111;
@@ -154,18 +154,18 @@ input[type="text"] {
 /*
   -- Crud forms ---------------------------------------------------------------
 */
-/* line 171, ../../../sass/themes/default-dark/screen.scss */
+/* line 173, ../../../sass/themes/default-dark/screen.scss */
 form div div input {
   border: 1px solid #666;
 }
 
-/* line 175, ../../../sass/themes/default-dark/screen.scss */
+/* line 177, ../../../sass/themes/default-dark/screen.scss */
 .button {
   color: #eee;
   background: linear-gradient(to top, #222222, rgba(51, 51, 51, 0.9));
 }
 
-/* line 180, ../../../sass/themes/default-dark/screen.scss */
+/* line 182, ../../../sass/themes/default-dark/screen.scss */
 .button:hover {
   background: linear-gradient(to top, #006600, rgba(0, 102, 0, 0.5));
 }
