@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -18,8 +17,7 @@ class SettingsController extends AbstractController
     /**
      * Show settings page
      *
-     * @Route("/", name="settings_index")
-     * @Method("GET")
+     * @Route("/", name="settings_index", methods={"GET"})
      */
     public function index(Request $request)
     {

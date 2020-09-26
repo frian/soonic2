@@ -6,12 +6,12 @@ use App\Entity\Artist;
 use App\Repository\ArtistRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+// use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class LibraryController extends AbstractController
 {
     /**
-     * @Route("/", name="library")
+     * @Route("/", name="library", methods={"GET"})
      */
     public function index(ArtistRepository $artistRepository) {
         return $this->render('library/screen.html.twig', [
@@ -22,8 +22,7 @@ class LibraryController extends AbstractController
     /**
      * Find albums from an artist.
      *
-     * @Route("/albums/{artistSlug}", name="artist_albums")
-     * @Method("GET")
+     * @Route("/albums/{artistSlug}", name="artist_albums", methods={"GET"})
      */
     public function showArtistAlbums(Artist $artist) {
 
@@ -40,8 +39,7 @@ class LibraryController extends AbstractController
     /**
      * Find songs from an album from an artist.
      *
-     * @Route("/songs/{artistSlug}/{albumSlug}", name="artist_albums_songs")
-     * @Method("GET")
+     * @Route("/songs/{artistSlug}/{albumSlug}", name="artist_albums_songs", methods={"GET"})
      */
     public function showAlbumsSongs(Artist $artist, $albumSlug) {
 
@@ -59,9 +57,8 @@ class LibraryController extends AbstractController
     /**
      * List filtered artist entities.
      *
-     * @Route("/artist/filter/", name="artist_filter_all")
-     * @Route("/artist/filter/{filter}", name="artist_filter")
-     * @Method("GET")
+     * @Route("/artist/filter/", name="artist_filter_all", methods={"GET"})
+     * @Route("/artist/filter/{filter}", name="artist_filter", methods={"GET"})
      */
     public function filterArtist($filter = null) {
 
@@ -77,8 +74,7 @@ class LibraryController extends AbstractController
     /**
      * Load random songs.
      *
-     * @Route("/songs/random", name="random_songs")
-     * @Method("GET")
+     * @Route("/songs/random", name="random_songs", methods={"GET"})
      */
     public function randomSongs($number = 20) {
 
