@@ -24,6 +24,7 @@ playlist.remove: 'rimuovi dalla playlist'
 radio: radio
 radio.new: 'nuova radio'
 radio.edit: 'modifica la radio'
+random: aleatorio
 save: salvare
 scan: 'scansione della libreria'
 search: ricerca
