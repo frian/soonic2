@@ -165,7 +165,8 @@ nav.topbarNav {
     float: left;
     width: 100%;
     height: calc(100% - (#{$topbar-size} + #{$topbar-border-size}));
-    overflow-y: scroll;
+    overflow-y: auto;
+
     @if $debug != 0 {
         background-color: #333;
     }
@@ -602,7 +603,6 @@ table.form {
     .artists-navigation {
         height: calc(100% - (#{$topbar-size} + #{$topbar-border-size}));
         width: $nav-width;
-        overflow-y: scroll;
 
         a {
             height: auto;
@@ -617,6 +617,11 @@ table.form {
         > ul {
             margin-top: 5px;
         }
+    }
+
+    #artists-nav {
+        height: calc((100% - (#{$topbar-size} + #{$topbar-border-size})));
+        overflow-y: auto;
     }
 
 
