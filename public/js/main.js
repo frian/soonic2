@@ -1,22 +1,5 @@
 $(function() {
 
-    if ($(location).attr('pathname') === '/settings/') {
-
-        var $loop;
-
-        $.get({
-            url: '/scan/progress',
-            cache: true,
-            success: function(data) {
-                if (data.status == 'running') {
-                    $("#scanButton").toggleClass('running');
-                    $loop = setInterval(myTimer, 1000);
-                }
-            }
-        });
-    }
-
-
     var screenWidth = $(window).width();
     var state = 'closed';
 
@@ -156,22 +139,7 @@ $(function() {
             type: form.attr('method'),
             url: form.attr('action'),
             data: form.serialize(),
-            success: function(data) {
-                $("#songs table tbody").remove();
-                $("#songs table").append(data);
-                if ($("#topBarNav").hasClass('is-active')) {
-                    $("#topBarNav").toggleClass('is-active');
-                    $(".topNav").toggleClass('is-active');
-                    $(".songs").css('display', 'initial');
-                    $(".playlist").css('display', 'none');
-                    $(".artists-navigation").css('display', 'none');
-                    $(".mobileSongsToArtistsButton").css('display', 'initial');
-                    $(".mobileSongsToPlaylistButton").css('display', 'initial');
-                    hamburger.toggleClass("is-active");
-
-                    state = state == 'closed' ? 'open': 'closed';
-                }
-            },
+            success: loadSongPanel,
             error: function(data) {
                 console.log("error");
             }
@@ -180,7 +148,7 @@ $(function() {
 
 
     /**
-     * Returns search results
+     * Load ransom songs
      * Updates the songs panel
      */
     $(document).on("click", "#random", function(e) {
@@ -192,27 +160,34 @@ $(function() {
         $.ajax({
             url: url,
             cache: true,
-            success: function(data) {
-                $("#songs table tbody").remove();
-                $("#songs table").append(data);
-                if ($("#topBarNav").hasClass('is-active')) {
-                    $("#topBarNav").toggleClass('is-active');
-                    $(".topNav").toggleClass('is-active');
-                    $(".songs").css('display', 'initial');
-                    $(".playlist").css('display', 'none');
-                    $(".artists-navigation").css('display', 'none');
-                    $(".mobileSongsToArtistsButton").css('display', 'initial');
-                    $(".mobileSongsToPlaylistButton").css('display', 'initial');
-                    hamburger.toggleClass("is-active");
-
-                    state = state == 'closed' ? 'open': 'closed';
-                }
-            },
+            success: loadSongPanel,
             error: function(data) {
                 console.log("error");
             }
         });
     });
+
+
+    /**
+     * Helper for the two methods above
+     */
+    function loadSongPanel(data) {
+        $("#songs table tbody").remove();
+        $("#songs table").append(data);
+        if ($("#topBarNav").hasClass('is-active')) {
+            $("#topBarNav").toggleClass('is-active');
+            $(".topNav").toggleClass('is-active');
+            $(".songs").css('display', 'initial');
+            $(".playlist").css('display', 'none');
+            $(".artists-navigation").css('display', 'none');
+            $(".mobileSongsToArtistsButton").css('display', 'initial');
+            $(".mobileSongsToPlaylistButton").css('display', 'initial');
+            hamburger.toggleClass("is-active");
+
+            state = state == 'closed' ? 'open': 'closed';
+        }
+    }
+
 
     /**
      * Start scan
@@ -352,6 +327,29 @@ $(function() {
     });
 
 
+    /**
+     * check if we are scanning
+     */
+    if ($(location).attr('pathname') === '/settings/') {
+
+        var $loop;
+
+        $.get({
+            url: '/scan/progress',
+            cache: true,
+            success: function(data) {
+                if (data.status == 'running') {
+                    $("#scanButton").toggleClass('running');
+                    $loop = setInterval(myTimer, 1000);
+                }
+            }
+        });
+    }
+
+
+    /**
+     * update library infos while we are scanning
+     */
     function myTimer() {
         $.get({
             url: '/scan/progress',
