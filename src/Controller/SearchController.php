@@ -29,7 +29,7 @@ class SearchController extends AbstractController
              $results = $em->getRepository('App:Song')->findByKeyword($data['keyword']);
 
              return $this->render('common/songs-list.html.twig', array(
-                 'mediaFiles' => $results,
+                 'songs' => $results,
              ));
          }
 
