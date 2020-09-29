@@ -58,7 +58,12 @@ class SongRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
 
-        $qb = $this->createQueryBuilder('s');
+        $qb = $this->createQueryBuilder('s')
+            ->leftJoin('s.album', 'al')
+            ->addSelect('al')
+            ->leftJoin('s.artist', 'ar')
+            ->addSelect('ar')
+            ;
 
         for ($i = 1; $i <= $number ; $i++) {
             $qb->orWhere("s.id = :num_".$i);
