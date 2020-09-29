@@ -31,5 +31,6 @@ search: ricerca
 search.placeholder: 'minimo 3 caratteri'
 settings: impostazioni
 streamUrl: 'url del flusso'
+theme: tema
 title: titolo
 year: anno

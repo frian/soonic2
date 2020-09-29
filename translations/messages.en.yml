@@ -31,5 +31,6 @@ search: search
 search.placeholder: 'min 3 chars'
 settings: settings
 streamUrl: 'stream url'
+theme: theme
 title: title
 year: year

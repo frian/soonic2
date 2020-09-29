@@ -12,9 +12,9 @@ class RadioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('streamUrl')
-            ->add('homepageUrl')
+            ->add('name', null , array('label' => 'name'))
+            ->add('streamUrl', null , array('label' => 'streamUrl'))
+            ->add('homepageUrl', null , array('label' => 'homePage'))
         ;
     }
 
