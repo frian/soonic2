@@ -30,7 +30,7 @@ class ScanController extends AbstractController {
         $command = $projectDir.'/bin/console soonic:scan --guess';
 
         if (!file_exists($lockFile)) {
-            Process::fromShellCommandline("/usr/bin/php $command")->start();
+            exec("/usr/bin/php $command > /dev/null 2>&1 &");
         }
 
         return new Response('');
@@ -54,9 +54,15 @@ class ScanController extends AbstractController {
         $files = array('song', 'artist', 'album');
         $data = array();
         foreach ($files as $file) {
-            $file_handle = new \SplFileObject($projectDir.'/public/soonic-'.$file.'.sql', 'r');
-            $file_handle->seek(PHP_INT_MAX);
-            $data[$file] = $file_handle->key() - 1;
+            $filePath = $projectDir.'/public/soonic-'.$file.'.sql';
+            if (file_exists($filePath)) {
+                $file_handle = new \SplFileObject($projectDir.'/public/soonic-'.$file.'.sql', 'r');
+                $file_handle->seek(PHP_INT_MAX);
+                $data[$file] = $file_handle->key() - 1;
+            }
+            else {
+                $data[$file] = 0;
+            }
         }
 
         $response = ['status' => $status, 'data' => $data];
