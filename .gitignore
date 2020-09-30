@@ -19,3 +19,4 @@
 /public/*.sql
 /public/*.log
 public/.sass-cache/
+*.log
