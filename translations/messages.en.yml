@@ -24,11 +24,13 @@ playlist.remove: 'remove from playlist'
 radio: radio
 radio.new: 'new radio'
 radio.edit: 'edit radio'
+random: random
 save: enregistrer
 scan: 'scan library'
 search: search
 search.placeholder: 'min 3 chars'
 settings: settings
 streamUrl: 'stream url'
+theme: theme
 title: title
 year: year

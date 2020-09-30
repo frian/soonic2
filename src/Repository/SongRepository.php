@@ -21,15 +21,17 @@ class SongRepository extends ServiceEntityRepository
 
     public function findByKeyword($keyword) {
         return $this->createQueryBuilder('s')
-            ->join('s.album', 'al')
-            ->join('s.artist', 'ar')
+            ->leftJoin('s.album', 'al')
+            ->addSelect('al')
+            ->leftJoin('s.artist', 'ar')
+            ->addSelect('ar')
             ->where('s.title like :keyword')
             ->orWhere('al.name like :keyword')
             ->orWhere('ar.name like :keyword')
             ->setParameter('keyword', '%'.$keyword.'%')
-            ->orderBy('s.artist', 'ASC')
+            ->orderBy('ar.name', 'ASC')
             ->addOrderBy('s.album', 'ASC')
-            ->addOrderBy('s.title', 'ASC')
+            ->addOrderBy('s.trackNumber', 'ASC')
             ->getQuery()
             ->getResult();
     }
@@ -56,7 +58,12 @@ class SongRepository extends ServiceEntityRepository
             ->getQuery()
             ->getSingleScalarResult();
 
-        $qb = $this->createQueryBuilder('s');
+        $qb = $this->createQueryBuilder('s')
+            ->leftJoin('s.album', 'al')
+            ->addSelect('al')
+            ->leftJoin('s.artist', 'ar')
+            ->addSelect('ar')
+            ;
 
         for ($i = 1; $i <= $number ; $i++) {
             $qb->orWhere("s.id = :num_".$i);

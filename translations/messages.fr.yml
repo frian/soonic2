@@ -24,11 +24,13 @@ playlist.remove: 'retirer de la playlist'
 radio: radio
 radio.new: 'nouvelle radio'
 radio.edit: 'modifier la radio'
+random: aléatoire
 scan: scanner la bibliothèque
 save: enregistrer
 search: chercher
 search.placeholder: 'min 3 caractères'
 settings: réglages
 streamUrl: 'url du flux'
+theme: thème
 title: titre
 year: année
