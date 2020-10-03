@@ -53,12 +53,13 @@ $topbar-border-size: 1px;
     }
 
     .logo {
-        padding: 0 20px;
-        margin-top: -3px;
+        padding: 0 10px;
+        margin-top: -4px;
         border: #{$debug}px solid red;
 
-        > span {
-            display: none;
+        > img {
+            vertical-align: middle;
+            width: 31px;
         }
     }
 
