@@ -1,20 +1,26 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Album{% endblock %}
+
 {% block body %}
     <h1>Album</h1>
 
-    <table>
+    <table class="table">
         <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ album.id }}</td>
+            </tr>
             <tr>
                 <th>Name</th>
                 <td>{{ album.name }}</td>
             </tr>
             <tr>
-                <th>Artist</th>
-                <td>{{ album.artists[0] }}</td>
+                <th>AlbumSlug</th>
+                <td>{{ album.albumSlug }}</td>
             </tr>
             <tr>
-                <th>Songcount</th>
+                <th>SongCount</th>
                 <td>{{ album.songCount }}</td>
             </tr>
             <tr>
@@ -30,15 +36,19 @@
                 <td>{{ album.genre }}</td>
             </tr>
             <tr>
-                <th>Coverartpath</th>
+                <th>Path</th>
+                <td>{{ album.path }}</td>
+            </tr>
+            <tr>
+                <th>CoverArtPath</th>
                 <td>{{ album.coverArtPath }}</td>
             </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('album_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <a href="{{ path('album_index') }}">back to list</a>
+
+    <a href="{{ path('album_edit', {'id': album.id}) }}">edit</a>
+
+    {{ include('album/_delete_form.html.twig') }}
 {% endblock %}

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Artist;
 use App\Repository\ArtistRepository;
+use App\Repository\AlbumRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 // use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -13,7 +14,7 @@ class LibraryController extends AbstractController
     /**
      * @Route("/", name="library", methods={"GET"})
      */
-    public function index(ArtistRepository $artistRepository) {
+    public function library(ArtistRepository $artistRepository) {
         return $this->render('library/screen.html.twig', [
             'artists' => $artistRepository->findAll(),
         ]);
@@ -86,4 +87,15 @@ class LibraryController extends AbstractController
             'songs' => $songs
         ));
     }
+
+
+    /**
+     * @Route("/albums/", name="albums", methods={"GET"})
+     */
+    public function albums(AlbumRepository $albumRepository) {
+        return $this->render('album/index.html.twig', [
+            'albums' => $albumRepository->findAll(),
+        ]);
+    }
+
 }
