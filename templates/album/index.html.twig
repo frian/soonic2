@@ -1,49 +1,74 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Album index{% endblock %}
+{% block js %}
+<script src="/js/jquery.hoverIntent.min.js" ></script>
+<script src="/js/album.js"></script>
+
+{% endblock %}
 
 {% block body %}
-    <h1>Album index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>AlbumSlug</th>
-                <th>SongCount</th>
-                <th>Duration</th>
-                <th>Year</th>
-                <th>Genre</th>
-                <th>Path</th>
-                <th>CoverArtPath</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for album in albums %}
-            <tr>
-                <td>{{ album.id }}</td>
-                <td>{{ album.name }}</td>
-                <td>{{ album.albumSlug }}</td>
-                <td>{{ album.songCount }}</td>
-                <td>{{ album.duration }}</td>
-                <td>{{ album.year }}</td>
-                <td>{{ album.genre }}</td>
-                <td>{{ album.path }}</td>
-                <td>{{ album.coverArtPath }}</td>
-                <td>
-                    <a href="{{ path('album_show', {'id': album.id}) }}">show</a>
-                    <a href="{{ path('album_edit', {'id': album.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<div class="album-view">
 
-    <a href="{{ path('album_new') }}">Create new</a>
+    {% for album in albums %}
+
+    <div class="album-container">
+        <div class="album-container-content" data-album-path="{{ album.path }}">
+            {# <img class="lozad" data-src="{{ album.path }}/cover.jpg" alt="Album Cover"> #}
+            <div class="album-info">
+                <div class="album-info-artist">
+                    {% if album.artists is defined %}
+                        {% for artist in album.artists %}
+                            {{ artist }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <div class="album-info-album">
+                    {{ album.name }}
+                </div>
+                <div class="">
+                    {{ album.genre }} - {{ album.year }}
+                </div>
+                <div class="">
+                    {{ album.songCount }} tracks -
+                    {% if album.duration > 3600%}
+                        {{ album.duration|date('G\\h i\\m s\\s', '+00:00 GMT') }}
+                    {% else %}
+                        {{ album.duration|date('i\\m s\\s', '+00:00 GMT') }}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+    {# {% for album in albums %}
+        <tr>
+            <td>{{ album.name }}</td>
+            <td>
+              {% if album.artists is defined %}
+
+                {% for artist in album.artists %}
+                  {{ artist }}
+                {% endfor %}
+
+              {% endif %}
+            </td>
+            <td>{{ album.songCount }}</td>
+            <td>{{ album.duration }}</td>
+            <td>{{ album.year }}</td>
+            <td>{{ album.genre }}</td>
+            <td>{{ album.path }}</td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('album_show', { 'id': album.id }) }}">show</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %} #}
+
+</div>
 {% endblock %}

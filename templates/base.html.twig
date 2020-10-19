@@ -41,6 +41,8 @@
     <body>
         {{ include('common/topbar.html.twig') }}
         {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+        {% endblock %}
     </body>
 </html>
