@@ -1,6 +1,9 @@
 <?php
 
+// declare(strict_types=1);
+
 namespace App\Command;
+
 
 // use Exception;
 use Symfony\Component\Console\Command\Command;
@@ -14,7 +17,8 @@ use Symfony\Component\Filesystem\Filesystem;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-
+if (ob_get_level())
+   ob_end_clean();
 require_once(dirname(__FILE__).'/../../vendor/james-heinrich/getid3/getid3/getid3.php');
 
 class SoonicScanCommand extends Command
@@ -89,7 +93,7 @@ class SoonicScanCommand extends Command
 		$em = $this->entityManager;
 
         // -- clear media file table
-        $tables = array('song', 'album', 'artist', 'artist_album');
+        $tables = ['song', 'album', 'artist', 'artist_album'];
 
         foreach ($tables as $table) {
             if ($verbosity >= 128) {
@@ -127,27 +131,32 @@ class SoonicScanCommand extends Command
         }
 
         // -- file types
-        $types = array("mp3", "mp4", "oga", "wma", "wav", "mpg", "mpc", "m4a", "m4p", "flac");
+        $types = ["mp3", "mp4", "oga", "wma", "wav", "mpg", "mpc", "m4a", "m4p", "flac"];
         // -- counters
-        $fileCount = 0;
-        $skipCount = 0;
-        $loadCount = 0;
+        // $fileCount = 0;
+        // $skipCount = 0;
+        // $loadCount = 0;
         // -- folder
-        $folderFileCount = 0;
+        // $folderFileCount = 0;
         $currentFolder = null;
         $previousFolder = null;
         // -- artists
-        $artists = array();
-        $albums = array();
-        $albumTags = array();
+        $artists = [];
+        $albums = [];
 
-        $currentFolderFilesTags = array();
-        $previousFolderFilesTags = array();
+        $albumTags = [];
+        $albumSingleTags = ['album', 'year', 'genre'];
+        // $currentFolderFilesTags = [];
+        // $previousFolderFilesTags = [];
+
+        $status = 'same';
+
+        $albumsSlugs = [];
 
 
         // -- open sql files
-        $sqlFiles = array();
-        $sqlFilesPathes = array();
+        $sqlFiles = [];
+        $sqlFilesPathes = [];
         foreach ($tables as $table) {
             $sqlFilesPathes[$table] = str_replace('\\', '/', $webPath.'/soonic-'.$table.'.sql');
             $sqlFile[$table] = $this->openFile($sqlFilesPathes[$table], $output, $lockFile);
@@ -176,597 +185,217 @@ class SoonicScanCommand extends Command
 
         $it = new \RecursiveIteratorIterator($di);
 
+
         foreach($it as $file) {
             if ( in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), $types) ) {
 
                 $file = str_replace('\\', '/', $file);
+                $currentFolder = preg_replace("|^$webPath|", '', pathinfo($file, PATHINFO_DIRNAME));
+                if ($currentFolder !== $previousFolder) {
+                    if ($previousFolder !== null) {
+                        $this->outputAlbumSql($albumTags, $albumsSlugs);
+                        $albumTags = [];
+                    }
+                    $this->_debug('New folder : '.$currentFolder);
+                    $previousFolder = $currentFolder;
+                    $status = 'new';
+                }
+                else {
+                    $status = 'same';
+                }
 
-                $fileCount++;
-                $folderFileCount++;
 
-                $hasWarning = false;
-                $warningOutput = '  <warning>no ';
-                $warningTags = array();
-                $warningActions = array();
-                $warningActionsResult = array();
-
+                // -- get track tags
                 $getID3 = new \getID3;
 
                 $fileInfo = $getID3->analyze($file);
 
                 \getid3_lib::CopyTagsToComments($fileInfo);
 
-                $fileInfoComments = array();
 
-                // -- create tags array
-                $tags = array();
+                /*
+                 * -- Build track tags ----------------------------------------
+                 */
+                $trackTags = [];
 
+                // -- copy tags or skip file
                 if (!empty($fileInfo['comments'])) {
-                    $fileInfoComments = $fileInfo['comments'];
+                    $trackTags = $fileInfo['comments'];
                 }
                 elseif (!empty($fileInfo['asf']['comments'])) {
-                    $fileInfoComments = $fileInfo['asf']['comments'];
+                    $trackTags = $fileInfo['asf']['comments'];
                 }
                 else {
-
-                    if ($guess) {
-
-                        $hasWarning = true;
-
-                        $artist = $this->previousFolder($file, 2);
-
-                        array_push($warningTags, 'artist');
-                        array_push($warningActions, 'guessing artist tag');
-                        if ($artist) {
-                            $tags['artist'] = $artist;
-                            array_push($warningActionsResult, $artist);
-                        }
-                        else {
-                            $this->printErrorMessage('no artist tag found', $file, $output);
-                            $this->logErrorMessage('no artist tag found', $file, $logFile);
-                            $skipCount++;
-                            continue;
-                        }
-
-                        $album = $this->previousFolder($file, 1);
-
-                        array_push($warningTags, 'album');
-                        array_push($warningActions, 'guessing album tag');
-                        if ($album) {
-                            $tags['album'] = $album;
-                            array_push($warningActionsResult, $album);
-                        }
-                        else {
-                            $this->printErrorMessage('no album tag found', $file, $output);
-                            $this->logErrorMessage('no album tag found', $file, $logFile);
-                            $skipCount++;
-                            continue;
-                        }
-
-                        array_push($warningTags, 'title');
-                        array_push($warningActions, 'guessing title name');
-                        $title = pathinfo($file, PATHINFO_FILENAME);
-                        $tags['title'] = $title;
-                        array_push($warningActionsResult, $title);
-                    }
-                    else {
-                        $this->printErrorMessage('no tag found', $file, $output);
-                        $this->logErrorMessage('no tag found', $file, $logFile);
-                        $skipCount++;
-                        continue;
-                    }
-
+                    print "No tags - skipping $file\n";
+                    continue;
                 }
 
 
-                /*
-                 * -- Handle album --------------------------------------------
-                 */
-                if (empty($fileInfoComments['album']) && empty($tags['album'])) {
+                // -- store formatted tags
+                $tags = [];
 
-                    if ($guess) {
-
-                        $hasWarning = true;
-                        array_push($warningTags, 'album');
-                        array_push($warningActions, 'guessing album name');
-
-                        $album = $this->previousFolder($file, 1);
-
-                        if ($album) {
-                            $tags['album'] = $album;
-                            array_push($warningActionsResult, $album);
-                        }
-                        else {
-                            $this->printErrorMessage('no album tag found', $file, $output);
-                            $this->logErrorMessage('no album tag found', $file, $logFile);
-                            $skipCount++;
-                            continue;
-                        }
-                    }
-                    else {
-                        $this->printErrorMessage('no album tag found', $file, $output);
-                        $this->logErrorMessage('no album tag found', $file, $logFile);
-                        $skipCount++;
-                        continue;
-                    }
-
+                if (!empty($trackTags['album'])) {
+                    $tags['album'] = $trackTags['album'][0];
                 }
                 else {
-                    if (!empty($fileInfoComments['album'])) {
-                        $tags['album'] = $fileInfoComments['album'][0];
-                    }
+                    print "No album tag - skipping \n";
+                    continue;
                 }
 
 
-                /*
-                 * -- Handle artist -------------------------------------------
-                 */
-                if (empty($fileInfoComments['artist']) && empty($tags['artist'])) {
-
-                    if ($guess) {
-
-                        $hasWarning = true;
-                        array_push($warningTags, 'artist');
-                        array_push($warningActions, 'guessing artist name');
-
-                        $artist = $this->previousFolder($file, 2);
-
-                        if ($artist) {
-                            $tags['artist'] = $artist;
-                            array_push($warningActionsResult, $artist);
-                        }
-                        else {
-                            $this->printErrorMessage('no artist tag found', $file, $output);
-                            $this->logErrorMessage('no artist tag found', $file, $logFile);
-                            $skipCount++;
-                            continue;
-                        }
-                    }
-                    else {
-                        $this->logErrorMessage('no artist tag found', $file, $logFile);
-                        $skipCount++;
-                        continue;
-                    }
+                if (!empty($trackTags['artist'])) {
+                    $tags['artist'] = $trackTags['artist'][0];
                 }
                 else {
-                    if (!empty($fileInfoComments['artist'])) {
-                        $tags['artist'] = $fileInfoComments['artist'][0];
-                    }
+                    print "No artist tag - skipping \n";
+                    continue;
                 }
 
 
-                /*
-                 * -- Handle title --------------------------------------------
-                 */
-                if (empty($fileInfoComments['title']) && empty($tags['title'])) {
-
-                    if ($guess) {
-
-                        $hasWarning = true;
-                        array_push($warningTags, 'title');
-                        array_push($warningActions, 'guessing title name');
-
-                        $title = pathinfo($file, PATHINFO_FILENAME);
-
-                        $tags['title'] = $title;
-                        array_push($warningActionsResult, $title);
-                    }
-                    else {
-                        $this->printErrorMessage('no title tag found', $file, $output);
-                        $this->logErrorMessage('no title tag found', $file, $logFile);
-                        $skipCount++;
-                        continue;
-                    }
+                if (!empty($trackTags['title'])) {
+                    $tags['title'] = $trackTags['title'][0];
                 }
                 else {
-                    if (!empty($fileInfoComments['title'])) {
-                        $tags['title'] = $fileInfoComments['title'][0];
-                    }
+                    print "No title tag - skipping \n";
+                    continue;
                 }
 
 
-                /*
-                 * -- Handle artist id------------------------------------------
-                 */
-                $tags['artist'] = \strtoupper($tags['artist']);
-                if (!\array_key_exists($tags['artist'], $artists)) {
-                    $artists[$tags['artist']] = 0;
-                    $artistId = count($artists);
-                    fwrite($sqlFile['artist'], ''.PHP_EOL); // empty line used for scan progress
-                }
-                else {
-                    $artistId = array_search($tags['artist'],array_keys($artists)) + 1;
-                }
-                $tags['artistId'] = $artistId;
-
-
-                /*
-                 * -- Handle album id -----------------------------------------
-                 */
-                $tags['album'] = \ucwords(\mb_strtolower($tags['album']));
-                if (!\array_key_exists($tags['album'], $albums)) {
-                    $albums[$tags['album']] = 0;
-                    $albumId = count($albums);
-                    fwrite($sqlFile['album'], ''.PHP_EOL); // empty line used for scan progress
-                }
-                else {
-                    $albumId = array_search($tags['album'],array_keys($albums)) + 1;
-                }
-                $tags['albumId'] = $albumId;
-
-
-                /*
-                 * -- Handle track number -------------------------------------
-                 */
-                if (!empty($fileInfoComments['track_number'])) {
-                    if (!\preg_match("/[^\d+$]/", $fileInfoComments['track_number'][0])) {
-                        \preg_match("/(\d+)/", $fileInfoComments['track_number'][0], $matches);
+                if (!empty($trackTags['track_number'])) {
+                    if (!preg_match("/[^\d+$]/", $trackTags['track_number'][0])) {
+                        preg_match("/(\d+)/", $trackTags['track_number'][0], $matches);
                         $tags['track_number'] = $matches[0];
                     }
                     else {
-                        $tags['track_number'] = $fileInfoComments['track_number'][0];
+                        $tags['track_number'] = $trackTags['track_number'][0];
                     }
                 }
                 else {
-                    $hasWarning = true;
-                    array_push($warningTags, 'track_number');
-                    $tags['track_number'] = null;
+                    print "No track_number tag - skipping \n";
+                    continue;
                 }
 
 
-                /*
-                 * -- Handle year ---------------------------------------------
-                 */
-                if (empty($fileInfoComments['year'])) {
-                    if ( !empty($fileInfoComments['date']) ) {
-                        $tags['year'] = $fileInfoComments['date'][0];
+                if (empty($trackTags['year'])) {
+                    if ( !empty($trackTags['date']) ) {
+                        $tags['year'] = $trackTags['date'][0];
                     }
                     else {
-                        $hasWarning = true;
-                        array_push($warningTags, 'year');
-                        $tags['year'] = null;
+                        print "No track_number tag - skipping \n";
+                        continue;
                     }
                 }
                 else {
-                    $tags['year'] = $fileInfoComments['year'][0];
+                    $tags['year'] = $trackTags['year'][0];
                 }
 
 
-                /*
-                 * -- Handle duration -----------------------------------------
-                 */
+                if (!empty($trackTags['genre'])) {
+                    $tags['genre'] = $trackTags['genre'][0];
+                }
+                else {
+                    print "No genre tag - skipping \n";
+                    continue;
+                }
+
+
                 if (!empty($fileInfo['playtime_string'])) {
                     $tags['duration'] = $fileInfo['playtime_string'];
                 }
                 else {
-                    $tags['duration'] = null;
-                    $hasWarning = true;
-                    array_push($warningTags, 'duration');
+                    print "No duration tag - skipping \n";
+                    continue;
                 }
 
 
-                /*
-                 * -- Handle genre ---------------------------------------------
-                 */
-                 if (!empty($fileInfoComments['genre'])) {
-                     $tags['genre'] = $fileInfoComments['genre'][0];
-                 }
-                 else {
-                     $tags['genre'] = null;
-                     $hasWarning = true;
-                     array_push($warningTags, 'genre');
-                 }
-
-
-                /*
-                 * -- Handle path and web path --------------------------------
-                 */
                 $tags['web_path'] = preg_replace("|^$webPath|", '', $file);
                 $tags['path'] = $file;
 
 
+
+                $tags['artist'] = mb_strtoupper($tags['artist']);
+                if (!in_array($tags['artist'], $artists)) {
+                    array_push($artists, $tags['artist']);
+                    $artistId = count($artists);
+                    // fwrite($sqlFile['artist'], ''.PHP_EOL); // empty line used for scan progress
+                }
+                else {
+                    $artistId = array_search($tags['artist'], $artists) + 1;
+                }
+                $tags['artist_id'] = $artistId;
+
+
+                $tags['album'] = ucwords(mb_strtolower($tags['album']));
+                if (!in_array($tags['album'], $albums) || $status === 'new') {
+                    array_push($albums, $tags['album']);
+                }
+                $tags['album_id'] = count($albums);
+
+                $tags['web_path'] = preg_replace("|^$webPath|", '', $file);
+                $tags['path'] = $file;
+
+
+
                 /*
-                 * -- Build album list ----------------------------------------
+                 * -- Build album tags ----------------------------------------
                  */
-                $folder = preg_replace("|^$webPath|", '', pathinfo($file, PATHINFO_DIRNAME));
 
-                // -- add albumName key
-                if ( !array_key_exists( 'albumName', $currentFolderFilesTags ) ) {
-                    $currentFolderFilesTags['albumName'] = array();
-                }
-
-                // -- add album(s)
-                if ( !array_key_exists( $tags['album'], $currentFolderFilesTags['albumName'] )) {
-                    $currentFolderFilesTags['albumName'][$tags['album']] = array();
-                }
-
-
-                // -- add artistName key
-                if ( !array_key_exists( 'artistName', $currentFolderFilesTags['albumName'][$tags['album']] )) {
-                    $currentFolderFilesTags['albumName'][$tags['album']]['artistName'][$tags['artist']] = array();
-                }
-
-                // -- add artist(s)
-                if ( !array_key_exists(
-                    $tags['artist'],
-                    $currentFolderFilesTags['albumName'][$tags['album']]['artistName'] )) {
-                        $currentFolderFilesTags['albumName'][$tags['album']]['artistName'][$tags['artist']] = array();
-                }
-
-                // -- add titles key
-                if ( !array_key_exists(
-                    'titles',
-                    $currentFolderFilesTags['albumName'][$tags['album']]['artistName'][$tags['artist']] ) ) {
-                        $currentFolderFilesTags['albumName'][$tags['album']]['artistName'][$tags['artist']]['titles'] = array();
-                }
-
-                // -- add title(s)
-                array_push(
-                    $currentFolderFilesTags['albumName'][$tags['album']]['artistName'][$tags['artist']]['titles'],
-                    $tags['title']);
-
-                // -- add year key
-                if ( !array_key_exists( 'years', $currentFolderFilesTags['albumName'][$tags['album']] ) ) {
-                    $currentFolderFilesTags['albumName'][$tags['album']]['years'] = array();
-                }
-
-                // -- add year(s)
-                if ($tags['year'] != null) {
-                    if (!in_array($tags['year'], $currentFolderFilesTags['albumName'][$tags['album']]['years'])) {
-                        array_push($currentFolderFilesTags['albumName'][$tags['album']]['years'],$tags['year']);
+                foreach ($albumSingleTags as $tag) {
+                    if (!array_key_exists($tags[$tag], $albumTags)) {
+                        $albumTags[$tag] = $tags[$tag];
                     }
                 }
 
-                // -- add genre key
-                if ( !array_key_exists( 'genres', $currentFolderFilesTags['albumName'][$tags['album']] ) ) {
-                    $currentFolderFilesTags['albumName'][$tags['album']]['genres'] = array();
+
+                if ( !array_key_exists( 'artists', $albumTags) ) {
+                    $albumTags['artists'] = array();
+                }
+                if ( !in_array($tags['artist'], $albumTags['artists'] )) {
+                    // $albumTags['artists'][$tags['artist']] = null;
+                    array_push($albumTags['artists'], $tags['artist']);
+                }
+                // array_push($albumTags['artists'], $tags['artist']);
+
+
+
+
+                if ( !array_key_exists( 'durations', $albumTags) ) {
+                    $albumTags['durations'] = array();
+                }
+                array_push($albumTags['durations'], $tags['duration']);
+
+
+
+                $albumTags['path'] = preg_replace("|^$webPath|", '', pathinfo($file, PATHINFO_DIRNAME));
+
+
+
+
+                if ($currentFolder !== $previousFolder) {
+                    // $previousFolder = $currentFolder;
+                }
+                else {
+
                 }
 
-                // -- add genre(s)
-                if ($tags['genre'] != null) {
-                    if (!in_array($tags['genre'], $currentFolderFilesTags['albumName'][$tags['album']]['genres'])) {
-                        array_push($currentFolderFilesTags['albumName'][$tags['album']]['genres'],$tags['genre']);
-                    }
-                }
+                // print_r($tags);
 
-                // -- add duration key
-                if ( !array_key_exists( 'durations', $currentFolderFilesTags['albumName'][$tags['album']] ) ) {
-                    $currentFolderFilesTags['albumName'][$tags['album']]['durations'] = array();
-                }
-
-                // -- add durations
-                if ($tags['duration'] != null) {
-                    array_push($currentFolderFilesTags['albumName'][$tags['album']]['durations'],$tags['duration']);
-                }
-
-                // -- add pathes
-                $currentFolderFilesTags['albumName'][$tags['album']]['web_path'] = $folder;
-                $currentFolderFilesTags['albumName'][$tags['album']]['path'] = pathinfo($file, PATHINFO_DIRNAME);
-
-
-                if ($hasWarning) {
-                    $this->printWarningMessage($warningTags, $warningActions, $warningActionsResult, $file, $output);
-                    $this->logWarningMessage($warningTags, $warningActions, $warningActionsResult, $file, $logFile);
-                }
-
-                // -- write to sql file
-                fwrite(
-                    $sqlFile['song'],';'
-                    .$tags['albumId'].';'
-                    .$tags['artistId'].';'
-                    .$tags['path'].';'
-                    .$tags['web_path'].';'
-                    .$tags['title'].';'
-                    .$tags['track_number'].';'
-                    .$tags['year'].';'.$tags['genre'].';'.$tags['duration']
-                    .PHP_EOL);
-
-                $loadCount++;
             }
         }
 
-        fclose($sqlFile['album']);
-        $sqlAlbumFile = $this->openFile($sqlFilesPathes['album'], $output, $lockFile);
-        fwrite($sqlAlbumFile, 'id,name,album_slug,song_count,duration,year,genre,path,cover_art_path'.PHP_EOL);
-
-        // -- output last folder
-        $this->outputAlbumInfo($currentFolderFilesTags, $sqlAlbumFile, $sqlFile['artist_album'], $artists, $albums);
-
-        fclose($sqlFile['artist']);
-        $sqlArtistFile = $this->openFile($sqlFilesPathes['artist'], $output, $lockFile);
-        fwrite($sqlArtistFile, 'id,name,artist_slug,album_count,cover_art_path'.PHP_EOL);
-
-        $slugs = array();
-        foreach (array_keys($artists) as $artist) {
-            $slug = $this->slugify($artist);
-            $slugCount = 1;
-            while (in_array($slug, $slugs)) {
-                $slug = $slug . "_" . $slugCount;
-                $slugCount++;
-            }
-            array_push($slugs, $slug);
-            fwrite($sqlArtistFile, ';'.$artist. ';' . $slug. ';' .$artists[$artist].';'.PHP_EOL);
-        }
-
-
-        // -- disable foreign keys checks
-        $query = 'SET FOREIGN_KEY_CHECKS=0;';
-        $statement = $em->getConnection()->prepare($query)->execute();
-
-        // -- enable local-infile
-        $query = 'SET GLOBAL local_infile = true';
-        $statement = $em->getConnection()->prepare($query)->execute();
-
-        // -- bulk load collection
-        foreach ($tables as $table) {
-            $query = "LOAD DATA LOCAL INFILE '".$sqlFilesPathes[$table]."'".
-                " INTO TABLE ". $table ." CHARACTER SET UTF8 FIELDS TERMINATED BY ';' " .
-                " ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;";
-            $statement = $em->getConnection()->prepare($query)->execute();
-        }
-
-        // -- disable foreign keys checks
-        $query = "SET FOREIGN_KEY_CHECKS=1;";
-        $statement = $em->getConnection()->prepare($query)->execute();
-
-        // -- disable local-infile
-        $query = 'SET GLOBAL local_infile = false';
-        $statement = $em->getConnection()->prepare($query)->execute();
-
-        // -- final output
-        if ($verbosity >= 64) {
-            $output->writeln("analysed $fileCount files.");
-            $output->writeln("loaded $loadCount files");
-            $output->writeln("skipped $skipCount files");
-
-            $end_time = microtime(true);
-            $duration = $end_time - $start_time;
-
-            if ($duration < 60) {
-                $output_duration = gmdate('s\s', $duration);
-            }
-            elseif ($duration < 3600) {
-                $output_duration = gmdate('i\ms\s', $duration);
-            }
-            else {
-                $output_duration = gmdate('H\hi\ms\s', $duration);
-            }
-
-            $output->writeln("in $output_duration");
-        }
+        $this->outputAlbumSql($albumTags, $albumsSlugs);
+// print_r($artists);
+// print_r($albums);
 
         unlink($lockFile);
-
         return 0;
     }
 
-    private function printErrorMessage($error, $file, $output) {
-        $verbosity = $output->getVerbosity();
-        if ($verbosity >= 64) {
-            $warningOutput = '';
-            $warningOutput .= "<error>$error</error>";
-            $warningOutput .= " for ".$file;
-            $warningOutput .= ' <error>-> skipping file.</error>';
-            $output->writeln($warningOutput);
-        }
+
+    private function _debug($string) {
+        print "$string\n";
     }
 
-    private function logErrorMessage(string $error, string $file, $logFile) {
-        fwrite($logFile, "[error]$error;$file;skipping file\n");
-    }
-
-    private function printWarningMessage($warningTags, $warningActions, $warningActionsResult, $file, OutputInterface $output) {
-
-        $verbosity = $output->getVerbosity();
-        if ($verbosity >= 128) {
-            $warningOutput = 'no ';
-
-            foreach ($warningTags as $key => $tag) {
-                $warningOutput .= "<warning>$tag</warning> ";
-            }
-
-            $warningOutput .= "tag found for $file ";
-
-            foreach ($warningActions as $key => $action) {
-                $warningOutput .= "<warning>$action</warning> ";
-                $warningOutput .= $warningActionsResult[$key]." ";
-            }
-
-            $output->writeln($warningOutput);
-        }
-    }
-
-    private function logWarningMessage($warningTags, $warningActions, $warningActionsResult, $file, $logFile) {
-
-        $warningOutput = '[warning]no ';
-
-        foreach ($warningTags as $key => $tag) {
-            $warningOutput .= "$tag ";
-        }
-
-        $warningOutput .= "tag found;$file;";
-
-        foreach ($warningActions as $key => $action) {
-            $warningOutput .= "$action;";
-            $warningOutput .= $warningActionsResult[$key].";";
-        }
-
-        $warningOutput .= "\n";
-        fwrite($logFile, $warningOutput);
-    }
-
-    private function previousFolder($file, $level) {
-        $path = pathinfo($file, PATHINFO_DIRNAME);
-        $pathParts = explode('/', $path);
-        for ($i = 1; $i <= $level ; $i++) {
-            $folder = array_pop($pathParts);
-            if (preg_match('/cd\d+/i', $folder)) {
-                $folder = array_pop($pathParts);
-            }
-        }
-        return $folder;
-    }
-
-    private function outputAlbumInfo($currentFolderFilesTags, $sqlAlbumFile, $sqlAlbumsArtists, &$artists, $albums) {
-
-        $slugs = array();
-
-        foreach (array_keys($currentFolderFilesTags['albumName']) as $album) {
-
-            $songCount = 0;
-            $albumArtist = '';
-            foreach (array_keys($currentFolderFilesTags['albumName'][$album]['artistName']) as $index => $artist) {
-
-                $artistId = array_search($artist,array_keys($artists)) + 1;
-                $albumId = array_search($album,array_keys($albums)) + 1;
-
-                fwrite($sqlAlbumsArtists, $artistId.";".$albumId.PHP_EOL);
-
-                $artists[$artist]++;
-                $songCount += count($currentFolderFilesTags['albumName'][$album]['artistName'][$artist]['titles']);
-            }
-
-
-            $albumYear = null;
-            foreach ($currentFolderFilesTags['albumName'][$album]['years'] as $year) {
-                $albumYear .= $year.',';
-            }
-            $albumYear = \preg_replace('/,$/', '', $albumYear);
-
-
-            $albumGenre = null;
-            foreach ($currentFolderFilesTags['albumName'][$album]['genres'] as $genre) {
-                $albumGenre .= $genre.',';
-            }
-            $albumGenre = \preg_replace('/,$/', '', $albumGenre);
-
-
-            $slug = $this->slugify($album);
-            $slugCount = 1;
-            while (in_array($slug, $slugs)) {
-                $slug = $slug . "_" . $slugCount;
-                $slugCount++;
-            }
-            array_push($slugs, $slug);
-
-            //-- 'id,name,album_slug,song_count,duration,year,genre,path,cover_art_path'
-            fwrite(
-                $sqlAlbumFile,';'
-                // print
-                // ';'
-                .$album.';'
-                .$slug.';'
-                .$songCount.';'
-                .$this->getAlbumDuration($currentFolderFilesTags['albumName'][$album]['durations']).';'
-                .$albumYear.';'
-                .$albumGenre.';'
-                .$currentFolderFilesTags['albumName'][$album]['web_path'].';'
-                .';' // -- covert art path
-                .PHP_EOL
-            );
-        }
-        return $artists;
-    }
 
     private function openFile($filePath, OutputInterface $output, $lockFile) {
         try {
@@ -778,6 +407,18 @@ class SoonicScanCommand extends Command
             unlink($lockFile);
             exit(1);
         }
+    }
+
+    private function outputAlbumSql(array $albumTags, array &$albumsSlugs) {
+
+        print "Album Name        : " . $albumTags['album'] . "\n";
+        print "Album Year        : " . $albumTags['year'] . "\n";
+        print "Album Genre       : " . $albumTags['genre'] . "\n";
+        print "Album Path        : " . $albumTags['path'] . "\n";
+        print "Album Duration    : " . $this->getAlbumDuration($albumTags['durations']) . "\n";
+        print "Album Song Count  : " . count($albumTags['durations']) . "\n";
+        print "Album Slug        : " . $this->slugify($albumTags['album'], $albumsSlugs) . "\n";
+
     }
 
     private function getAlbumDuration(array $durations): string {
@@ -825,13 +466,21 @@ class SoonicScanCommand extends Command
         return $returnValue;
     }
 
-    private function slugify(string $string): string {
-        $string = \mb_strtolower($string);
+
+    private function slugify(string $string, array &$slugs): string {
+        $string = mb_strtolower($string);
         $string = preg_replace('/\s+-\s+/', '-', $string);
         $string = preg_replace('/&/', 'and', $string);
         $string = preg_replace('|[\s+\/]|', '-', $string);
         $string = preg_replace('/-+/', '-', $string);
-        return $string;
-    }
 
+        $slug = $string;
+        $slugCount = 1;
+        while (in_array($slug, $slugs)) {
+            $slug = $string . "-" . $slugCount;
+            $slugCount++;
+        }
+        array_push($slugs, $slug);
+        return $slug;
+    }
 }
