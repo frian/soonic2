@@ -1,9 +1,6 @@
 <?php
 
-// declare(strict_types=1);
-
 namespace App\Command;
-
 
 // use Exception;
 use Symfony\Component\Console\Command\Command;
@@ -17,8 +14,6 @@ use Symfony\Component\Filesystem\Filesystem;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-if (ob_get_level())
-   ob_end_clean();
 require_once(dirname(__FILE__).'/../../vendor/james-heinrich/getid3/getid3/getid3.php');
 
 class SoonicScanCommand extends Command
@@ -43,7 +38,7 @@ class SoonicScanCommand extends Command
         $this
             ->setName('soonic:scan')
             ->setDescription('scan folders')
-            ->setHelp("\nscan folders and create database\n")
+            ->setHelp(PHP_EOL."scan folders and create database".PHP_EOL)
             ->addOption('guess', null, InputOption::VALUE_NONE, 'If defined, guess tags')
         ;
     }
@@ -86,15 +81,17 @@ class SoonicScanCommand extends Command
         // -- get verbosity
 		$verbosity = $output->getVerbosity();
 
+
         // get --guess option
         $guess = $input->getOption('guess');
+
 
 		// -- get entity manager
 		$em = $this->entityManager;
 
+
         // -- clear media file table
         $tables = ['song', 'album', 'artist', 'artist_album'];
-
         foreach ($tables as $table) {
             if ($verbosity >= 128) {
                 $output->write("  clear table $table .");
@@ -133,26 +130,26 @@ class SoonicScanCommand extends Command
         // -- file types
         $types = ["mp3", "mp4", "oga", "wma", "wav", "mpg", "mpc", "m4a", "m4p", "flac"];
         // -- counters
-        // $fileCount = 0;
-        // $skipCount = 0;
-        // $loadCount = 0;
+        $fileCount = 0;
+        $skipCount = 0;
+        $loadCount = 0;
         // -- folder
-        // $folderFileCount = 0;
         $currentFolder = null;
         $previousFolder = null;
-        // -- artists
+        // -- artists ans album lists
         $artists = [];
         $albums = [];
 
         $albumTags = [];
         $albumSingleTags = ['album', 'year', 'genre'];
-        // $currentFolderFilesTags = [];
-        // $previousFolderFilesTags = [];
 
         $status = 'same';
 
         $albumsSlugs = [];
+        $artistsSlugs = [];
 
+        $hasWarning = false;
+        $warningTags = array();
 
         // -- open sql files
         $sqlFiles = [];
@@ -171,8 +168,6 @@ class SoonicScanCommand extends Command
         fwrite($sqlFile['artist_album'], 'artist_id,album_id'.PHP_EOL);
 
 
-
-
         // -- scan
         try {
             $di = new \RecursiveDirectoryIterator($root,\RecursiveDirectoryIterator::FOLLOW_SYMLINKS);
@@ -185,18 +180,21 @@ class SoonicScanCommand extends Command
 
         $it = new \RecursiveIteratorIterator($di);
 
-
         foreach($it as $file) {
             if ( in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), $types) ) {
 
+                $fileCount++;
+
                 $file = str_replace('\\', '/', $file);
+// print $file.PHP_EOL;
                 $currentFolder = preg_replace("|^$webPath|", '', pathinfo($file, PATHINFO_DIRNAME));
+
                 if ($currentFolder !== $previousFolder) {
                     if ($previousFolder !== null) {
-                        $this->outputAlbumSql($albumTags, $albumsSlugs);
+                        // print_r($albumTags);
+                        $this->outputAlbumSql($albumTags, $albumsSlugs, $artists, $sqlFile['album'], $sqlFile['artist_album']);
                         $albumTags = [];
                     }
-                    $this->_debug('New folder : '.$currentFolder);
                     $previousFolder = $currentFolder;
                     $status = 'new';
                 }
@@ -226,7 +224,7 @@ class SoonicScanCommand extends Command
                     $trackTags = $fileInfo['asf']['comments'];
                 }
                 else {
-                    print "No tags - skipping $file\n";
+                    $skipCount = $this->skipFile("No tags - skipping $file", $file, $output, $verbosity, $logFile, $skipCount);
                     continue;
                 }
 
@@ -238,28 +236,33 @@ class SoonicScanCommand extends Command
                     $tags['album'] = $trackTags['album'][0];
                 }
                 else {
-                    print "No album tag - skipping \n";
+                    $skipCount = $this->skipFile("No album tag - skipping $file", $file, $output, $verbosity, $logFile, $skipCount);
                     continue;
                 }
-
 
                 if (!empty($trackTags['artist'])) {
                     $tags['artist'] = $trackTags['artist'][0];
                 }
                 else {
-                    print "No artist tag - skipping \n";
+                    $skipCount = $this->skipFile("No artist tag - skipping $file", $file, $output, $verbosity, $logFile, $skipCount);
                     continue;
                 }
-
 
                 if (!empty($trackTags['title'])) {
                     $tags['title'] = $trackTags['title'][0];
                 }
                 else {
-                    print "No title tag - skipping \n";
+                    $skipCount = $this->skipFile("No title tag - skipping $file", $file, $output, $verbosity, $logFile, $skipCount);
                     continue;
                 }
-
+                
+                if (!empty($fileInfo['playtime_string'])) {
+                    $tags['duration'] = $fileInfo['playtime_string'];
+                }
+                else {
+                    $skipCount = $this->skipFile("No duration tag - skipping $file", $file, $output, $verbosity, $logFile, $skipCount);
+                    continue;
+                }
 
                 if (!empty($trackTags['track_number'])) {
                     if (!preg_match("/[^\d+$]/", $trackTags['track_number'][0])) {
@@ -271,63 +274,62 @@ class SoonicScanCommand extends Command
                     }
                 }
                 else {
-                    print "No track_number tag - skipping \n";
-                    continue;
+                    $hasWarning = true;
+                    array_push($warningTags, 'track_number');
+                    $tags['track_number'] = null;
                 }
-
 
                 if (empty($trackTags['year'])) {
                     if ( !empty($trackTags['date']) ) {
                         $tags['year'] = $trackTags['date'][0];
                     }
                     else {
-                        print "No track_number tag - skipping \n";
-                        continue;
+                        $hasWarning = true;
+                        array_push($warningTags, 'year');
+                        $tags['year'] = null;
                     }
                 }
                 else {
                     $tags['year'] = $trackTags['year'][0];
                 }
 
-
                 if (!empty($trackTags['genre'])) {
                     $tags['genre'] = $trackTags['genre'][0];
                 }
                 else {
-                    print "No genre tag - skipping \n";
-                    continue;
+                    $tags['genre'] = null;
+                    $hasWarning = true;
+                    array_push($warningTags, 'genre');
                 }
-
-
-                if (!empty($fileInfo['playtime_string'])) {
-                    $tags['duration'] = $fileInfo['playtime_string'];
-                }
-                else {
-                    print "No duration tag - skipping \n";
-                    continue;
-                }
-
 
                 $tags['web_path'] = preg_replace("|^$webPath|", '', $file);
                 $tags['path'] = $file;
 
-
-
+                if ( !array_key_exists( 'artists_ids', $albumTags) ) {
+                    $albumTags['artists_ids'] = array();
+                }
                 $tags['artist'] = mb_strtoupper($tags['artist']);
-                if (!in_array($tags['artist'], $artists)) {
-                    array_push($artists, $tags['artist']);
+                if (!\array_key_exists($tags['artist'], $artists)) {
+                    $artists[$tags['artist']] = 0;
                     $artistId = count($artists);
-                    // fwrite($sqlFile['artist'], ''.PHP_EOL); // empty line used for scan progress
                 }
                 else {
-                    $artistId = array_search($tags['artist'], $artists) + 1;
+                    $artistId = array_search($tags['artist'],array_keys($artists)) + 1;
+                }
+
+                if (!in_array($artistId, $albumTags['artists_ids'])) {
+                    array_push($albumTags['artists_ids'], $artistId);
                 }
                 $tags['artist_id'] = $artistId;
 
-
+                if ( !array_key_exists( 'album_id', $albumTags) ) {
+                    $albumTags['album_id'] = array();
+                }
+                $albumId;
                 $tags['album'] = ucwords(mb_strtolower($tags['album']));
                 if (!in_array($tags['album'], $albums) || $status === 'new') {
                     array_push($albums, $tags['album']);
+                    array_push($albumTags['album_id'], count($albums));
                 }
                 $tags['album_id'] = count($albums);
 
@@ -335,28 +337,21 @@ class SoonicScanCommand extends Command
                 $tags['path'] = $file;
 
 
-
                 /*
                  * -- Build album tags ----------------------------------------
                  */
-
                 foreach ($albumSingleTags as $tag) {
                     if (!array_key_exists($tags[$tag], $albumTags)) {
                         $albumTags[$tag] = $tags[$tag];
                     }
                 }
 
-
                 if ( !array_key_exists( 'artists', $albumTags) ) {
                     $albumTags['artists'] = array();
                 }
                 if ( !in_array($tags['artist'], $albumTags['artists'] )) {
-                    // $albumTags['artists'][$tags['artist']] = null;
                     array_push($albumTags['artists'], $tags['artist']);
                 }
-                // array_push($albumTags['artists'], $tags['artist']);
-
-
 
 
                 if ( !array_key_exists( 'durations', $albumTags) ) {
@@ -364,11 +359,13 @@ class SoonicScanCommand extends Command
                 }
                 array_push($albumTags['durations'], $tags['duration']);
 
-
-
                 $albumTags['path'] = preg_replace("|^$webPath|", '', pathinfo($file, PATHINFO_DIRNAME));
 
 
+                if ($hasWarning) {
+                    $this->printWarningMessage($warningTags, $file, $output, $verbosity);
+                    $this->logWarningMessage($warningTags, $file, $logFile, $verbosity);
+                }
 
 
                 if ($currentFolder !== $previousFolder) {
@@ -378,14 +375,89 @@ class SoonicScanCommand extends Command
 
                 }
 
-                // print_r($tags);
+                // -- write song tags to sql file
+                // -- album_id, artist_id, path, web_path, title, track_number, year, genre, duration
+                fwrite($sqlFile['song'],';'.
+                    $tags['album_id'].';'.
+                    $tags['artist_id'].';'.
+                    $tags['path'].';'.
+                    $tags['web_path'].';'.
+                    $tags['title'].';'.
+                    $tags['track_number'].';'.
+                    $tags['year'].';'.
+                    $tags['genre'].';'.
+                    $tags['duration'].';'.
+                    PHP_EOL
+                );
 
+                $loadCount++;
             }
         }
 
-        $this->outputAlbumSql($albumTags, $albumsSlugs);
-// print_r($artists);
-// print_r($albums);
+        $this->outputAlbumSql($albumTags, $albumsSlugs, $artists, $sqlFile['album'], $sqlFile['artist_album']);
+
+
+        // -- write artist tags to sql file
+        // -- name,artist_slug,album_count,cover_art_path
+        foreach ($artists as $artist => $albumCount) {
+            fwrite($sqlFile['artist'],';'.
+                $artist.';'.
+                $this->slugify($artist, $artistsSlugs).';'.
+                $albumCount.';'.
+                PHP_EOL
+            );
+        }
+
+
+        /*
+         * -- Build album tags ------------------------------------------------
+         */
+        // -- disable foreign keys checks
+        $query = 'SET FOREIGN_KEY_CHECKS=0;';
+        $statement = $em->getConnection()->prepare($query)->execute();
+
+        // -- enable local-infile
+        $query = 'SET GLOBAL local_infile = true';
+        $statement = $em->getConnection()->prepare($query)->execute();
+
+        // -- bulk load collection
+        foreach ($tables as $table) {
+            $query = "LOAD DATA LOCAL INFILE '".$sqlFilesPathes[$table]."'".
+                " INTO TABLE ". $table ." CHARACTER SET UTF8 FIELDS TERMINATED BY ';' " .
+                " ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 ROWS;";
+            $statement = $em->getConnection()->prepare($query)->execute();
+        }
+
+        // -- enable foreign keys checks
+        $query = "SET FOREIGN_KEY_CHECKS=1;";
+        $statement = $em->getConnection()->prepare($query)->execute();
+
+        // -- disable local-infile
+        $query = 'SET GLOBAL local_infile = false';
+        $statement = $em->getConnection()->prepare($query)->execute();
+
+
+        // -- final output
+        if ($verbosity >= 64) {
+            $output->writeln("analysed $fileCount files.");
+            $output->writeln("loaded $loadCount files");
+            $output->writeln("skipped $skipCount files");
+
+            $end_time = microtime(true);
+            $duration = $end_time - $start_time;
+
+            if ($duration < 60) {
+                $output_duration = gmdate('s\s', $duration);
+            }
+            elseif ($duration < 3600) {
+                $output_duration = gmdate('i\ms\s', $duration);
+            }
+            else {
+                $output_duration = gmdate('H\hi\ms\s', $duration);
+            }
+
+            $output->writeln("in $output_duration");
+        }
 
         unlink($lockFile);
         return 0;
@@ -393,9 +465,8 @@ class SoonicScanCommand extends Command
 
 
     private function _debug($string) {
-        print "$string\n";
+        print "$string".PHP_EOL;
     }
-
 
     private function openFile($filePath, OutputInterface $output, $lockFile) {
         try {
@@ -409,19 +480,34 @@ class SoonicScanCommand extends Command
         }
     }
 
-    private function outputAlbumSql(array $albumTags, array &$albumsSlugs) {
+    // - Album tags to sql
+    private function outputAlbumSql(array $albumTags, array &$albumsSlugs, array &$artists, $sqlAlbumFile, $sqlArtistAlbumFile) {
 
-        print "Album Name        : " . $albumTags['album'] . "\n";
-        print "Album Year        : " . $albumTags['year'] . "\n";
-        print "Album Genre       : " . $albumTags['genre'] . "\n";
-        print "Album Path        : " . $albumTags['path'] . "\n";
-        print "Album Duration    : " . $this->getAlbumDuration($albumTags['durations']) . "\n";
-        print "Album Song Count  : " . count($albumTags['durations']) . "\n";
-        print "Album Slug        : " . $this->slugify($albumTags['album'], $albumsSlugs) . "\n";
+        if (!empty($albumTags)) {
+            // -- write album tags to sql file
+            // -- name,album_slug,song_count,duration,year,genre,path,cover_art_path
+            fwrite($sqlAlbumFile,';'.
+                $albumTags['album'].';'.
+                $this->slugify($albumTags['album'], $albumsSlugs).';'.
+                $this->getAlbumDuration($albumTags['durations']).';'.
+                count($albumTags['durations']).';'.
+                $albumTags['year'].';'.
+                $albumTags['genre'].';'.
+                $albumTags['path'].';'.
+                ';'. // -- covert art path
+                PHP_EOL
+            );
 
+            // -- write artist_album to sql file
+            $keys = array_keys($artists);
+            foreach ($albumTags['artists_ids'] as $artistId) {
+                fwrite($sqlArtistAlbumFile, $artistId.';'.$albumTags['album_id'][0] . PHP_EOL);
+                $artists[$keys[$artistId - 1]]++;
+            }
+        }
     }
 
-    private function getAlbumDuration(array $durations): string {
+    private function getAlbumDuration(array $durations): string { // -- TODO : get duration in seconds
         $hrs = 0;
         $mins = 0;
         $secs = 0;
@@ -466,7 +552,6 @@ class SoonicScanCommand extends Command
         return $returnValue;
     }
 
-
     private function slugify(string $string, array &$slugs): string {
         $string = mb_strtolower($string);
         $string = preg_replace('/\s+-\s+/', '-', $string);
@@ -482,5 +567,42 @@ class SoonicScanCommand extends Command
         }
         array_push($slugs, $slug);
         return $slug;
+    }
+
+    private function printErrorMessage(string $error, string $file, $output, int $verbosity) {
+        if ($verbosity >= 64) {
+            $output->writeln("<error>$error</error>");
+        }
+    }
+
+    private function logErrorMessage(string $error, string $file, $logFile) {
+        fwrite($logFile, "[error]$error;$file;skipping file".PHP_EOL);
+    }
+
+    private function printWarningMessage($warningTags, $file, OutputInterface $output, $verbosity) {
+        if ($verbosity >= 128) {
+            $warningOutput = 'no ';
+            foreach ($warningTags as $key => $tag) {
+                $warningOutput .= "<warning>$tag</warning> ";
+            }
+            $warningOutput .= "tag found for $file ";
+            $output->writeln($warningOutput);
+        }
+    }
+
+    private function logWarningMessage($warningTags, $file, $logFile) {
+        $warningOutput = '[warning]no ';
+        foreach ($warningTags as $key => $tag) {
+            $warningOutput .= "$tag ";
+        }
+        $warningOutput .= "tag found;$file;";
+        $warningOutput .= "\n";
+        fwrite($logFile, $warningOutput);
+    }
+
+    private function skipFile(string $error, string $file, $output, int $verbosity, $logFile, $skipCount) {
+        $this->printErrorMessage($error, $file, $output, $verbosity);
+        $this->logErrorMessage($error, $file, $logFile, $verbosity);
+        return ++$skipCount;
     }
 }
