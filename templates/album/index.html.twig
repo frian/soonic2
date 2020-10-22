@@ -14,20 +14,28 @@
 
     <div class="album-container">
         <div class="album-container-content" data-album-path="{{ album.path }}">
-            {# <img class="lozad" data-src="{{ album.path }}/cover.jpg" alt="Album Cover"> #}
-            <div class="album-info">
-                <div class="album-info-artist">
-                    {% if album.artists is defined %}
-                        {% for artist in album.artists %}
-                            {{ artist }}
-                        {% endfor %}
-                    {% endif %}
-                </div>
+
+
+            <img class="lozad" data-src="{{ album.path }}/cover.jpg" alt="">
+
+            <div class="no-cover-art">
                 <div class="album-info-album">
                     {{ album.name }}
                 </div>
-                <div class="">
-                    {{ album.genre }} - {{ album.year }}
+                <div class="album-info-artist">
+                    {% if album.artists is defined %}
+                            {% if album.artists|length > 1 %}
+                                {{ 'Various' }}
+                            {% else %}
+                                {{ album.artists[0] }}
+                            {% endif %}
+                    {% endif %}
+                </div>
+                <div class="album-info-year">
+                    {{ album.year }}
+                </div>
+                <div class="album-info-genre">
+                    {{ album.genre }}
                 </div>
                 <div class="">
                     {{ album.songCount }} tracks -
@@ -38,37 +46,10 @@
                     {% endif %}
                 </div>
             </div>
+
+
         </div>
     </div>
-
     {% endfor %}
-
-    {# {% for album in albums %}
-        <tr>
-            <td>{{ album.name }}</td>
-            <td>
-              {% if album.artists is defined %}
-
-                {% for artist in album.artists %}
-                  {{ artist }}
-                {% endfor %}
-
-              {% endif %}
-            </td>
-            <td>{{ album.songCount }}</td>
-            <td>{{ album.duration }}</td>
-            <td>{{ album.year }}</td>
-            <td>{{ album.genre }}</td>
-            <td>{{ album.path }}</td>
-            <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('album_show', { 'id': album.id }) }}">show</a>
-                    </li>
-                </ul>
-            </td>
-        </tr>
-    {% endfor %} #}
-
 </div>
 {% endblock %}

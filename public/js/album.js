@@ -10,10 +10,12 @@ $(function() {
 
 
     function makeTall() {
-        $(this).children().next().fadeIn('fast');
+        $(this).children(".lozad").fadeOut('fast');
+        // console.log($(this).children().next());
+        console.log($(this).children(2)[0]);
     };
     function makeShort() {
-        $(this).children().next().fadeOut('fast');
+        $(this).children(".lozad").fadeIn('fast');
     };
 
 
