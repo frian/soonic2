@@ -9,24 +9,34 @@ $(function() {
     console.log('start images load');
 
 
-    function makeTall() {
-        $(this).children(".lozad").fadeOut('fast');
-        // console.log($(this).children().next());
-        console.log($(this).children(2)[0]);
+    function dummy() {
+        return;
     };
-    function makeShort() {
+    function show() {
         $(this).children(".lozad").fadeIn('fast');
     };
 
 
     var config = {
-         over: makeTall, // function = onMouseOver callback (REQUIRED)
+         over: dummy, // function = onMouseOver callback (REQUIRED)
          timeout: 200, // number = milliseconds delay before onMouseOut
          interval: 100, // number = milliseconds delay before trying to call over
-         out: makeShort // function = onMouseOut callback (REQUIRED)
+         out: show // function = onMouseOut callback (REQUIRED)
     };
 
     $(".album-container-content").hoverIntent( config )
+
+    $status = 'hidden';
+    $(document).on("click", ".album-container-content", function(e) {
+
+        status = status == 'hidden' ? 'visible' : 'hidden';
+        if (status == 'hidden') {
+            $(this).children(".lozad").fadeOut('fast');
+        }
+        else {
+            $(this).children(".lozad").fadeIn('fast');
+        }
+    });
 
     // s$.each( albums, function( key, value ) {
     //     imgPath = $(value).attr('data-album-path') + '/cover.jpg'
