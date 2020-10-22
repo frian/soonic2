@@ -186,7 +186,6 @@ $debugCnt = 0;
         foreach($it as $file) {
             if ( in_array(strtolower(pathinfo($file, PATHINFO_EXTENSION)), $types) ) {
 
-
                 $fileCount++;
                 $file = str_replace('\\', '/', $file);
                 $currentFolder = preg_replace("|^$webPath|", '', pathinfo($file, PATHINFO_DIRNAME));
@@ -196,18 +195,18 @@ $debugCnt = 0;
                     if ($previousFolder !== null) {
 
                         if (!empty($songs)) {
-                            $results = $this->AddAlbumIds($songs, $albumId);
+                            $results = $this->AddAlbumIds($songs, $albumId, $sqlFile['artist_album'], $sqlFile['song']);
                             $albumId = $results['album_id'];
                             $songs = $results['songs'];
-                            $this->buildAlbumTags($songs, $albumsSlugs);
+                            $this->buildAlbumTags($songs, $albumsSlugs, $sqlFile['album']);
                         }
 
-                        if ($debugCnt == 6) {
-                            unlink($lockFile);
-                            return 0;
-                        }
+                        // if ($debugCnt == 6) {
+                        //     // unlink($lockFile);
+                        //     // return 0;
+                        //     break;
+                        // }
 
-                        // $this->outputAlbumSql($albumsTags, $albumsSlugs, $artists, $sqlFile['album'], $sqlFile['artist_album']);
                         $songs = [];
                         $albumsTags = [];
                         $folderAlbums = [];
@@ -367,7 +366,13 @@ $debugCnt = 0;
             }
         }
 
-        $this->outputAlbumSql($albumsTags, $albumsSlugs, $artists, $sqlFile['album'], $sqlFile['artist_album']);
+        if (!empty($songs)) {
+            $results = $this->AddAlbumIds($songs, $albumId, $sqlFile['artist_album'], $sqlFile['song']);
+            $albumId = $results['album_id'];
+            $songs = $results['songs'];
+            $this->buildAlbumTags($songs, $albumsSlugs, $sqlFile['album']);
+        }
+
 
         // -- write artist tags to sql file
         // -- name,artist_slug,album_count,cover_art_path
@@ -452,37 +457,6 @@ $debugCnt = 0;
         }
     }
 
-    // - Album tags to sql
-    private function outputAlbumSql(array $albumsTags, array &$albumsSlugs, array &$artists, $sqlAlbumFile, $sqlArtistAlbumFile) {
-
-        if (!empty($albumsTags)) {
-            // -- write album tags to sql file
-            // -- name,album_slug,song_count,duration,year,genre,path,cover_art_path
-            // print_r($albumsTags);
-            // print $albumsTags['album'].' - '.$albumsTags['path']."\n";
-            fwrite($sqlAlbumFile,';'.
-                $albumsTags['album'].';'.
-                $this->slugify($albumsTags['album'], $albumsSlugs).';'.
-                count($albumsTags['durations']).';'.
-                $this->getAlbumDuration($albumsTags['durations']).';'.
-                $albumsTags['year'].';'.
-                $albumsTags['genre'].';'.
-                $albumsTags['path'].';'.
-                ';'. // -- covert art path
-                PHP_EOL
-            );
-
-            // -- write artist_album to sql  file
-            $keys = array_keys($artists);
-            foreach ($albumsTags['artists_ids'] as $artistId) {
-                // print $artistId.';'.$albumsTags['album_id'][0]."\n";
-                // print $keys[$artistId - 1]."\n";
-                // fwrite($sqlArtistAlbumFile, $artistId.';'.$albumsTags['album_id'] . PHP_EOL);
-                $artists[$keys[$artistId - 1]]++;
-            }
-        }
-    }
-
     private function getAlbumDuration(array $durations): string {
         $secs = 0;
         foreach ($durations as $duration) {
@@ -560,7 +534,7 @@ $debugCnt = 0;
         return ++$skipCount;
     }
 
-    private function AddAlbumIds($songs, $albumId) {
+    private function AddAlbumIds($songs, $albumId, $sqlArtistAlbumFile, $sqlSongFile) {
         $albums = [];
         $ids = [];
         foreach ($songs as $song) {
@@ -572,19 +546,39 @@ $debugCnt = 0;
 
         $artistAlbumValues = [];
         foreach ($songs as &$song) {
+            // -- set song album_id
             $song['album_id'] = $ids[$song['album']];
 
+            // -- write songs to sql
+            fwrite($sqlSongFile, ';'.
+                $song['album_id'].';'.
+                $song['artist_id'].';'.
+                $song['path'].';'.
+                $song['web_path'].';'.
+                $song['title'].';'.
+                $song['track_number'].';'.
+                $song['year'].';'.
+                $song['genre'].';'.
+                $song['duration'].';'.
+                PHP_EOL
+            );
+
+
+            // -- set artist_album values
             $artistAlbumValue = $song['artist_id'].";".$song['album_id'];
             if (!in_array($artistAlbumValue, $artistAlbumValues)) {
                 array_push($artistAlbumValues, $artistAlbumValue);
             }
-            print_r($song);
         }
-        // print_r($artistAlbumValues); // TODO : write to artist-album.sql
+
+        // -- write artist_album to sql
+        foreach ($artistAlbumValues as $value) {
+            fwrite($sqlArtistAlbumFile, $value.PHP_EOL);
+        }
         return ['album_id' => $albumId, 'songs' => $songs];
     }
 
-    private function buildAlbumTags($songs, $albumsSlugs) {
+    private function buildAlbumTags($songs, $albumsSlugs, $sqlAlbumFile) {
         $albumSingleTags = ['year', 'genre', 'album_path'];
         $albumsTags = [];
         foreach ($songs as $song) {
@@ -596,14 +590,12 @@ $debugCnt = 0;
                 array_push($albumsTags['albums'], $song['album']);
             }
 
-
             if ( !array_key_exists( 'artists', $albumsTags) ) {
                 $albumsTags['artists'] = array();
             }
             if ( !in_array($song['artist'], $albumsTags['artists'] )) {
                 array_push($albumsTags['artists'], $song['artist']);
             }
-
 
             if ( !array_key_exists( 'durations', $albumsTags) ) {
                 $albumsTags['durations'] = array();
@@ -643,7 +635,8 @@ $debugCnt = 0;
                 $albumTags['artist'] = $albumTags['artists'][0];
             }
 
-            print ';'.
+            // -- write album to sql
+            fwrite($sqlAlbumFile,';'.
                 $albumTags['album'].';'.
                 $this->slugify($albumTags['album'], $albumsSlugs).';'.
                 count($albumTags['durations']).';'.
@@ -652,7 +645,8 @@ $debugCnt = 0;
                 $albumTags['genre'].';'.
                 $albumTags['album_path'].';'.
                 ';'. // -- covert art path
-                PHP_EOL;
+                PHP_EOL
+            );
         }
     }
 }
