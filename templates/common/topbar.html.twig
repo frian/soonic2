@@ -36,27 +36,44 @@
                 <a id="random" href="{{ path('random_songs') }}">{{ 'random'|trans }}</a>
             </li>
             <li>
+                <a href="{{ path('album_index') }}">{{ 'albums'|trans }}</a>
+            </li>
+            <li>
                 <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
             </li>
         {% else %}
-            <li>
-                {% if 'radio' in app.request.get('_route') and app.request.get('_route') != 'radio_new' %}
+            {% if 'radio' in app.request.get('_route') and app.request.get('_route') != 'radio_new' %}
+                <li>
                     <a href="{{ path('radio_new') }}">{{ 'radio.new'|trans }}</a>
-                {% endif %}
-            </li>
-            <li>
-                {% if app.request.get('_route') == 'radio_new' %}
+                </li>
+            {% endif %}
+            {% if app.request.get('_route') == 'radio_new' %}
+                <li>
                     <a href="{{ path('radio_index') }}">{{ 'back'|trans }}</a>
-                {% endif %}
-            </li>
+                </li>
+            {% endif %}
             <li>
-                {% if app.request.get('_route') == 'settings_index' %}
+            <a href="{{ path('library') }}">{{ 'music'|trans }}</a>
+            </li>
+            {% if app.request.get('_route') == 'settings_index' %}
+            <li>
+                <a href="{{ path('album_index') }}">{{ 'albums'|trans }}</a>
+            </li>
+                <li>
                     <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
-                {% endif %}
-            </li>
-            <li>
-                <a href="{{ path('library') }}">{{ 'music'|trans }}</a>
-            </li>
+                </li>
+
+            {% endif %}
+            {% if app.request.get('_route') == 'radio_index' %}
+                <li>
+                    <a href="{{ path('album_index') }}">{{ 'albums'|trans }}</a>
+                </li>
+            {% endif %}
+            {% if app.request.get('_route') == 'album_index' %}
+                <li>
+                    <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
+                </li>
+            {% endif %}
         {% endif %}
             <li>
                 {% if app.request.get('_route') != 'settings_index' %}
