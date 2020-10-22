@@ -296,13 +296,19 @@ $debugCnt = 0;
                 }
 
                 if (empty($trackTags['year'])) {
-                    if ( !empty($trackTags['date']) ) {
-                        $tags['year'] = $trackTags['date'][0];
+                    if ( empty($trackTags['date']) ) {
+                        if ( empty($trackTags['creation_date']) ) {
+                            $hasWarning = true;
+                            array_push($warningTags, 'year');
+                            $tags['year'] = null;
+                        }
+                        else {
+                            $tags['year'] = $trackTags['creation_date'][0];
+                        }
+
                     }
                     else {
-                        $hasWarning = true;
-                        array_push($warningTags, 'year');
-                        $tags['year'] = null;
+                        $tags['year'] = $trackTags['date'][0];
                     }
                 }
                 else {
