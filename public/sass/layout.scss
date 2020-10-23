@@ -29,6 +29,8 @@ table {
     padding: 0!important;
 }
 
+
+
 /*
   -- Topbar -------------------------------------------------------------------
 */
@@ -158,6 +160,19 @@ nav.topbarNav {
     float: right;
 }
 
+// -- set menu items visibility
+#navigationLibrary, #navigationRadioNew, #navigationBackToRadioIndex {
+    display: none;
+}
+
+
+/*
+  -- ajax wrapper -------------------------------------------------------------
+*/
+#ajax-wrapper {
+    height: calc(100% - (#{$topbar-size} + #{$topbar-border-size}));
+}
+
 
 /*
   -- Artists navigation -------------------------------------------------------
@@ -165,7 +180,7 @@ nav.topbarNav {
 .artists-navigation {
     float: left;
     width: 100%;
-    height: calc(100% - (#{$topbar-size} + #{$topbar-border-size}));
+    height: 100%;
     overflow-y: auto;
 
     @if $debug != 0 {
@@ -291,11 +306,12 @@ thead {
 }
 
 
-
 /*
   -- Albums view --------------------------------------------------------------
 */
-.album-view {
+.screen-view, .albums-view {
+    position: absolute;
+    top: $topbar-size + $topbar-border-size;
     height: calc(100% - (#{$topbar-size} + #{$topbar-border-size}));
     overflow-y: scroll;
 }
@@ -418,8 +434,11 @@ button:active, button:focus {
 /*
   -- Radios -------------------------------------------------------------------
 */
-.radios {
+.radios-view {
+    position: absolute;
+    top: $topbar-size + $topbar-border-size;
     font-size: 0;
+    width: 100%;
     height: calc(100% - (#{$topbar-size} + #{$topbar-border-size}));
     overflow-y: scroll;
 }
@@ -517,9 +536,9 @@ ul.topNav {
 
 
 /*
-  -- Settings -----------------------------------------------------------------
+  -- settings-view -----------------------------------------------------------------
 */
-.settings {
+.settings-view {
     border: #{$debug}px solid red;
 
     .libraryInfo{
@@ -691,7 +710,6 @@ table.form {
     $nav-width: 240px;
 
     .artists-navigation {
-        height: calc(100% - (#{$topbar-size} + #{$topbar-border-size}));
         width: $nav-width;
 
         a {
@@ -718,7 +736,7 @@ table.form {
     /* -- Songs and playlist panels -- */
     .songs, .playlist {
         display: block;
-        height: calc((100% - (#{$topbar-size} + #{$topbar-border-size})) / 2);
+        height: 50%;
     }
 
 
@@ -763,8 +781,8 @@ table.form {
         }
     }
 
-    /* -- Settings -- */
-    .settings {
+    /* -- settings-view -- */
+    .settings-view {
         .libraryInfo{
             margin-top: 20px;
             margin-left: auto;

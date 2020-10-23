@@ -28,56 +28,30 @@
     <nav class="topbarNav" id="topBarNav">
 
         <ul class="topNav">
-        {% if app.request.get('_route') == 'library' %}
-            <li>
+            <li id="searchForm">
                 {{ render(controller( 'App\\Controller\\SearchController::showSearch' )) }}
             </li>
-            <li>
-                <a id="random" href="{{ path('random_songs') }}">{{ 'random'|trans }}</a>
+            <li id="navigationLibrary">
+                <a id="libraryButton" href="{{ path('library') }}">{{ 'music'|trans }}</a>
             </li>
-            <li>
-                <a href="{{ path('album_index') }}">{{ 'albums'|trans }}</a>
+            <li id="navigationRandom">
+                <a id="randomButton" href="{{ path('random_songs') }}">{{ 'random'|trans }}</a>
             </li>
-            <li>
-                <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
+            <li id="navigationAlbums">
+                <a id="albumsButton"  href="{{ path('album_index') }}">{{ 'albums'|trans }}</a>
             </li>
-        {% else %}
-            {% if 'radio' in app.request.get('_route') and app.request.get('_route') != 'radio_new' %}
-                <li>
-                    <a href="{{ path('radio_new') }}">{{ 'radio.new'|trans }}</a>
-                </li>
-            {% endif %}
-            {% if app.request.get('_route') == 'radio_new' %}
-                <li>
-                    <a href="{{ path('radio_index') }}">{{ 'back'|trans }}</a>
-                </li>
-            {% endif %}
-            <li>
-            <a href="{{ path('library') }}">{{ 'music'|trans }}</a>
+            <li id="navigationRadio">
+                <a id="radioButton" href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
             </li>
-            {% if app.request.get('_route') == 'settings_index' %}
-            <li>
-                <a href="{{ path('album_index') }}">{{ 'albums'|trans }}</a>
+            <li id="navigationRadioNew">
+                <a id="radioNewButton" href="{{ path('radio_new') }}">{{ 'radio.new'|trans }}</a>
             </li>
-                <li>
-                    <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
-                </li>
-
-            {% endif %}
-            {% if app.request.get('_route') == 'radio_index' %}
-                <li>
-                    <a href="{{ path('album_index') }}">{{ 'albums'|trans }}</a>
-                </li>
-            {% endif %}
-            {% if app.request.get('_route') == 'album_index' %}
-                <li>
-                    <a href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
-                </li>
-            {% endif %}
-        {% endif %}
-            <li>
+            <li id="navigationBackToRadioIndex">
+                <a id="backToRadioIndexButton" href="{{ path('radio_index') }}">{{ 'back'|trans }}</a>
+            </li>
+            <li id="navigationSettings">
                 {% if app.request.get('_route') != 'settings_index' %}
-                    <a class="noPadding" href="{{ path('settings_index') }}">
+                    <a id="settingsButton" class="noPadding" href="{{ path('settings_index') }}">
                         <i class="icon-cog button"></i>
                     </a>
                 {% endif %}

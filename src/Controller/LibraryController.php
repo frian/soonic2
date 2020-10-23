@@ -7,14 +7,21 @@ use App\Repository\ArtistRepository;
 use App\Repository\AlbumRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-// use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Symfony\Component\HttpFoundation\Request;
 
 class LibraryController extends AbstractController
 {
     /**
      * @Route("/", name="library", methods={"GET"})
      */
-    public function library(ArtistRepository $artistRepository) {
+    public function library(ArtistRepository $artistRepository, Request $request) {
+
+        if ($request->isXmlHttpRequest()) {
+            return $this->render('library/screen-content.html.twig', [
+                'artists' => $artistRepository->findAll(),
+            ]);
+        }
+
         return $this->render('library/screen.html.twig', [
             'artists' => $artistRepository->findAll(),
         ]);

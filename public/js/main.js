@@ -4,6 +4,135 @@ $(function() {
     var state = 'closed';
 
     /**
+     * -- Ajax navigation -----------------------------------------------------
+     */
+     var openViews = [];
+     /**
+      * Load library page
+      */
+     $(document).on("click", "#libraryButton", function(e) {
+         e.preventDefault();
+         $.each(openViews, function( index, value ) {
+           $(value).css('display', 'none');
+         });
+         openViews = [];
+
+         $('.screen-view').css('display', 'block');
+         $('.albums-view').css('display', 'none');
+         $('#navigationAlbums').css('display', 'list-item')
+         $('#navigationLibrary').css('display', 'none');
+     });
+
+
+     /**
+      * Load random songs
+      * Updates the songs panel
+      */
+     $(document).on("click", "#random", function(e) {
+
+         e.preventDefault();
+
+         var url = "/songs/random";
+
+         $.ajax({
+             url: url,
+             cache: true,
+             success: loadSongPanel,
+             error: function(data) {
+                 console.log("error");
+             }
+         });
+     });
+
+     /**
+      * Load albums page
+      */
+     $(document).on("click", "#albumsButton", function(e) {
+
+         e.preventDefault();
+
+         $.each(openViews, function( index, value ) {
+           $(value).css('display', 'none');
+         });
+         openViews = [];
+
+         if ($('.albums-view').length) {
+             $('.screen-view').css('display', 'none');
+             $('#navigationAlbums').css('display', 'none');
+             $('#navigationLibrary').css('display', 'list-item');
+             $('.albums-view').css('display', 'block');
+             console.log('show');
+         }
+         else {
+             var url = "/albums/";
+             $.ajax({
+                 url: url,
+                 cache: true,
+                 success: function(data){
+                     $('.screen-view').css('display', 'none');
+                     $(document.body).append(data);
+                     const observer = lozad();
+                     observer.observe();
+                     $('#navigationAlbums').css('display', 'none');
+                     $('#navigationLibrary').css('display', 'list-item');
+                     console.log('load');
+                 },
+                 error: function(data) {
+                     console.log("error");
+                 }
+             });
+         }
+         openViews.push('.albums-view');
+     });
+
+
+
+     /**
+      * Load radios page
+      */
+     $(document).on("click", "#radioButton", function(e) {
+
+         e.preventDefault();
+
+         $.each(openViews, function( index, value ) {
+           $(value).css('display', 'none');
+         });
+         openViews = [];
+
+         if ($('.radios-view').length) {
+             $('.screen-view').css('display', 'none');
+             $('#navigationAlbums').css('display', 'none');
+             $('#navigationLibrary').css('display', 'list-item');
+             $('.radios-view').css('display', 'block');
+             console.log('show');
+         }
+         else {
+             var url = "/radio/";
+
+             $.ajax({
+                 url: url,
+                 cache: true,
+                 success: function(data){
+                     $('.screen-view').css('display', 'none');
+                     $(document.body).append(data);
+                     $('#navigationAlbums').css('display', 'none')
+                     $('#navigationLibrary').css('display', 'list-item')
+                 },
+                 error: function(data) {
+                     console.log("error");
+                 }
+             });
+         }
+         openViews.push('.radios-view');
+     });
+
+
+
+
+
+
+
+    /**
      * Returns a album list for an artist or remove album list (close)
      * Updates the navigation panel
      */
@@ -139,27 +268,6 @@ $(function() {
             type: form.attr('method'),
             url: form.attr('action'),
             data: form.serialize(),
-            success: loadSongPanel,
-            error: function(data) {
-                console.log("error");
-            }
-        });
-    });
-
-
-    /**
-     * Load ransom songs
-     * Updates the songs panel
-     */
-    $(document).on("click", "#random", function(e) {
-
-        e.preventDefault();
-
-        var url = "/songs/random";
-
-        $.ajax({
-            url: url,
-            cache: true,
             success: loadSongPanel,
             error: function(data) {
                 console.log("error");

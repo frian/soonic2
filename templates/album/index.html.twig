@@ -1,14 +1,4 @@
-{% extends 'base.html.twig' %}
-
-{% block js %}
-<script src="/js/jquery.hoverIntent.min.js" ></script>
-<script src="/js/album.js"></script>
-
-{% endblock %}
-
-{% block body %}
-
-<div class="album-view">
+<div class="albums-view">
 
     {% for album in albums %}
 
@@ -52,4 +42,3 @@
     </div>
     {% endfor %}
 </div>
-{% endblock %}
