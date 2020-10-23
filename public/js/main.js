@@ -6,11 +6,12 @@ $(function() {
     /**
      * -- Ajax navigation -----------------------------------------------------
      */
-     var openViews = [];
-     /**
-      * Load library page
-      */
-     $(document).on("click", "#libraryButton", function(e) {
+    var openViews = [];
+
+    /**
+     * Load library page
+     */
+    $(document).on("click", "#libraryButton", function(e) {
          e.preventDefault();
          $.each(openViews, function( index, value ) {
            $(value).css('display', 'none');
@@ -19,35 +20,18 @@ $(function() {
 
          $('.screen-view').css('display', 'block');
          $('.albums-view').css('display', 'none');
-         $('#navigationAlbums').css('display', 'list-item')
+
+         $('#navigationAlbums').css('display', 'list-item');
+         $('#navigationRadios').css('display', 'list-item');
+         $('#navigationRandom').css('display', 'list-item');
          $('#navigationLibrary').css('display', 'none');
+         $('#navigationRadioNew').css('display', 'none');
      });
 
-
-     /**
-      * Load random songs
-      * Updates the songs panel
-      */
-     $(document).on("click", "#random", function(e) {
-
-         e.preventDefault();
-
-         var url = "/songs/random";
-
-         $.ajax({
-             url: url,
-             cache: true,
-             success: loadSongPanel,
-             error: function(data) {
-                 console.log("error");
-             }
-         });
-     });
-
-     /**
-      * Load albums page
-      */
-     $(document).on("click", "#albumsButton", function(e) {
+    /**
+     * Load albums page
+     */
+    $(document).on("click", "#albumsButton", function(e) {
 
          e.preventDefault();
 
@@ -57,11 +41,7 @@ $(function() {
          openViews = [];
 
          if ($('.albums-view').length) {
-             $('.screen-view').css('display', 'none');
-             $('#navigationAlbums').css('display', 'none');
-             $('#navigationLibrary').css('display', 'list-item');
              $('.albums-view').css('display', 'block');
-             console.log('show');
          }
          else {
              var url = "/albums/";
@@ -73,24 +53,24 @@ $(function() {
                      $(document.body).append(data);
                      const observer = lozad();
                      observer.observe();
-                     $('#navigationAlbums').css('display', 'none');
-                     $('#navigationLibrary').css('display', 'list-item');
-                     console.log('load');
                  },
                  error: function(data) {
                      console.log("error");
                  }
              });
          }
+         $('.screen-view').css('display', 'none');
+         $('#navigationAlbums').css('display', 'none');
+         $('#navigationLibrary').css('display', 'list-item');
+         $('#navigationRadios').css('display', 'list-item');
+         $('#navigationRadioNew').css('display', 'none');
          openViews.push('.albums-view');
      });
 
-
-
-     /**
-      * Load radios page
-      */
-     $(document).on("click", "#radioButton", function(e) {
+    /**
+     * Load radios page
+     */
+    $(document).on("click", "#radioButton", function(e) {
 
          e.preventDefault();
 
@@ -100,11 +80,7 @@ $(function() {
          openViews = [];
 
          if ($('.radios-view').length) {
-             $('.screen-view').css('display', 'none');
-             $('#navigationAlbums').css('display', 'none');
-             $('#navigationLibrary').css('display', 'list-item');
              $('.radios-view').css('display', 'block');
-             console.log('show');
          }
          else {
              var url = "/radio/";
@@ -115,19 +91,42 @@ $(function() {
                  success: function(data){
                      $('.screen-view').css('display', 'none');
                      $(document.body).append(data);
-                     $('#navigationAlbums').css('display', 'none')
-                     $('#navigationLibrary').css('display', 'list-item')
                  },
                  error: function(data) {
                      console.log("error");
                  }
              });
          }
+         $('.screen-view').css('display', 'none');
+         $('#navigationRadios').css('display', 'none');
+         $('#navigationRandom').css('display', 'none');
+         $('#navigationLibrary').css('display', 'list-item');
+         $('#navigationAlbums').css('display', 'list-item');
+         $('#navigationRadioNew').css('display', 'list-item');
+
          openViews.push('.radios-view');
      });
 
 
+    /**
+    * Load random songs
+    * Updates the songs panel
+    */
+    $(document).on("click", "#random", function(e) {
 
+        e.preventDefault();
+
+        var url = "/songs/random";
+
+        $.ajax({
+            url: url,
+            cache: true,
+            success: loadSongPanel,
+            error: function(data) {
+                console.log("error");
+            }
+        });
+    });
 
 
 
