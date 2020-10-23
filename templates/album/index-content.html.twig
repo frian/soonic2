@@ -1,0 +1,37 @@
+<div class="albums-view">
+{% for album in albums %}
+<div class="album-container">
+    <div class="album-container-content" data-album-path="{{ album.path }}">
+        {# <img class="lozad" data-src="{{ album.path }}/cover.jpg" alt=""> #}
+        <div class="no-cover-art">
+            <div class="album-info-album">
+                {{ album.name|length > 33 ? album.name|upper|slice(0, 30) ~ '...' : album.name|upper }}
+            </div>
+            <div class="album-info-artist">
+                {% if album.artists is defined %}
+                        {% if album.artists|length > 1 %}
+                            {{ 'Various' }}
+                        {% else %}
+                            {{ album.artists[0]|length > 33 ? album.artists[0]|slice(0, 30) ~ '...'|lower : album.artists[0]|lower }}
+                        {% endif %}
+                {% endif %}
+            </div>
+            <div class="album-info-year">
+                {{ album.year }}
+            </div>
+            <div class="album-info-genre">
+                {{ album.genre }}
+            </div>
+            <div class="">
+                {{ album.songCount }} tracks -
+                {% if album.duration > 3600%}
+                    {{ album.duration|date('G\\h i\\m s\\s', '+00:00 GMT') }}
+                {% else %}
+                    {{ album.duration|date('i\\m s\\s', '+00:00 GMT') }}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+</div>

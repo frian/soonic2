@@ -1,44 +1,8 @@
-<div class="albums-view">
+{# artist/index #}
+{% extends 'base.html.twig' %}
 
-    {% for album in albums %}
+{% block body %}
 
-    <div class="album-container">
-        <div class="album-container-content" data-album-path="{{ album.path }}">
+    {{ include('album/index-content.html.twig') }}
 
-
-            <img class="lozad" data-src="{{ album.path }}/cover.jpg" alt="">
-
-            <div class="no-cover-art">
-                <div class="album-info-album">
-                    {{ album.name }}
-                </div>
-                <div class="album-info-artist">
-                    {% if album.artists is defined %}
-                            {% if album.artists|length > 1 %}
-                                {{ 'Various' }}
-                            {% else %}
-                                {{ album.artists[0] }}
-                            {% endif %}
-                    {% endif %}
-                </div>
-                <div class="album-info-year">
-                    {{ album.year }}
-                </div>
-                <div class="album-info-genre">
-                    {{ album.genre }}
-                </div>
-                <div class="">
-                    {{ album.songCount }} tracks -
-                    {% if album.duration > 3600%}
-                        {{ album.duration|date('G\\h i\\m s\\s', '+00:00 GMT') }}
-                    {% else %}
-                        {{ album.duration|date('i\\m s\\s', '+00:00 GMT') }}
-                    {% endif %}
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-    {% endfor %}
-</div>
+{% endblock %}

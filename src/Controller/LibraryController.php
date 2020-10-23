@@ -95,14 +95,4 @@ class LibraryController extends AbstractController
         ));
     }
 
-
-    /**
-     * @Route("/albums/", name="albums", methods={"GET"})
-     */
-    public function albums(AlbumRepository $albumRepository) {
-        return $this->render('album/index.html.twig', [
-            'albums' => $albumRepository->findAll(),
-        ]);
-    }
-
 }

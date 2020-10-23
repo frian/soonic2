@@ -1,7 +1,4 @@
-{% extends 'base.html.twig' %}
-
-{% block body %}
-
+<section class="radio-new-view">
     <h1>{{ 'radio.new'|trans }}</h1>
 
     <form id="radio_save" action="{{ path('radio_new') }}" method="POST">
@@ -28,5 +25,4 @@
         </table>
         {{ form_widget(form._token) }}
     </form>
-
-{% endblock %}
+</section>

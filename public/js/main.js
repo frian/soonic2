@@ -6,113 +6,177 @@ $(function() {
     /**
      * -- Ajax navigation -----------------------------------------------------
      */
-    var openViews = [];
+    var openView;
 
     /**
      * Load library page
      */
     $(document).on("click", "#libraryButton", function(e) {
-         e.preventDefault();
-         $.each(openViews, function( index, value ) {
-           $(value).css('display', 'none');
-         });
-         openViews = [];
+        e.preventDefault();
 
-         $('.screen-view').css('display', 'block');
-         $('.albums-view').css('display', 'none');
+        $(openView).css('display', 'none');
+        openView = null;
 
-         $('#navigationAlbums').css('display', 'list-item');
-         $('#navigationRadios').css('display', 'list-item');
-         $('#navigationRandom').css('display', 'list-item');
-         $('#navigationLibrary').css('display', 'none');
-         $('#navigationRadioNew').css('display', 'none');
-     });
+        $('.screen-view').css('display', 'block');
+
+        $('#navigationRandom, #navigationAlbums, #navigationRadios, #navigationSettings' ).css('display', 'list-item');
+        $('#navigationLibrary, #navigationRadioNew').css('display', 'none');
+    });
 
     /**
      * Load albums page
      */
+    function dummy() {
+        return;
+    };
+    function show() {
+        $(this).children(".lozad").fadeIn('fast');
+    };
+
+    var config = {
+        over: dummy, // function = onMouseOver callback (REQUIRED)
+        timeout: 200, // number = milliseconds delay before onMouseOut
+        interval: 100, // number = milliseconds delay before trying to call over
+        out: show // function = onMouseOut callback (REQUIRED)
+    };
+
     $(document).on("click", "#albumsButton", function(e) {
 
-         e.preventDefault();
+        e.preventDefault();
 
-         $.each(openViews, function( index, value ) {
-           $(value).css('display', 'none');
-         });
-         openViews = [];
+        $(openView).css('display', 'none');
+        $('.screen-view').css('display', 'none');
 
-         if ($('.albums-view').length) {
-             $('.albums-view').css('display', 'block');
-         }
-         else {
-             var url = "/albums/";
-             $.ajax({
-                 url: url,
-                 cache: true,
-                 success: function(data){
-                     $('.screen-view').css('display', 'none');
-                     $(document.body).append(data);
-                     const observer = lozad();
-                     observer.observe();
-                 },
-                 error: function(data) {
-                     console.log("error");
-                 }
-             });
-         }
-         $('.screen-view').css('display', 'none');
-         $('#navigationAlbums').css('display', 'none');
-         $('#navigationLibrary').css('display', 'list-item');
-         $('#navigationRadios').css('display', 'list-item');
-         $('#navigationRadioNew').css('display', 'none');
-         openViews.push('.albums-view');
-     });
+        if ($('.albums-view').length) {
+            $('.albums-view').css('display', 'block');
+        } else {
+            var url = "/album/";
+            $.ajax({
+                url: url,
+                cache: true,
+                success: function(data) {
+                    $('.screen-view').css('display', 'none');
+                    $(document.body).append(data);
+                    // const observer = lozad();
+                    observer.observe();
+                    $(".album-container-content").hoverIntent( config );
+                },
+                error: function(data) {
+                    console.log("error");
+                }
+            });
+        }
+        $('#navigationLibrary, #navigationRadios, #navigationSettings').css('display', 'list-item');
+        $('#navigationAlbums, #navigationRadioNew').css('display', 'none');
+        openView = '.albums-view';
+    });
 
     /**
      * Load radios page
      */
     $(document).on("click", "#radioButton", function(e) {
 
-         e.preventDefault();
+        e.preventDefault();
 
-         $.each(openViews, function( index, value ) {
-           $(value).css('display', 'none');
-         });
-         openViews = [];
+        $(openView).css('display', 'none');
+        $('.screen-view').css('display', 'none');
 
-         if ($('.radios-view').length) {
-             $('.radios-view').css('display', 'block');
-         }
-         else {
-             var url = "/radio/";
+        if ($('.radios-view').length) {
+            $('.radios-view').css('display', 'block');
+        } else {
+            var url = "/radio/";
 
-             $.ajax({
-                 url: url,
-                 cache: true,
-                 success: function(data){
-                     $('.screen-view').css('display', 'none');
-                     $(document.body).append(data);
-                 },
-                 error: function(data) {
-                     console.log("error");
-                 }
-             });
-         }
-         $('.screen-view').css('display', 'none');
-         $('#navigationRadios').css('display', 'none');
-         $('#navigationRandom').css('display', 'none');
-         $('#navigationLibrary').css('display', 'list-item');
-         $('#navigationAlbums').css('display', 'list-item');
-         $('#navigationRadioNew').css('display', 'list-item');
+            $.ajax({
+                url: url,
+                cache: true,
+                success: function(data) {
+                    $(document.body).append(data);
+                },
+                error: function(data) {
+                    console.log("error");
+                }
+            });
+        }
 
-         openViews.push('.radios-view');
-     });
+        $('#navigationLibrary, #navigationAlbums, #navigationRadioNew, #navigationSettings').css('display', 'list-item');
+        $('#navigationRadios, #navigationRandom').css('display', 'none');
+
+        openView = '.radios-view';
+    });
 
 
     /**
-    * Load random songs
-    * Updates the songs panel
-    */
-    $(document).on("click", "#random", function(e) {
+     * Load new radio page
+     */
+    $(document).on("click", "#radioNewButton", function(e) {
+
+        e.preventDefault();
+
+        $(openView).css('display', 'none');
+        $('.screen-view').css('display', 'none');
+
+        if ($('.radio-new-view').length) {
+            $('.radio-new-view').css('display', 'block');
+        } else {
+            var url = "/radio/new";
+
+            $.ajax({
+                url: url,
+                cache: true,
+                success: function(data) {
+                    $(document.body).append(data);
+                },
+                error: function(data) {
+                    console.log("error");
+                }
+            });
+        }
+
+        $('#navigationLibrary, #navigationAlbums, #navigationRadios, #navigationSettings').css('display', 'list-item');
+        $('#navigationRandom, #navigationRadioNew').css('display', 'none');
+
+        openView = '.radio-new-view';
+    });
+
+
+    /**
+     * Load settings page
+     */
+    $(document).on("click", "#settingsButton", function(e) {
+
+        e.preventDefault();
+
+        $(openView).css('display', 'none');
+        $('.screen-view').css('display', 'none');
+
+        if ($('.settings-view').length) {
+            $('.settings-view').css('display', 'block');
+        } else {
+            var url = "/settings/";
+
+            $.ajax({
+                url: url,
+                cache: true,
+                success: function(data) {
+                    $(document.body).append(data);
+                },
+                error: function(data) {
+                    console.log("error");
+                }
+            });
+        }
+        $('#navigationSettings').css('display', 'none');
+        $('#navigationLibrary, #navigationAlbums, #navigationRadios').css('display', 'list-item');
+
+        openView = '.settings-view';
+    });
+
+
+    /**
+     * Load random songs
+     * Updates the songs panel
+     */
+    $(document).on("click", "#randomButton", function(e) {
 
         e.preventDefault();
 
@@ -291,7 +355,7 @@ $(function() {
             $(".mobileSongsToPlaylistButton").css('display', 'initial');
             hamburger.toggleClass("is-active");
 
-            state = state == 'closed' ? 'open': 'closed';
+            state = state == 'closed' ? 'open' : 'closed';
         }
     }
 
@@ -429,7 +493,7 @@ $(function() {
         $(".topNav").toggleClass("is-active");
         hamburger.toggleClass("is-active");
 
-        state = state == 'closed' ? 'open': 'closed';
+        state = state == 'closed' ? 'open' : 'closed';
         console.log(state);
     });
 
