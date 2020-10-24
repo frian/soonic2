@@ -4,6 +4,24 @@ $(function() {
     var screenWidth = $(window).width();
     var mobileMenuState = 'closed';
 
+    _init();
+
+    // on resize
+    var resizeTimer;
+
+    $(window).resize(function() {
+
+        if(resizeTimer) {
+            window.clearTimeout(resizeTimer);
+        }
+
+        resizeTimer = window.setTimeout(function() {
+            screenWidth = $(window).width();
+            _init();
+        }, 30);
+    });
+
+
     /**
      * -- Ajax navigation -----------------------------------------------------
      */
@@ -23,7 +41,9 @@ $(function() {
 
         e.preventDefault();
 
-        toggleMobileMenu();
+        if ($(".topNav").hasClass("is-active")) {
+            toggleMobileMenu();
+        }
 
         $(openView).css('display', 'none');
         openView = null;
@@ -48,7 +68,9 @@ $(function() {
 
         e.preventDefault();
 
-        toggleMobileMenu();
+        if ($(".topNav").hasClass("is-active")) {
+            toggleMobileMenu();
+        }
 
         $(openView).css('display', 'none');
         $('.screen-view').css('display', 'none');
@@ -83,7 +105,9 @@ $(function() {
 
         e.preventDefault();
 
-        toggleMobileMenu();
+        if ($(".topNav").hasClass("is-active")) {
+            toggleMobileMenu();
+        }
 
         $(openView).css('display', 'none');
         $('.screen-view').css('display', 'none');
@@ -119,6 +143,10 @@ $(function() {
 
         e.preventDefault();
 
+        if ($(".topNav").hasClass("is-active")) {
+            toggleMobileMenu();
+        }
+
         $(openView).css('display', 'none');
         $('.screen-view').css('display', 'none');
 
@@ -153,7 +181,9 @@ $(function() {
 
         e.preventDefault();
 
-        toggleMobileMenu();
+        if ($(".topNav").hasClass("is-active")) {
+            toggleMobileMenu();
+        }
 
         $(openView).css('display', 'none');
         $('.screen-view').css('display', 'none');
@@ -544,4 +574,17 @@ $(function() {
         });
     }
 
+
+    function _init() {
+        var width;
+
+        if (screenWidth < 1024) {
+            width = screenWidth - ($('.logo').outerWidth() + $('.player').outerWidth() + $('.hamburger').outerWidth() + 50);
+        }
+        else {
+            width = screenWidth - ($('.logo').outerWidth() + $('.player').outerWidth() + $('.topbarNav').outerWidth() + 50);
+        }
+
+        $('.songInfo').width(width);
+    }
 });
