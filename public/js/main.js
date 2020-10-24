@@ -6,15 +6,12 @@ $(function() {
 
     _init();
 
-    // on resize
+    // -- on resize
     var resizeTimer;
-
     $(window).resize(function() {
-
         if(resizeTimer) {
             window.clearTimeout(resizeTimer);
         }
-
         resizeTimer = window.setTimeout(function() {
             screenWidth = $(window).width();
             _init();
@@ -52,6 +49,7 @@ $(function() {
 
         $('#navigationRandom, #navigationAlbums, #navigationRadios, #navigationSettings' ).css('display', 'list-item');
         $('#navigationLibrary, #navigationRadioNew').css('display', 'none');
+        setSongInfoSize();
     });
 
     /**
@@ -131,7 +129,7 @@ $(function() {
 
         $('#navigationLibrary, #navigationAlbums, #navigationRadioNew, #navigationSettings').css('display', 'list-item');
         $('#navigationRadios, #navigationRandom').css('display', 'none');
-
+        setSongInfoSize();
         openView = '.radios-view';
     });
 
@@ -169,7 +167,7 @@ $(function() {
 
         $('#navigationLibrary, #navigationAlbums, #navigationRadios, #navigationSettings').css('display', 'list-item');
         $('#navigationRandom, #navigationRadioNew').css('display', 'none');
-
+        setSongInfoSize();
         openView = '.radio-new-view';
     });
 
@@ -206,7 +204,7 @@ $(function() {
         }
         $('#navigationSettings').css('display', 'none');
         $('#navigationLibrary, #navigationAlbums, #navigationRadios').css('display', 'list-item');
-
+        setSongInfoSize();
         openView = '.settings-view';
     });
 
@@ -423,7 +421,7 @@ $(function() {
         $("#numAlbums").text("0");
         $("#scanStatus").text('scanning');
 
-        $loop = setInterval(myTimer, 1000);
+        $loop = setInterval(scanTimer, 1000);
     });
 
 
@@ -539,16 +537,14 @@ $(function() {
      * check if we are scanning
      */
     if ($(location).attr('pathname') === '/settings/') {
-
         var $loop;
-
         $.get({
             url: '/scan/progress',
             cache: true,
             success: function(data) {
                 if (data.status == 'running') {
                     $("#scanButton").toggleClass('running');
-                    $loop = setInterval(myTimer, 1000);
+                    $loop = setInterval(scanTimer, 1000);
                 }
             }
         });
@@ -558,7 +554,7 @@ $(function() {
     /**
      * update library infos while we are scanning
      */
-    function myTimer() {
+    function scanTimer() {
         $.get({
             url: '/scan/progress',
             cache: true,
@@ -576,15 +572,17 @@ $(function() {
 
 
     function _init() {
-        var width;
+        setSongInfoSize();
+    }
 
+    function setSongInfoSize() {
+        var width;
         if (screenWidth < 1024) {
             width = screenWidth - ($('.logo').outerWidth() + $('.player').outerWidth() + $('.hamburger').outerWidth() + 50);
         }
         else {
             width = screenWidth - ($('.logo').outerWidth() + $('.player').outerWidth() + $('.topbarNav').outerWidth() + 50);
         }
-
         $('.songInfo').width(width);
     }
 });
