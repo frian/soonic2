@@ -45,7 +45,7 @@ $topbar-border-size: 1px;
         background-color: #222;
     }
 
-    > div {
+    div {
         display: inline-block;
         box-sizing: border-box;
         vertical-align: top;
@@ -684,6 +684,30 @@ table.form {
 
 
 /*
+  -- Media query 500px --------------------------------------------------------
+*/
+@media all and (min-width: 500px) {
+    /* -- albums-view -- */
+    .album-container {
+        width: 33.33%;
+        padding-top: 33.33%;
+    }
+}
+
+
+/*
+  -- Media query 700px --------------------------------------------------------
+*/
+@media all and (min-width: 700px) {
+    /* -- albums-view -- */
+    .album-container {
+        width: 25%;
+        padding-top: 25%;
+    }
+}
+
+
+/*
   -- Media query 1024px -------------------------------------------------------
 */
 @media all and (min-width: 1023px) {
@@ -868,7 +892,7 @@ table.form {
 
     /* -- Topbar -- */
     .songInfo {
-        width: 400px;
+        // width: 400px;
     }
 
 
@@ -908,8 +932,8 @@ table.form {
 
     /* -- albums-view -- */
     .album-container {
-        width: 12.5%;
-        padding-top: 12.5%;
+        width: 16.66%;
+        padding-top: 16.66%;
     }
 
     .album-container-content {
@@ -954,12 +978,18 @@ table.form {
 
     /* -- Topbar -- */
     .songInfo {
-        width: 600px;
+        // width: 600px;
     }
 
     #searchForm {
         input[type="text"] {
             width: 200px;
         }
+    }
+
+    /* -- albums-view -- */
+    .album-container {
+        width: 12.5%;
+        padding-top: 12.5%;
     }
 }
