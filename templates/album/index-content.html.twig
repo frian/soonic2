@@ -2,7 +2,7 @@
 {% for album in albums %}
 <div class="album-container">
     <div class="album-container-content" data-album-path="{{ album.path }}">
-        {# <img class="lozad" data-src="{{ album.path }}/cover.jpg" alt=""> #}
+        <img class="lozad" data-src="{{ album.path }}/cover.jpg" alt="">
         <div class="no-cover-art">
             <div class="album-info-album">
                 {{ album.name|length > 33 ? album.name|upper|slice(0, 30) ~ '...' : album.name|upper }}
