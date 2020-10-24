@@ -4,8 +4,8 @@
     <!-- <div class="logo">S<span>oonic</span></div> -->
 
     {% if app.request.get('_route') == 'library' %}
-
-        <i class="icon-to-start"></i><i id="startStopButton" class="icon-play"></i><i class="icon-to-end"></i>
+    <div class="player">
+        <i class="icon-to-start"></i><i id="startStopButton" class="icon-play musicPlayer"></i><i class="icon-to-end"></i>
 
         <audio id="player" preload="none">
             <source id="mpegSource" src="" type="audio/mpeg"/>
@@ -15,12 +15,12 @@
             <span id="currentTime">00:00 /</span>
             <span id="duration"> 00:00</span>
         </div>
+    </div>
 
-        <div class="songInfo">
-            <span id="songTitle" class="songTitle"></span>
-            <span id="songArtist" class="songArtist"></span>
-        </div>
-
+    <div class="songInfo">
+        <span id="songTitle" class="songTitle"></span>
+        <span id="songArtist" class="songArtist"></span>
+    </div>
     {% else %}
 
     {% endif %}
