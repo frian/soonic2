@@ -1,18 +1,29 @@
+'use strict';
 $(function() {
 
     var screenWidth = $(window).width();
-    var state = 'closed';
+    var mobileMenuState = 'closed';
 
     /**
      * -- Ajax navigation -----------------------------------------------------
      */
     var openView;
 
+    function toggleMobileMenu() {
+        $(".topbarNav").toggleClass("is-active");
+        $(".topNav").toggleClass("is-active");
+        hamburger.toggleClass("is-active");
+    }
+
+
     /**
      * Load library page
      */
     $(document).on("click", "#libraryButton", function(e) {
+
         e.preventDefault();
+
+        toggleMobileMenu();
 
         $(openView).css('display', 'none');
         openView = null;
@@ -26,23 +37,18 @@ $(function() {
     /**
      * Load albums page
      */
-    function dummy() {
-        return;
-    };
-    function show() {
-        $(this).children(".lozad").fadeIn('fast');
-    };
+    const observer = lozad();
+    observer.observe();
 
-    var config = {
-        over: dummy, // function = onMouseOver callback (REQUIRED)
-        timeout: 200, // number = milliseconds delay before onMouseOut
-        interval: 100, // number = milliseconds delay before trying to call over
-        out: show // function = onMouseOut callback (REQUIRED)
-    };
+    $(document).on("click", ".album-container-content", function(e) {
+        $(this).children(".lozad").fadeOut('fast').delay(3000).fadeIn('fast');
+    });
 
     $(document).on("click", "#albumsButton", function(e) {
 
         e.preventDefault();
+
+        toggleMobileMenu();
 
         $(openView).css('display', 'none');
         $('.screen-view').css('display', 'none');
@@ -57,9 +63,7 @@ $(function() {
                 success: function(data) {
                     $('.screen-view').css('display', 'none');
                     $(document.body).append(data);
-                    // const observer = lozad();
                     observer.observe();
-                    $(".album-container-content").hoverIntent( config );
                 },
                 error: function(data) {
                     console.log("error");
@@ -71,12 +75,15 @@ $(function() {
         openView = '.albums-view';
     });
 
+
     /**
      * Load radios page
      */
     $(document).on("click", "#radioButton", function(e) {
 
         e.preventDefault();
+
+        toggleMobileMenu();
 
         $(openView).css('display', 'none');
         $('.screen-view').css('display', 'none');
@@ -146,6 +153,8 @@ $(function() {
 
         e.preventDefault();
 
+        toggleMobileMenu();
+
         $(openView).css('display', 'none');
         $('.screen-view').css('display', 'none');
 
@@ -191,8 +200,6 @@ $(function() {
             }
         });
     });
-
-
 
 
     /**
@@ -355,7 +362,7 @@ $(function() {
             $(".mobileSongsToPlaylistButton").css('display', 'initial');
             hamburger.toggleClass("is-active");
 
-            state = state == 'closed' ? 'open' : 'closed';
+            mobileMenuState = mobileMenuState == 'closed' ? 'open' : 'closed';
         }
     }
 
@@ -493,8 +500,8 @@ $(function() {
         $(".topNav").toggleClass("is-active");
         hamburger.toggleClass("is-active");
 
-        state = state == 'closed' ? 'open' : 'closed';
-        console.log(state);
+        mobileMenuState = mobileMenuState == 'closed' ? 'open' : 'closed';
+        console.log(mobileMenuState);
     });
 
 
