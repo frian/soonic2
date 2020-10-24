@@ -7,7 +7,7 @@ $(function() {
     /**
      * Play / Pause currently loaded song
      */
-    $(document).on("click", ".icon-play, .icon-pause", function(e) {
+    $(document).on("click", ".musicPlayer", function(e) {
 
         var player = document.getElementById("player");
 
@@ -22,18 +22,22 @@ $(function() {
             console.log("No source");
             return;
         }
+        else {
 
-        if (playerStatus === "paused") {
-            player.play();
-            playerStatus = "playing";
-            statusClass = "icon-pause";
-        } else {
-            player.pause();
-            playerStatus = "paused";
-            statusClass = "icon-play";
+            if (playerStatus === "paused") {
+                player.play();
+                playerStatus = "playing";
+                $(this).removeClass("icon-play");
+                $(this).addClass("icon-pause");
+            } else {
+                player.pause();
+                playerStatus = "paused";
+                $(this).removeClass("icon-pause");
+                $(this).addClass("icon-play");
+            }
         }
 
-        $(this).attr("class", statusClass);
+        // $(this).attr("class", statusClass);
     });
 
 
@@ -47,7 +51,10 @@ $(function() {
         // $(".playing").removeClass("playing");
         $(this).addClass('playing');
 
-        if (screenWidth < 1024) {
+        $('#startStopButton').removeClass("icon-play");
+        $('#startStopButton').addClass("icon-pause");
+
+        if (screenWidth < 500) {
             // if ($(".songInfo").css('display') === 'none') {
             //     // $(".songInfo").css('display', 'inline-block');
             //     // -- adapt height to obove
@@ -55,6 +62,7 @@ $(function() {
             // }
             $(".songInfo").css('display', 'none');
         }
+
     });
 
 
