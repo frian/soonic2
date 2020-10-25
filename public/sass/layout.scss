@@ -242,7 +242,7 @@ nav.topbarNav {
 */
 .songs, .playlist {
     display: none;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     table {
         width: 100%;
@@ -321,7 +321,7 @@ thead {
     top: $topbar-size + $topbar-border-size;
     height: calc(100% - (#{$topbar-size} + #{$topbar-border-size}));
     width: 100%;
-    overflow-y: scroll;
+    overflow: hidden;
 }
 
 .album-container {

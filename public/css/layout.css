@@ -342,7 +342,7 @@ nav.topbarNav a {
 /* line 243, ../sass/layout.scss */
 .songs, .playlist {
   display: none;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 /* line 247, ../sass/layout.scss */
 .songs table, .playlist table {
@@ -424,7 +424,7 @@ thead {
   top: 50px;
   height: calc(100% - (49px + 1px));
   width: 100%;
-  overflow-y: scroll;
+  overflow: hidden;
 }
 
 /* line 327, ../sass/layout.scss */
