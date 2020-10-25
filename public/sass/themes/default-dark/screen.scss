@@ -36,7 +36,7 @@ h2 {
 }
 
 * {
-  scrollbar-width: thin;
+  // scrollbar-width: thin;
   scrollbar-color: $border-color $bg-color;
 }
 *::-webkit-scrollbar {
