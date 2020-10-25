@@ -189,11 +189,12 @@ nav.topbarNav {
 
     a {
         display: block;
+        box-sizing: border-box;
         width: calc(100%);
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        padding-left: 10px;
+        padding: 0 10px;
         height : $mobileButtonSize;
         line-height: $mobileButtonSize;
         @if $debug != 0 {
@@ -203,7 +204,7 @@ nav.topbarNav {
 }
 
 #artists-nav {
-    height: calc((100% - 40px));
+    height: calc((100% - 45px));
     overflow-y: auto;
 }
 
