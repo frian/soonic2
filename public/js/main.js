@@ -378,8 +378,8 @@ $(function() {
      * Helper for the two methods above
      */
     function loadSongPanel(data) {
-        $("#songs table tbody").remove();
-        $("#songs table").append(data);
+        $("#songs tbody").remove();
+        $("#songs").append(data);
         if ($("#topBarNav").hasClass('is-active')) {
             $("#topBarNav").toggleClass('is-active');
             $(".topNav").toggleClass('is-active');
