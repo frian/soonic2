@@ -99,7 +99,7 @@ a.active {
   -- Songs and playlist panels ------------------------------------------------
 */
 /* line 104, ../../../sass/themes/default-dark/screen.scss */
-.playlist-header {
+.songs-header-container, .playlist-header {
   background-color: #333;
 }
 

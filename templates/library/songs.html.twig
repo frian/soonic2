@@ -1,29 +1,36 @@
-<section id="songsHeader" class="songs">
-    <table id="" class="list">
-        <thead>
-            <tr>
-                <th></th>
-                <th>#</th>
-                <th>{{ 'artist'|trans }}</th>
-                <th>{{ 'title'|trans }}</th>
-                <th>{{ 'album'|trans }}</th>
-                <th>{{ 'duration'|trans }}</th>
-                <th>{{ 'year'|trans }}</th>
-                <th>{{ 'genre'|trans }}</th>
-            </tr>
-        </thead>
-    </table>
+<section id="songsSection" class="songs">
+    <div class="songs-header-container">
+        <table class="list songs-header">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>#</th>
+                    <th>{{ 'artist'|trans }}</th>
+                    <th>{{ 'title'|trans }}</th>
+                    <th>{{ 'album'|trans }}</th>
+                    <th>{{ 'duration'|trans }}</th>
+                    <th>{{ 'year'|trans }}</th>
+                    <th>{{ 'genre'|trans }}</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+
+    <div class="songs-container">
+        <table id="songs" class="list">
+            <thead>
+                <tr>
+                    <th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div class="mobileButton mobileForwardButton mobileSongsToPlaylistButton">
+        <i class="icon-right-open"></i>
+    </div>
+    <div class="mobileButton mobileBackButton mobileSongsToArtistsButton">
+        <i class="icon-left-open"></i>
+    </div>
 </section>
-<section id="songs" class="songs"><table id="songslist" class="list">
-    <thead><tr><th></th><th></th><th></th><th></th><th></th>
-        <th></th><th></th><th></th></tr>
-    </thead>
-</table></section>
-
-<div class="mobileButton mobileForwardButton mobileSongsToPlaylistButton">
-    <i class="icon-right-open"></i>
-</div>
-
-<div class="mobileButton mobileBackButton mobileSongsToArtistsButton">
-    <i class="icon-left-open"></i>
-</div>

@@ -327,8 +327,8 @@ $(function() {
             url: url,
             cache: true,
             success: function(data) {
-                $("#songs table tbody").remove();
-                $("#songs table").append(data);
+                $("#songs tbody").remove();
+                $("#songs").append(data);
             }
         });
         $(".active").removeClass("active");

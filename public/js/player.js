@@ -69,7 +69,7 @@ $(function() {
     /**
      * Context menu
      */
-    $(document).on("contextmenu", "#songslist tbody tr, #playlist tbody tr", function(e) {
+    $(document).on("contextmenu", "#songs tbody tr, #playlist tbody tr", function(e) {
 
         e.preventDefault();
 
@@ -144,7 +144,7 @@ $(function() {
 
 
     /**
-     * on song emd, play next song
+     * on song end, play next song
      */
     $('#player').on('ended', function() {
        playNext();
@@ -154,7 +154,7 @@ $(function() {
     /**
      * Add song to playlist
      */
-    $(document).on("click", "#songslist .add", function(e) {
+    $(document).on("click", "#songs .add", function(e) {
         e.stopPropagation();
         // -- add song
         var copy = $(this).parent().clone();
@@ -167,7 +167,7 @@ $(function() {
 
         if ($("#playlist").height() + 20 > $("#playlistSection").height()) {
             console.log('scroll');
-            $('#playlistSection').scrollTop($('#playlistSection').prop("scrollHeight"));
+            $('.playlist-container').scrollTop($('.playlist-container').prop("scrollHeight"));
         }
 
         updatePlaylistInfo(copy);

@@ -96,7 +96,7 @@ a.active {
   -- Songs and playlist panels ------------------------------------------------
 */
 /* line 100, ../../../sass/themes/default-clear/screen.scss */
-.playlist-header {
+.songs-header-container, .playlist-header {
   background-color: #ccc;
 }
 
