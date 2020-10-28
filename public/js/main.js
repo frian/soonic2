@@ -202,7 +202,7 @@ $(function() {
                 }
             });
         }
-        $('#navigationSettings').css('display', 'none');
+        $('#navigationSettings, #navigationRandom').css('display', 'none');
         $('#navigationLibrary, #navigationAlbums, #navigationRadios').css('display', 'list-item');
         setSongInfoSize();
         openView = '.settings-view';
@@ -424,6 +424,51 @@ $(function() {
         $loop = setInterval(scanTimer, 1000);
     });
 
+
+    /**
+     * Submit setting form
+     */
+    $(document).on("click", "#settingsFormButton", function(e) {
+
+        e.preventDefault();
+
+        var form = $('#settingsForm');
+
+        $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            dataType: 'json',
+            success: function(data) {
+
+                if ($('#screenThemeCss')) {
+                    var href = "/css/themes/" + data.config.theme + "/screen.css";
+                    $('#screenThemeCss').attr('href', href );
+                }
+
+                var toTranslate = $('[data-text]');
+
+                $.each(toTranslate, function( index, value ) {
+                    if ($(this).prop("tagName") === 'INPUT') {
+                        if ($(this).attr('type') === 'submit') {
+                            $(this).attr('value', data.config.translations[$(this).attr('data-text')])
+                        }
+                        else if ($(this).attr('type') === 'text') {
+                            $(this).attr('placeholder', data.config.translations[$(this).attr('data-text')])
+                        }
+                    }
+                    else {
+                        $(this).html(data.config.translations[$(this).attr('data-text')]);
+                    }
+                });
+
+                setSongInfoSize();
+            },
+            error:function(data) {
+                console.log(data);
+            }
+        });
+    });
 
     /**
      * reload artist artist on clear filter form

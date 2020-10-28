@@ -32,22 +32,22 @@
                 {{ render(controller( 'App\\Controller\\SearchController::showSearch' )) }}
             </li>
             <li id="navigationLibrary">
-                <a id="libraryButton" href="{{ path('library') }}">{{ 'music'|trans }}</a>
+                <a id="libraryButton" href="{{ path('library') }}" data-text='music'>{{ 'music'|trans }}</a>
             </li>
             <li id="navigationRandom">
-                <a id="randomButton" href="{{ path('random_songs') }}" title="load 20 random songs">{{ 'random'|trans }}</a>
+                <a id="randomButton" href="{{ path('random_songs') }}" title="load 20 random songs" data-text='random'>{{ 'random'|trans }}</a>
             </li>
             <li id="navigationAlbums">
-                <a id="albumsButton"  href="{{ path('album_index') }}">{{ 'albums'|trans }}</a>
+                <a id="albumsButton"  href="{{ path('album_index') }}" data-text='albums'>{{ 'albums'|trans }}</a>
             </li>
             <li id="navigationRadios">
-                <a id="radioButton" href="{{ path('radio_index') }}">{{ 'radio'|trans }}</a>
+                <a id="radioButton" href="{{ path('radio_index') }}" data-text='radio'>{{ 'radio'|trans }}</a>
             </li>
             <li id="navigationRadioNew">
-                <a id="radioNewButton" href="{{ path('radio_new') }}">{{ 'radio.new'|trans }}</a>
+                <a id="radioNewButton" href="{{ path('radio_new') }}" data-text='radio.new'>{{ 'radio.new'|trans }}</a>
             </li>
             <li id="navigationBackToRadioIndex">
-                <a id="backToRadioIndexButton" href="{{ path('radio_index') }}">{{ 'back'|trans }}</a>
+                <a id="backToRadioIndexButton" href="{{ path('radio_index') }}" data-text='back'>{{ 'back'|trans }}</a>
             </li>
             <li id="navigationSettings">
                 {% if app.request.get('_route') != 'settings_index' %}

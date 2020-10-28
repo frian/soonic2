@@ -34,8 +34,6 @@ class LibraryController extends AbstractController
      */
     public function showArtistAlbums(Artist $artist) {
 
-        $em = $this->getDoctrine()->getManager();
-
         $albums = $artist->getAlbums();
 
         return $this->render('library/album-nav-list.html.twig', array(

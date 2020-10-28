@@ -1,35 +1,35 @@
 <div class="settings-view">
     <section class="settings clearfix">
-        <h2>{{ 'library'|trans }}</h2>
+        <h2 data-text='library'>{{ 'library'|trans }}</h2>
         <table class="libraryInfo">
             <tr>
-                <td>{{ 'files'|trans }}</td>
+                <td data-text='files'>{{ 'files'|trans }}</td>
                 <td id="numFiles">{{ infos[0] }}</td>
             </tr>
             <tr>
-                <td>{{ 'artists'|trans }}</td>
+                <td data-text='artists'>{{ 'artists'|trans }}</td>
                 <td id="numArtists">{{ infos[1] }}</td>
             </tr>
             <tr>
-                <td>{{ 'albums'|trans }}</td>
+                <td data-text='albums'>{{ 'albums'|trans }}</td>
                 <td id="numAlbums">{{ infos[2] }}</td>
             </tr>
         </table>
         <div class="buttonWrapper">
-            <a id="scanButton" class="button" href="{{ path('radio_index') }}">{{ 'scan'|trans }}</a>
+            <a id="scanButton" class="button" href="{{ path('radio_index') }}" data-text='scan'>{{ 'scan'|trans }}</a>
         </div>
     </section>
 
     <section class="settings clearfix">
-        <h2>{{ 'settings'|trans }}</h2>
-        <form name="appbundle_config" method="post" action="{{ path('config_edit', { 'id': 1 }) }}">
+        <h2 data-text='settings'>{{ 'settings'|trans }}</h2>
+        <form name="appbundle_config" id="settingsForm" method="post" action="{{ path('config_edit', { 'id': 1 }) }}">
             <table class="libraryInfo">
                 <tr>
-                    <td>{{ form_label(edit_form.language) }}</td>
+                    <td><label for="config_language" class="required" data-text='language'>{{ 'language'|trans }}</label></td>
                     <td>{{ form_widget(edit_form.language) }}</td>
                 </tr>
                 <tr>
-                    <td>{{ form_label(edit_form.theme) }}</td>
+                    <td><label for="config_theme" class="required" data-text='theme'>{{ 'theme'|trans }}</label></td>
                     <td>{{ form_widget(edit_form.theme) }}</td>
                 </tr>
             </table>
@@ -37,7 +37,7 @@
             {{ form_widget(edit_form) }}
 
             <div class="buttonWrapper">
-                <input class="button" type="submit" value="{{ 'save'|trans }}"/>
+                <input id="settingsFormButton" class="button" type="submit" value="{{ 'save'|trans }}" data-text='save'/>
             </div>
 
             {{ form_end(edit_form) }}

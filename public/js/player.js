@@ -10,7 +10,6 @@ $(function() {
     $(document).on("click", ".musicPlayer", function(e) {
 
         var player = document.getElementById("player");
-
         var src = document.getElementById("mpegSource");
 
         // if (!document.getElementById("mpegSource")) {
@@ -36,19 +35,16 @@ $(function() {
                 $(this).addClass("icon-play");
             }
         }
-
-        // $(this).attr("class", statusClass);
     });
 
 
     /**
-     * load and play a song from the songs list
+     * load and play a song from the songs list or the playlist
      */
-    $(document).on("click", "tbody tr", function(e) {
+    $(document).on("click", "#songs tbody tr, #playlist tbody tr", function(e) {
         $("tbody .playing").removeClass('playing');
         loadSong($(this));
         playerStatus = "playing";
-        // $(".playing").removeClass("playing");
         $(this).addClass('playing');
 
         $('#startStopButton').removeClass("icon-play");
@@ -166,7 +162,6 @@ $(function() {
         $("#playlist tbody").append(copy);
 
         if ($("#playlist").height() + 20 > $("#playlistSection").height()) {
-            console.log('scroll');
             $('.playlist-container').scrollTop($('.playlist-container').prop("scrollHeight"));
         }
 
@@ -190,7 +185,6 @@ $(function() {
  * load song
  */
 function loadSong(song) {
-
     var path = song.data("path");
 
     var format = song.data("format");

@@ -25,7 +25,7 @@ radio: radio
 radio.new: 'new radio'
 radio.edit: 'edit radio'
 random: random
-save: enregistrer
+save: save
 scan: 'scan library'
 search: search
 search.placeholder: 'min 3 chars'

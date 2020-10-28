@@ -22,11 +22,11 @@
         {% set theme = theme_helper.get() %}
 
         {% if file_exists('css/themes/' ~ theme ~ '/screen.css') %}
-            <link href="/css/themes/{{ theme }}/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
+            <link id="screenThemeCss" href="/css/themes/{{ theme }}/screen.css" media="screen, projection" rel="stylesheet" type="text/css" />
         {% endif %}
 
         {% if file_exists('css/themes/' ~ theme ~ '/layout.css') %}
-            <link href="/css/themes/{{ theme }}/layout.css" media="screen, projection" rel="stylesheet" type="text/css" />
+            <link id="layoutThemeCss" href="/css/themes/{{ theme }}/layout.css" media="screen, projection" rel="stylesheet" type="text/css" />
         {% endif %}
 
         {% block stylesheets %}{% endblock %}

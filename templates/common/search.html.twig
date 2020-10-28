@@ -1,9 +1,9 @@
 <form id="searchForm" name="search" method="post" action="{{ path('search') }}">
 <div class="formElementContainer">
-    <input type="text" id="form_keyword" name="form[keyword]" required="required" placeholder="{{ 'search.placeholder'|trans }}" class="filterInput">
+    <input type="text" id="form_keyword" name="form[keyword]" required="required" placeholder="{{ 'search.placeholder'|trans }}" class="filterInput" data-text='search.placeholder'>
     <button class="input-reset" type="reset"></button>
 </div>
-    <input id="searchButton" class="button" type="submit" value="{{ 'search'|trans }}" />
+    <input id="searchButton" class="button" type="submit" value="{{ 'search'|trans }}" data-text='search'/>
 
     {{ form_widget(form._token) }}
 {{ form_end(form, {'render_rest': false}) }}
