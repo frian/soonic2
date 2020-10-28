@@ -47,7 +47,7 @@ $(function() {
 
         $('.screen-view').css('display', 'block');
 
-        $('#navigationRandom, #navigationAlbums, #navigationRadios, #navigationSettings' ).css('display', 'list-item');
+        $('#navigationRandom, #navigationAlbums, #navigationRadios, #navigationSettings, #navigationSearchForm' ).css('display', 'list-item');
         $('#navigationLibrary, #navigationRadioNew').css('display', 'none');
         setSongInfoSize();
     });
@@ -91,7 +91,7 @@ $(function() {
             });
         }
         $('#navigationLibrary, #navigationRadios, #navigationSettings').css('display', 'list-item');
-        $('#navigationAlbums, #navigationRadioNew').css('display', 'none');
+        $('#navigationAlbums, #navigationRadioNew, #navigationSearchForm, #navigationRandom').css('display', 'none');
         openView = '.albums-view';
     });
 
@@ -128,7 +128,7 @@ $(function() {
         }
 
         $('#navigationLibrary, #navigationAlbums, #navigationRadioNew, #navigationSettings').css('display', 'list-item');
-        $('#navigationRadios, #navigationRandom').css('display', 'none');
+        $('#navigationRadios, #navigationRandom, #navigationSearchForm').css('display', 'none');
         setSongInfoSize();
         openView = '.radios-view';
     });
@@ -202,7 +202,7 @@ $(function() {
                 }
             });
         }
-        $('#navigationSettings, #navigationRandom').css('display', 'none');
+        $('#navigationSettings, #navigationRandom, #navigationSearchForm').css('display', 'none');
         $('#navigationLibrary, #navigationAlbums, #navigationRadios').css('display', 'list-item');
         setSongInfoSize();
         openView = '.settings-view';
