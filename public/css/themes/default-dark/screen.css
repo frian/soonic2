@@ -2,7 +2,7 @@
   -- Default dark theme -------------------------------------------------------
 */
 /*
-  -- Global -------------------------------------------------------------------
+  --  1. Global ---------------------------------------------------------------
 */
 /* line 17, ../../../sass/themes/default-dark/screen.scss */
 body {
@@ -49,7 +49,7 @@ h2 {
 }
 
 /*
-  -- Topbar -------------------------------------------------------------------
+  --  2. Topbar ---------------------------------------------------------------
 */
 /* line 58, ../../../sass/themes/default-dark/screen.scss */
 .topbar {
@@ -74,7 +74,7 @@ nav.topbarNav a:hover .icon-cog {
 }
 
 /*
-  -- Artists navigation -------------------------------------------------------
+  --  3. Artists navigation ---------------------------------------------------
 */
 /* line 83, ../../../sass/themes/default-dark/screen.scss */
 .artists-navigation .song {
@@ -96,7 +96,7 @@ a.active {
 }
 
 /*
-  -- Songs and playlist panels ------------------------------------------------
+  --  5. Songs and playlist panels --------------------------------------------
 */
 /* line 104, ../../../sass/themes/default-dark/screen.scss */
 .songs-header-container, .playlist-header {
@@ -121,7 +121,7 @@ a.active {
 }
 
 /*
-  -- Radios -------------------------------------------------------------------
+  --  7. Radios ---------------------------------------------------------------
 */
 /* line 135, ../../../sass/themes/default-dark/screen.scss */
 .radio.activeRadio {
@@ -134,60 +134,60 @@ a.active {
 }
 
 /*
-  -- Context menus ------------------------------------------------------------
-*/
-/* line 148, ../../../sass/themes/default-dark/screen.scss */
-.songsContextMenu, .playlistContextMenu {
-  box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
-}
-/* line 151, ../../../sass/themes/default-dark/screen.scss */
-.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
-  background-color: black;
-}
-/* line 155, ../../../sass/themes/default-dark/screen.scss */
-.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
-  background: rgba(0, 102, 0, 0.8);
-}
-
-/*
-  -- Settings -----------------------------------------------------------------
+  --  8. Settings-view --------------------------------------------------------
 */
 /*
-  -- Forms ---------------------------------------------------------------
+  -- 11. Forms ----------------------------------------------------------------
 */
-/* line 170, ../../../sass/themes/default-dark/screen.scss */
+/* line 153, ../../../sass/themes/default-dark/screen.scss */
 input[type="text"] {
   color: #eee;
   background-color: #111;
   border: 1px solid #555 !important;
 }
 
-/* line 176, ../../../sass/themes/default-dark/screen.scss */
+/* line 159, ../../../sass/themes/default-dark/screen.scss */
 .input-reset {
   background-color: #111;
 }
 
-/* line 180, ../../../sass/themes/default-dark/screen.scss */
+/* line 163, ../../../sass/themes/default-dark/screen.scss */
 .input-reset:after {
   color: #eee;
   background-color: #111;
 }
 
 /*
-  -- Crud forms ---------------------------------------------------------------
+  -- 12. Crud forms -----------------------------------------------------------
 */
-/* line 189, ../../../sass/themes/default-dark/screen.scss */
+/* line 172, ../../../sass/themes/default-dark/screen.scss */
 form div div input {
   border: 1px solid #666;
 }
 
-/* line 193, ../../../sass/themes/default-dark/screen.scss */
+/* line 176, ../../../sass/themes/default-dark/screen.scss */
 .button {
   color: #eee;
   background: linear-gradient(to top, #222222, rgba(51, 51, 51, 0.9));
 }
 
-/* line 198, ../../../sass/themes/default-dark/screen.scss */
+/* line 181, ../../../sass/themes/default-dark/screen.scss */
 .button:hover {
   background: linear-gradient(to top, #006600, rgba(0, 102, 0, 0.5));
+}
+
+/*
+  -- 13. Context menus --------------------------------------------------------
+*/
+/* line 189, ../../../sass/themes/default-dark/screen.scss */
+.songsContextMenu, .playlistContextMenu {
+  box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
+}
+/* line 192, ../../../sass/themes/default-dark/screen.scss */
+.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
+  background-color: black;
+}
+/* line 196, ../../../sass/themes/default-dark/screen.scss */
+.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
+  background: rgba(0, 102, 0, 0.8);
 }

@@ -45,7 +45,7 @@ $(function() {
         $(openView).css('display', 'none');
         openView = null;
 
-        $('.screen-view').css('display', 'block');
+        $('.library-view').css('display', 'block');
 
         $('#navigationRandom, #navigationAlbums, #navigationRadios, #navigationSettings, #navigationSearchForm' ).css('display', 'list-item');
         $('#navigationLibrary, #navigationRadioNew').css('display', 'none');
@@ -71,7 +71,7 @@ $(function() {
         }
 
         $(openView).css('display', 'none');
-        $('.screen-view').css('display', 'none');
+        $('.library-view').css('display', 'none');
 
         if ($('.albums-view').length) {
             $('.albums-view').css('display', 'block');
@@ -81,7 +81,7 @@ $(function() {
                 url: url,
                 cache: true,
                 success: function(data) {
-                    $('.screen-view').css('display', 'none');
+                    $('.library-view').css('display', 'none');
                     $(document.body).append(data);
                     observer.observe();
                 },
@@ -108,7 +108,7 @@ $(function() {
         }
 
         $(openView).css('display', 'none');
-        $('.screen-view').css('display', 'none');
+        $('.library-view').css('display', 'none');
 
         if ($('.radios-view').length) {
             $('.radios-view').css('display', 'block');
@@ -146,7 +146,7 @@ $(function() {
         }
 
         $(openView).css('display', 'none');
-        $('.screen-view').css('display', 'none');
+        $('.library-view').css('display', 'none');
 
         if ($('.radio-new-view').length) {
             $('.radio-new-view').css('display', 'block');
@@ -184,7 +184,7 @@ $(function() {
         }
 
         $(openView).css('display', 'none');
-        $('.screen-view').css('display', 'none');
+        $('.library-view').css('display', 'none');
 
         if ($('.settings-view').length) {
             $('.settings-view').css('display', 'block');

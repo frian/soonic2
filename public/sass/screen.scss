@@ -20,7 +20,7 @@ $debug: 0;
 
 
 /*
-  -- Global -------------------------------------------------------------------
+  --  1. Global ---------------------------------------------------------------
 */
 html, body {
     font-family: 'Lato', sans-serif;
@@ -66,7 +66,7 @@ h2 {
 
 
 /*
-  -- Topbar -------------------------------------------------------------------
+  --  2. Topbar ---------------------------------------------------------------
 */
 .topbar {
     border-bottom-color: $border-color;
@@ -128,7 +128,7 @@ nav.topbarNav {
 
 
 /*
-  -- Artists navigation -------------------------------------------------------
+  --  3. Artists navigation ---------------------------------------------------
 */
 .artists-navigation {
     .song {
@@ -161,7 +161,7 @@ a.active {
 
 
 /*
-  -- Songs and playlist panels ------------------------------------------------
+  --  5. Songs and playlist panels --------------------------------------------
 */
 .playlist-header {
     font-family: 'Muli', sans-serif;
@@ -211,7 +211,12 @@ a.active {
 
 
 /*
-  -- Radios -------------------------------------------------------------------
+  --  6. Albums view ----------------------------------------------------------
+*/
+
+
+/*
+  --  7. Radios ---------------------------------------------------------------
 */
 .radio {
     .radioName {
@@ -241,32 +246,7 @@ a.active {
 
 
 /*
-  -- Context menus ------------------------------------------------------------
-*/
-.songsContextMenu, .playlistContextMenu {
-    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
-
-    .menu-options {
-        list-style: none;
-        padding: 10px 0;
-        background-color: $bg-color;
-
-        .menu-option {
-            font-family: 'Muli', sans-serif;
-            letter-spacing: 1px;
-            padding: 10px 40px 10px 20px;
-            cursor: pointer;
-
-            &:hover {
-                background-color: $hover-active;
-            }
-        }
-    }
-}
-
-
-/*
-  -- Settings -----------------------------------------------------------------
+  --  8. Settings-view --------------------------------------------------------
 */
 .settings {
     padding-bottom: 20px;
@@ -284,7 +264,27 @@ a.active {
 
 
 /*
-  -- Forms ---------------------------------------------------------------
+  --  9. Mobile menu ----------------------------------------------------------
+*/
+ul.topNav {
+    background-color: $bg-color;
+}
+
+
+/*
+  -- 10. Small screen buttons -------------------------------------------------
+*/
+.mobileButton {
+    border: 1px solid $border-color;
+    background-color: $bg-color;
+    &:hover {
+        background-color: $hover-active;
+    }
+}
+
+
+/*
+  -- 11. Forms ----------------------------------------------------------------
 */
 input[type="text"] {
     color: $fg-color;
@@ -305,7 +305,7 @@ input[type="text"] {
 
 
 /*
-  -- Crud forms ---------------------------------------------------------------
+  -- 12. Crud forms -----------------------------------------------------------
 */
 form div div label {
     font-family: 'Lato', sans-serif;
@@ -346,6 +346,32 @@ form div div input {
         background: $red-gradient!important;
     }
 }
+
+
+/*
+  -- 13. Context menus --------------------------------------------------------
+*/
+.songsContextMenu, .playlistContextMenu {
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
+
+    .menu-options {
+        list-style: none;
+        padding: 10px 0;
+        background-color: $bg-color;
+
+        .menu-option {
+            font-family: 'Muli', sans-serif;
+            letter-spacing: 1px;
+            padding: 10px 40px 10px 20px;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $hover-active;
+            }
+        }
+    }
+}
+
 
 /*
   -- Media query 1024px -------------------------------------------------------

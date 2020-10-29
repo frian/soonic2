@@ -2,7 +2,7 @@
   -- Default clear theme -------------------------------------------------------
 */
 /*
-  -- Global -------------------------------------------------------------------
+  --  1. Global ---------------------------------------------------------------
 */
 /* line 17, ../../../sass/themes/default-clear/screen.scss */
 body {
@@ -50,7 +50,7 @@ h2 {
 }
 
 /*
-  -- Topbar -------------------------------------------------------------------
+  --  2. Topbar ---------------------------------------------------------------
 */
 /* line 57, ../../../sass/themes/default-clear/screen.scss */
 .topbar {
@@ -71,7 +71,7 @@ nav.topbarNav a:hover {
 }
 
 /*
-  -- Artists navigation -------------------------------------------------------
+  --  3. Artists navigation ---------------------------------------------------
 */
 /* line 79, ../../../sass/themes/default-clear/screen.scss */
 .artists-navigation .song {
@@ -93,7 +93,7 @@ a.active {
 }
 
 /*
-  -- Songs and playlist panels ------------------------------------------------
+  --  5. Songs and playlist panels --------------------------------------------
 */
 /* line 100, ../../../sass/themes/default-clear/screen.scss */
 .songs-header-container, .playlist-header {
@@ -118,7 +118,7 @@ a.active {
 }
 
 /*
-  -- Radios -------------------------------------------------------------------
+  --  7. Radios ---------------------------------------------------------------
 */
 /* line 131, ../../../sass/themes/default-clear/screen.scss */
 .radio.activeRadio {
@@ -131,60 +131,60 @@ a.active {
 }
 
 /*
-  -- Context menus ------------------------------------------------------------
-*/
-/* line 144, ../../../sass/themes/default-clear/screen.scss */
-.songsContextMenu, .playlistContextMenu {
-  box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
-}
-/* line 147, ../../../sass/themes/default-clear/screen.scss */
-.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
-  background-color: white;
-}
-/* line 151, ../../../sass/themes/default-clear/screen.scss */
-.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
-  background: rgba(191, 255, 0, 0.8);
-}
-
-/*
-  -- Settings -----------------------------------------------------------------
+  --  8. Settings-view --------------------------------------------------------
 */
 /*
-  -- Forms ---------------------------------------------------------------
+  -- 11. Forms ----------------------------------------------------------------
 */
-/* line 166, ../../../sass/themes/default-clear/screen.scss */
+/* line 149, ../../../sass/themes/default-clear/screen.scss */
 input[type="text"] {
   color: #111;
   background-color: #eee;
   border: 1px solid #555 !important;
 }
 
-/* line 172, ../../../sass/themes/default-clear/screen.scss */
+/* line 155, ../../../sass/themes/default-clear/screen.scss */
 .input-reset {
   background-color: #eee;
 }
 
-/* line 176, ../../../sass/themes/default-clear/screen.scss */
+/* line 159, ../../../sass/themes/default-clear/screen.scss */
 .input-reset:after {
   color: #111;
   background-color: #eee;
 }
 
 /*
-  -- Crud forms ---------------------------------------------------------------
+  -- 12. Crud forms -----------------------------------------------------------
 */
-/* line 185, ../../../sass/themes/default-clear/screen.scss */
+/* line 168, ../../../sass/themes/default-clear/screen.scss */
 form div div input {
   border: 1px solid #666;
 }
 
-/* line 189, ../../../sass/themes/default-clear/screen.scss */
+/* line 172, ../../../sass/themes/default-clear/screen.scss */
 .button {
   color: #111;
   background: linear-gradient(to top, #dddddd, rgba(204, 204, 204, 0.9));
 }
 
-/* line 194, ../../../sass/themes/default-clear/screen.scss */
+/* line 177, ../../../sass/themes/default-clear/screen.scss */
 .button:hover {
   background: linear-gradient(to top, #bfff00, rgba(191, 255, 0, 0.5));
+}
+
+/*
+  -- 13. Context menus --------------------------------------------------------
+*/
+/* line 185, ../../../sass/themes/default-clear/screen.scss */
+.songsContextMenu, .playlistContextMenu {
+  box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
+}
+/* line 188, ../../../sass/themes/default-clear/screen.scss */
+.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
+  background-color: white;
+}
+/* line 192, ../../../sass/themes/default-clear/screen.scss */
+.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
+  background: rgba(191, 255, 0, 0.8);
 }

@@ -69,7 +69,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 }
 
 /*
-  -- Global -------------------------------------------------------------------
+  --  1. Global ---------------------------------------------------------------
 */
 /* line 25, ../sass/screen.scss */
 html, body {
@@ -110,7 +110,7 @@ h2 {
 }
 
 /*
-  -- Topbar -------------------------------------------------------------------
+  --  2. Topbar ---------------------------------------------------------------
 */
 /* line 71, ../sass/screen.scss */
 .topbar {
@@ -169,7 +169,7 @@ nav.topbarNav a:hover {
 }
 
 /*
-  -- Artists navigation -------------------------------------------------------
+  --  3. Artists navigation ---------------------------------------------------
 */
 /* line 134, ../sass/screen.scss */
 .artists-navigation .song {
@@ -201,7 +201,7 @@ a.active {
 }
 
 /*
-  -- Songs and playlist panels ------------------------------------------------
+  --  5. Songs and playlist panels --------------------------------------------
 */
 /* line 166, ../sass/screen.scss */
 .playlist-header {
@@ -252,80 +252,79 @@ a.active {
 }
 
 /*
-  -- Radios -------------------------------------------------------------------
+  --  6. Albums view ----------------------------------------------------------
 */
-/* line 217, ../sass/screen.scss */
+/*
+  --  7. Radios ---------------------------------------------------------------
+*/
+/* line 222, ../sass/screen.scss */
 .radio .radioName {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
   border: 0px solid red;
 }
-/* line 223, ../sass/screen.scss */
+/* line 228, ../sass/screen.scss */
 .radio .radioUrl {
   font-family: 'Lato', sans-serif;
   font-weight: 300;
 }
-/* line 228, ../sass/screen.scss */
+/* line 233, ../sass/screen.scss */
 .radio .icon-play, .radio .icon-pause {
   cursor: pointer;
   font-size: 4em;
 }
-/* line 233, ../sass/screen.scss */
+/* line 238, ../sass/screen.scss */
 .radio.activeRadio {
   background-color: #ddd !important;
 }
 
-/* line 238, ../sass/screen.scss */
+/* line 243, ../sass/screen.scss */
 .radio:nth-child(4n+2), .radio:nth-child(4n+3) {
   background-color: #ddd;
 }
 
 /*
-  -- Context menus ------------------------------------------------------------
+  --  8. Settings-view --------------------------------------------------------
 */
-/* line 246, ../sass/screen.scss */
-.songsContextMenu, .playlistContextMenu {
-  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
-}
-/* line 249, ../sass/screen.scss */
-.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
-  list-style: none;
-  padding: 10px 0;
-  background-color: #eee;
-}
-/* line 254, ../sass/screen.scss */
-.songsContextMenu .menu-options .menu-option, .playlistContextMenu .menu-options .menu-option {
-  font-family: 'Muli', sans-serif;
-  letter-spacing: 1px;
-  padding: 10px 40px 10px 20px;
-  cursor: pointer;
-}
-/* line 260, ../sass/screen.scss */
-.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
-  background-color: #ddd;
-}
-
-/*
-  -- Settings -----------------------------------------------------------------
-*/
-/* line 271, ../sass/screen.scss */
+/* line 251, ../sass/screen.scss */
 .settings {
   padding-bottom: 20px;
   border-bottom: 1px solid #666 !important;
 }
-/* line 275, ../sass/screen.scss */
+/* line 255, ../sass/screen.scss */
 .settings table {
   font-family: 'Muli', sans-serif;
   font-size: 1.2em;
 }
 
-/* line 281, ../sass/screen.scss */
+/* line 261, ../sass/screen.scss */
 .settings a {
   font-size: 18px;
 }
 
 /*
-  -- Forms ---------------------------------------------------------------
+  --  9. Mobile menu ----------------------------------------------------------
+*/
+/* line 269, ../sass/screen.scss */
+ul.topNav {
+  background-color: #eee;
+}
+
+/*
+  -- 10. Small screen buttons -------------------------------------------------
+*/
+/* line 277, ../sass/screen.scss */
+.mobileButton {
+  border: 1px solid #666;
+  background-color: #eee;
+}
+/* line 280, ../sass/screen.scss */
+.mobileButton:hover {
+  background-color: #ddd;
+}
+
+/*
+  -- 11. Forms ----------------------------------------------------------------
 */
 /* line 289, ../sass/screen.scss */
 input[type="text"] {
@@ -348,7 +347,7 @@ input[type="text"] {
 }
 
 /*
-  -- Crud forms ---------------------------------------------------------------
+  -- 12. Crud forms -----------------------------------------------------------
 */
 /* line 310, ../sass/screen.scss */
 form div div label {
@@ -396,21 +395,46 @@ form div div input {
 }
 
 /*
+  -- 13. Context menus --------------------------------------------------------
+*/
+/* line 354, ../sass/screen.scss */
+.songsContextMenu, .playlistContextMenu {
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
+}
+/* line 357, ../sass/screen.scss */
+.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
+  list-style: none;
+  padding: 10px 0;
+  background-color: #eee;
+}
+/* line 362, ../sass/screen.scss */
+.songsContextMenu .menu-options .menu-option, .playlistContextMenu .menu-options .menu-option {
+  font-family: 'Muli', sans-serif;
+  letter-spacing: 1px;
+  padding: 10px 40px 10px 20px;
+  cursor: pointer;
+}
+/* line 368, ../sass/screen.scss */
+.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
+  background-color: #ddd;
+}
+
+/*
   -- Media query 1024px -------------------------------------------------------
 */
 @media all and (min-width: 1024px) {
   /* -- Radios -- */
-  /* line 357, ../sass/screen.scss */
+  /* line 383, ../sass/screen.scss */
   .radio .radioName {
     font-size: 2em;
   }
-  /* line 360, ../sass/screen.scss */
+  /* line 386, ../sass/screen.scss */
   .radio .radioUrl {
     font-size: 1.2em;
   }
 
   /* -- Crud forms -- */
-  /* line 366, ../sass/screen.scss */
+  /* line 392, ../sass/screen.scss */
   form div div label {
     text-align: right;
     display: inline-block;
