@@ -38,10 +38,6 @@ $(function() {
 
         e.preventDefault();
 
-        if ($(".topNav").hasClass("is-active")) {
-            toggleMobileMenu();
-        }
-
         $(openView).css('display', 'none');
         openView = null;
 
@@ -65,10 +61,6 @@ $(function() {
     $(document).on("click", "#albumsButton", function(e) {
 
         e.preventDefault();
-
-        if ($(".topNav").hasClass("is-active")) {
-            toggleMobileMenu();
-        }
 
         $(openView).css('display', 'none');
         $('.library-view').css('display', 'none');
@@ -102,10 +94,6 @@ $(function() {
     $(document).on("click", "#radioButton", function(e) {
 
         e.preventDefault();
-
-        if ($(".topNav").hasClass("is-active")) {
-            toggleMobileMenu();
-        }
 
         $(openView).css('display', 'none');
         $('.library-view').css('display', 'none');
@@ -141,10 +129,6 @@ $(function() {
 
         e.preventDefault();
 
-        if ($(".topNav").hasClass("is-active")) {
-            toggleMobileMenu();
-        }
-
         $(openView).css('display', 'none');
         $('.library-view').css('display', 'none');
 
@@ -178,10 +162,6 @@ $(function() {
     $(document).on("click", "#settingsButton", function(e) {
 
         e.preventDefault();
-
-        if ($(".topNav").hasClass("is-active")) {
-            toggleMobileMenu();
-        }
 
         $(openView).css('display', 'none');
         $('.library-view').css('display', 'none');
@@ -566,32 +546,26 @@ $(function() {
     /**
      * handle mobile menu
      */
-    var hamburger = $(".hamburger");
-    hamburger.on("click", function(e) {
+    $(".hamburger").on("click", function(e) {
 
-        $(".topbarNav").toggleClass("is-active");
-        $(".topNav").toggleClass("is-active");
-        hamburger.toggleClass("is-active");
+        $(".topbarNav, .topNav, .hamburger").toggleClass("is-active");
         mobileMenuState = mobileMenuState == 'closed' ? 'open' : 'closed';
 
         if (mobileMenuState === 'open') {
             setTimeout(function() {
                 $(document).on( "click", "body", function(e) {
                     e.preventDefault();
-                    console.log( e.target.className.indexOf('hamburger') );
+                    if (e.target.id === 'form_keyword') {
+                        return;
+                    }
+                    else if (e.target.className.indexOf('hamburger') !== -1 ) {
+                        $(".topbarNav, .topNav, .hamburger").toggleClass("is-active");
+                        mobileMenuState = mobileMenuState == 'closed' ? 'open' : 'closed';
+                    }
                     if (!e.target.id.indexOf('Button') !== -1) {
-                        $(".topbarNav").toggleClass("is-active");
-                        $(".topNav").toggleClass("is-active");
-                        hamburger.toggleClass("is-active");
+                        $(".topbarNav, .topNav, .hamburger").toggleClass("is-active");
                         mobileMenuState = mobileMenuState == 'closed' ? 'open' : 'closed';
                     }
-                    if (e.target.className.indexOf('hamburger') !== -1) {
-                        $(".topbarNav").toggleClass("is-active");
-                        $(".topNav").toggleClass("is-active");
-                        hamburger.toggleClass("is-active");
-                        mobileMenuState = mobileMenuState == 'closed' ? 'open' : 'closed';
-                    }
-
                     $(document).off( "click", "body");
                 });
             }, 100);
@@ -656,7 +630,8 @@ $(function() {
     function setFilterInputSize() {
         var width;
         if (screenWidth < 1024) {
-            width = (screenWidth - 100);
+            var buttonWidth = $( "#searchButton" ).actual( 'outerWidth' );
+            width = (screenWidth - buttonWidth );
         }
         $('.formElementContainer').width(width);
     }

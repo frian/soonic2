@@ -129,6 +129,18 @@ a.active {
 
 
 /*
+  --  6. Albums view ----------------------------------------------------------
+*/
+.album-container-content {
+    .no-cover-art {
+        .album-info-album {
+
+        }
+    }
+}
+
+
+/*
   --  7. Radios ---------------------------------------------------------------
 */
 .radio {
@@ -148,8 +160,30 @@ a.active {
 
 
 /*
+  --  9. Mobile menu ----------------------------------------------------------
+*/
+.hamburger-inner,
+.hamburger-inner::after,
+.hamburger-inner::before {
+    background-color: $fg-color!important;
+}
+
+
+/*
+  -- 10. Small screen buttons -------------------------------------------------
+*/
+.mobileButton {
+    background-color: $bg-color;
+}
+
+
+/*
   -- 11. Forms ----------------------------------------------------------------
 */
+#navigationSearchForm {
+    background-color: $bg-color;
+}
+
 input[type="text"] {
     color: $fg-color;
     background-color: $bg-color;

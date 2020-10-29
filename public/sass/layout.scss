@@ -240,7 +240,7 @@ nav.topbarNav {
 }
 
 .library-view {
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .albums-view {
@@ -259,6 +259,7 @@ nav.topbarNav {
 $panel-header-height: 22px;
 
 .songs-header {
+    display: none;
     position: relative;
     width: calc(100% - 10px)!important;
     height: $panel-header-height;
@@ -381,7 +382,6 @@ thead {
         }
 
         .album-info-album {
-            color: white;
             letter-spacing: 0.4px;
             line-height: 1.3em;
             margin-bottom: 10px;
@@ -398,26 +398,6 @@ thead {
         width: 100%;
         height: 100%;
         z-index: 10;
-    }
-
-    .album-info {
-        display: none;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 30%;
-        color: white;
-        background: rgba(0,0,0, 0.8);
-        z-index: 10;
-        > div {
-            font-family: 'Helvetica';
-            padding: 3px 10px 2px;
-        }
-    }
-
-    .album-info-artist {
-
     }
 }
 
@@ -689,7 +669,7 @@ table.form {
   -- Media query 500px --------------------------------------------------------
 */
 @media all and (min-width: 500px) {
-    /* -- albums-view -- */
+    /* --  4. Views -- */
     .album-container {
         width: 33.33%;
         padding-top: 33.33%;
@@ -701,7 +681,7 @@ table.form {
   -- Media query 700px --------------------------------------------------------
 */
 @media all and (min-width: 700px) {
-    /* -- albums-view -- */
+    /* --  4. Views -- */
     .album-container {
         width: 25%;
         padding-top: 25%;
@@ -714,7 +694,7 @@ table.form {
 */
 @media all and (min-width: 1023px) {
 
-    /* -- Topbar -- */
+    /* --  2. Topbar -- */
     .topbar {
         .logo {
             > span {
@@ -741,7 +721,7 @@ table.form {
     }
 
 
-    /* -- Artists navigation -- */
+    /* --  3. Artists navigation -- */
     $nav-width: 240px;
 
     .artists-navigation {
@@ -763,7 +743,7 @@ table.form {
     }
 
 
-    /* -- Songs and playlist panels -- */
+    /* --  5. Songs and playlist panels -- */
     .songs, .playlist {
         display: block;
         height: 50%;
@@ -816,7 +796,7 @@ table.form {
     }
 
 
-    /* -- albums-view -- */
+    /* --  4. Views -- */
     .album-container {
         width: 20%;
         padding-top: 20%;
@@ -844,7 +824,16 @@ table.form {
     }
 
 
-    /* -- settings-view -- */
+    /* --  7. Radios -- */
+    .radio {
+        font-size: 16px!important;
+        display: inline-block;
+        width: 50%;
+
+    }
+
+
+    /* --  8. Settings-view -- */
     .settings-view {
         .libraryInfo{
             margin-top: 20px;
@@ -854,20 +843,14 @@ table.form {
         }
     }
 
-    /* -- Small screen buttons -- */
+
+    /* -- 10. Small screen buttons -- */
     .mobileButton {
         display: none;
     }
 
-    /* -- Radios -- */
-    .radio {
-        font-size: 16px!important;
-        display: inline-block;
-        width: 50%;
 
-    }
-
-    /* -- Forms -- */
+    /* -- 11. Forms -- */
     table.form {
         margin: auto;
         width: 40%;
@@ -896,13 +879,13 @@ table.form {
 */
 @media all and (min-width: 1200px) {
 
-    /* -- Topbar -- */
+    /* --  2. Topbar -- */
     .songInfo {
         // width: 400px;
     }
 
 
-    /* -- Artists navigation -- */
+    /* --  3. Artists navigation -- */
     $nav-width: 360px;
 
     .artists-navigation {
@@ -910,7 +893,7 @@ table.form {
     }
 
 
-    /* -- Songs and playlist panels -- */
+    /* --  5. Songs and playlist panels -- */
     thead {
         tr {
             th:nth-child(7) {
@@ -936,12 +919,14 @@ table.form {
     }
 
 
-    /* -- albums-view -- */
+    /* --  4. Views -- */
     .album-container {
         width: 16.66%;
         padding-top: 16.66%;
     }
 
+
+    /* --  6. Album voew -- */
     .album-container-content {
         .no-cover-art {
             font-size: 1.1em;
@@ -963,7 +948,7 @@ table.form {
         }
     }
 
-    /* -- Forms -- */
+    /* -- 11. Forms -- */
     table.form {
         tr {
             td {
@@ -982,7 +967,7 @@ table.form {
 */
 @media all and (min-width: 1600px) {
 
-    /* -- Topbar -- */
+    /* --  2. Topbar -- */
     .songInfo {
         // width: 600px;
     }
@@ -993,7 +978,7 @@ table.form {
         }
     }
 
-    /* -- albums-view -- */
+    /* --  4. Views -- */
     .album-container {
         width: 12.5%;
         padding-top: 12.5%;
