@@ -425,6 +425,10 @@ $(function() {
                     var href = "/css/themes/" + data.config.theme + "/screen.css";
                     $('#screenThemeCss').attr('href', href );
                 }
+                if ($('#layoutThemeCss')) {
+                    var href = "/css/themes/" + data.config.theme + "/layout.css";
+                    $('#layoutThemeCss').attr('href', href );
+                }
 
                 var toTranslate = $('[data-text]');
 
