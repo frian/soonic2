@@ -572,9 +572,30 @@ $(function() {
         $(".topbarNav").toggleClass("is-active");
         $(".topNav").toggleClass("is-active");
         hamburger.toggleClass("is-active");
-
         mobileMenuState = mobileMenuState == 'closed' ? 'open' : 'closed';
-        console.log(mobileMenuState);
+
+        if (mobileMenuState === 'open') {
+            setTimeout(function() {
+                $(document).on( "click", "body", function(e) {
+                    e.preventDefault();
+                    console.log( e.target.className.indexOf('hamburger') );
+                    if (!e.target.id.indexOf('Button') !== -1) {
+                        $(".topbarNav").toggleClass("is-active");
+                        $(".topNav").toggleClass("is-active");
+                        hamburger.toggleClass("is-active");
+                        mobileMenuState = mobileMenuState == 'closed' ? 'open' : 'closed';
+                    }
+                    if (e.target.className.indexOf('hamburger') !== -1) {
+                        $(".topbarNav").toggleClass("is-active");
+                        $(".topNav").toggleClass("is-active");
+                        hamburger.toggleClass("is-active");
+                        mobileMenuState = mobileMenuState == 'closed' ? 'open' : 'closed';
+                    }
+
+                    $(document).off( "click", "body");
+                });
+            }, 100);
+        }
     });
 
 
