@@ -639,6 +639,7 @@ $(function() {
 
     function _init() {
         setSongInfoSize();
+        setFilterInputSize();
     }
 
     function setSongInfoSize() {
@@ -650,5 +651,13 @@ $(function() {
             width = screenWidth - ($('.logo').outerWidth() + $('.player').outerWidth() + $('.topbarNav').outerWidth() + 50);
         }
         $('.songInfo').width(width);
+    }
+
+    function setFilterInputSize() {
+        var width;
+        if (screenWidth < 1024) {
+            width = (screenWidth - 100);
+        }
+        $('.formElementContainer').width(width);
     }
 });
