@@ -3,7 +3,7 @@
     <div class="logo"><img alt="Soonic" src="/weblogo-grey.png"></div>
     <!-- <div class="logo">S<span>oonic</span></div> -->
 
-    {% if app.request.get('_route') == 'library' %}
+    {#{% if app.request.get('_route') == 'library' %}#}
     <div class="player">
         <i class="icon-to-start"></i><i id="startStopButton" class="icon-play musicPlayer"></i><i class="icon-to-end"></i>
 
@@ -21,9 +21,9 @@
         <span id="songTitle" class="songTitle"></span>
         <span id="songArtist" class="songArtist"></span>
     </div>
-    {% else %}
+    {#{% else %}#}
 
-    {% endif %}
+    {#{% endif %}#}
 
     <nav class="topbarNav" id="topBarNav">
 
