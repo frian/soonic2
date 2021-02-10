@@ -32,7 +32,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "2.0",
-            "ref": "368794356c1fb634e58b38ad2addb36933f2e73e"
+            "ref": "40631978d2c4adc9b11220b13eba539b727c36a8"
         },
         "files": [
             "config/packages/doctrine.yaml",
@@ -95,6 +95,9 @@
     },
     "egulias/email-validator": {
         "version": "2.1.22"
+    },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.3"
     },
     "james-heinrich/getid3": {
         "version": "v1.9.20"
@@ -259,12 +262,12 @@
         "version": "v5.1.7"
     },
     "symfony/framework-bundle": {
-        "version": "5.1",
+        "version": "5.2",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "5.1",
-            "ref": "5f0d0fd82ffa3580fe0ce8e3b2d18506ebf37a0e"
+            "version": "5.2",
+            "ref": "6ec87563dcc85cd0c48856dcfbfc29610506d250"
         },
         "files": [
             "config/packages/cache.yaml",
@@ -351,12 +354,12 @@
         "version": "v5.1.7"
     },
     "symfony/phpunit-bridge": {
-        "version": "4.3",
+        "version": "5.1",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "master",
-            "version": "4.3",
-            "ref": "6d0e35f749d5f4bfe1f011762875275cd3f9874f"
+            "version": "5.1",
+            "ref": "bf16921ef8309a81d9f046e9b6369c46bcbd031f"
         },
         "files": [
             ".env.test",
