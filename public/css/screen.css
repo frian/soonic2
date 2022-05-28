@@ -1,88 +1,82 @@
 /*
   -- Default styling ----------------------------------------------------------
 */
-@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900");
-@import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,700");
-/* line 5, ../../../../../../../var/lib/gems/2.7.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  font-size: 100%;
-  vertical-align: baseline;
+/* latin-ext */
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh7USSwaPGR_p.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-
-/* line 22, ../../../../../../../var/lib/gems/2.7.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
-html {
-  line-height: 1;
+/* latin */
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh7USSwiPGQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
-/* line 24, ../../../../../../../var/lib/gems/2.7.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
-ol, ul {
-  list-style: none;
+/* latin-ext */
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lato/v20/S6uyw4BMUTPHjxAwXjeu.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-
-/* line 26, ../../../../../../../var/lib/gems/2.7.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+/* latin */
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/lato/v20/S6uyw4BMUTPHjx4wXg.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
-/* line 28, ../../../../../../../var/lib/gems/2.7.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
-caption, th, td {
-  text-align: left;
-  font-weight: normal;
-  vertical-align: middle;
+/* latin-ext */
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh6UVSwaPGR_p.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-
-/* line 30, ../../../../../../../var/lib/gems/2.7.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
-q, blockquote {
-  quotes: none;
+/* latin */
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh6UVSwiPGQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-/* line 103, ../../../../../../../var/lib/gems/2.7.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
-q:before, q:after, blockquote:before, blockquote:after {
-  content: "";
-  content: none;
+/* latin-ext */
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 900;
+  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh50XSwaPGR_p.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
-
-/* line 32, ../../../../../../../var/lib/gems/2.7.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
-a img {
-  border: none;
+/* latin */
+@font-face {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 900;
+  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh50XSwiPGQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-
-/* line 116, ../../../../../../../var/lib/gems/2.7.0/gems/compass-core-1.0.3/stylesheets/compass/reset/_utilities.scss */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
-  display: block;
-}
-
 /*
   -- Global -------------------------------------------------------------------
 */
-/* line 25, ../sass/screen.scss */
 html, body {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
 
-/* line 29, ../sass/screen.scss */
 body {
   color: #111;
   background-color: #eee;
 }
 
-/* line 43, ../sass/screen.scss */
 a {
   color: #111;
   text-decoration: none;
@@ -90,20 +84,18 @@ a {
   font-weight: 700;
 }
 
-/* line 50, ../sass/screen.scss */
 h1 {
   border-bottom: 1px solid;
   text-align: center;
   padding: 30px 0;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-size: 1.6em;
   letter-spacing: 1px;
 }
 
-/* line 59, ../sass/screen.scss */
 h2 {
   padding: 10px 20px;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-size: 1.4em;
   letter-spacing: 1px;
   border-bottom: 1px solid #666;
@@ -112,50 +104,42 @@ h2 {
 /*
   -- Topbar -------------------------------------------------------------------
 */
-/* line 71, ../sass/screen.scss */
 .topbar {
   border-bottom-color: #666;
 }
-/* line 74, ../sass/screen.scss */
 .topbar .logo {
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   letter-spacing: 1px;
   font-size: 1.6em;
   font-weight: 700;
 }
-/* line 81, ../sass/screen.scss */
 .topbar .songInfo {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
-/* line 87, ../sass/screen.scss */
 .topbar .songTitle {
   font-weight: 900;
   font-size: 120%;
 }
-/* line 92, ../sass/screen.scss */
 .topbar .songArtist {
   color: #333;
 }
-/* line 96, ../sass/screen.scss */
 .topbar .timeInfo {
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-weight: 700;
   font-size: 80%;
   padding: 0 10px;
   letter-spacing: 1px;
 }
 
-/* line 106, ../sass/screen.scss */
-#searchForm input[type="submit"] {
-  font-family: 'Lato', sans-serif;
+#searchForm input[type=submit] {
+  font-family: "Lato", sans-serif;
   font-weight: 700;
   font-size: 18px;
   letter-spacing: 1px;
 }
 
-/* line 116, ../sass/screen.scss */
 nav.topbarNav a {
   font-size: 18px;
   display: inline-block;
@@ -163,7 +147,6 @@ nav.topbarNav a {
   letter-spacing: 1px;
   background: linear-gradient(to top, rgba(34, 34, 34, 0.2), rgba(51, 51, 51, 0.1));
 }
-/* line 124, ../sass/screen.scss */
 nav.topbarNav a:hover {
   background: linear-gradient(to top, rgba(34, 34, 34, 0.1), rgba(51, 51, 51, 0));
 }
@@ -171,31 +154,26 @@ nav.topbarNav a:hover {
 /*
   -- Artists navigation -------------------------------------------------------
 */
-/* line 134, ../sass/screen.scss */
 .artists-navigation .song {
   background-color: #fff;
 }
 
-/* line 139, ../sass/screen.scss */
 .filter {
   background-color: #ddd;
 }
-/* line 142, ../sass/screen.scss */
 .filter label {
   font-size: 110%;
   padding: 0 0 0 10px;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   letter-spacing: 0.6px;
   font-size: 1.1em;
   font-weight: 600;
 }
-/* line 152, ../sass/screen.scss */
 .filter input {
   background-color: black;
   padding: 0 0 0 10px;
 }
 
-/* line 158, ../sass/screen.scss */
 a.active {
   background-color: #ddd !important;
 }
@@ -203,50 +181,41 @@ a.active {
 /*
   -- Songs and playlist panels ------------------------------------------------
 */
-/* line 166, ../sass/screen.scss */
 .playlist-header {
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-weight: 700;
   font-size: 80%;
   letter-spacing: 1px;
   background-color: #ddd;
 }
 
-/* line 175, ../sass/screen.scss */
 .list thead {
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-weight: 700;
   background-color: #ddd;
 }
-/* line 180, ../sass/screen.scss */
 .list thead tr th {
   padding: 0 10px;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-weight: 700;
   font-size: 80%;
   letter-spacing: 1px;
 }
-/* line 190, ../sass/screen.scss */
 .list tbody {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
 }
-/* line 192, ../sass/screen.scss */
 .list tbody tr {
   cursor: pointer;
 }
-/* line 194, ../sass/screen.scss */
 .list tbody tr td {
   padding: 5px;
 }
-/* line 198, ../sass/screen.scss */
 .list tbody tr:nth-child(even) {
   background-color: #ddd;
 }
-/* line 203, ../sass/screen.scss */
 .list tr.playing {
   background-color: #ddd !important;
 }
-/* line 207, ../sass/screen.scss */
 .list .icon-plus, .list .icon-minus {
   color: #aaa;
 }
@@ -254,28 +223,23 @@ a.active {
 /*
   -- Radios -------------------------------------------------------------------
 */
-/* line 217, ../sass/screen.scss */
 .radio .radioName {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 300;
   border: 0px solid red;
 }
-/* line 223, ../sass/screen.scss */
 .radio .radioUrl {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-weight: 300;
 }
-/* line 228, ../sass/screen.scss */
 .radio .icon-play, .radio .icon-pause {
   cursor: pointer;
   font-size: 4em;
 }
-/* line 233, ../sass/screen.scss */
 .radio.activeRadio {
   background-color: #ddd !important;
 }
 
-/* line 238, ../sass/screen.scss */
 .radio:nth-child(4n+2), .radio:nth-child(4n+3) {
   background-color: #ddd;
 }
@@ -283,24 +247,20 @@ a.active {
 /*
   -- Context menus ------------------------------------------------------------
 */
-/* line 246, ../sass/screen.scss */
 .songsContextMenu, .playlistContextMenu {
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
 }
-/* line 249, ../sass/screen.scss */
 .songsContextMenu .menu-options, .playlistContextMenu .menu-options {
   list-style: none;
   padding: 10px 0;
   background-color: #eee;
 }
-/* line 254, ../sass/screen.scss */
 .songsContextMenu .menu-options .menu-option, .playlistContextMenu .menu-options .menu-option {
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   letter-spacing: 1px;
   padding: 10px 40px 10px 20px;
   cursor: pointer;
 }
-/* line 260, ../sass/screen.scss */
 .songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
   background-color: #ddd;
 }
@@ -308,18 +268,15 @@ a.active {
 /*
   -- Settings -----------------------------------------------------------------
 */
-/* line 271, ../sass/screen.scss */
 .settings {
   padding-bottom: 20px;
   border-bottom: 1px solid #666 !important;
 }
-/* line 275, ../sass/screen.scss */
 .settings table {
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-size: 1.2em;
 }
 
-/* line 281, ../sass/screen.scss */
 .settings a {
   font-size: 18px;
 }
@@ -327,21 +284,18 @@ a.active {
 /*
   -- Forms ---------------------------------------------------------------
 */
-/* line 289, ../sass/screen.scss */
-input[type="text"] {
+input[type=text] {
   color: #111;
   background-color: #eee;
-  font-family: 'Muli', sans-serif;
+  font-family: "Muli", sans-serif;
   font-size: 18px;
   border: 1px solid #555 !important;
 }
 
-/* line 297, ../sass/screen.scss */
 .input-reset {
   background-color: #ddd;
 }
 
-/* line 301, ../sass/screen.scss */
 .input-reset:after {
   color: #111;
   background-color: #ddd;
@@ -350,14 +304,12 @@ input[type="text"] {
 /*
   -- Crud forms ---------------------------------------------------------------
 */
-/* line 310, ../sass/screen.scss */
 form div div label {
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 1.2em;
   letter-spacing: 0.6px;
 }
 
-/* line 316, ../sass/screen.scss */
 form div div input {
   font-size: 1.2em;
   letter-spacing: 0.6px;
@@ -366,10 +318,9 @@ form div div input {
   border: 1px solid #666;
 }
 
-/* line 324, ../sass/screen.scss */
 .button {
   color: #111;
-  font-family: 'Lato', sans-serif;
+  font-family: "Lato", sans-serif;
   font-size: 1em;
   font-weight: 700;
   text-align: center;
@@ -377,20 +328,16 @@ form div div input {
   background: linear-gradient(to top, rgba(34, 34, 34, 0.2), rgba(51, 51, 51, 0.1));
 }
 
-/* line 334, ../sass/screen.scss */
 .button:hover {
   background: linear-gradient(to top, rgba(34, 34, 34, 0.1), rgba(51, 51, 51, 0));
 }
-/* line 337, ../sass/screen.scss */
 .button:hover.danger:hover {
   background: linear-gradient(to top, #cc0000, rgba(204, 0, 0, 0.5));
 }
 
-/* line 342, ../sass/screen.scss */
 .running {
   background: linear-gradient(to top, #cc0000, rgba(204, 0, 0, 0.5)) !important;
 }
-/* line 345, ../sass/screen.scss */
 .running:hover {
   background: linear-gradient(to top, #cc0000, rgba(204, 0, 0, 0.5)) !important;
 }
@@ -400,17 +347,14 @@ form div div input {
 */
 @media all and (min-width: 1024px) {
   /* -- Radios -- */
-  /* line 357, ../sass/screen.scss */
   .radio .radioName {
     font-size: 2em;
   }
-  /* line 360, ../sass/screen.scss */
   .radio .radioUrl {
     font-size: 1.2em;
   }
 
   /* -- Crud forms -- */
-  /* line 366, ../sass/screen.scss */
   form div div label {
     text-align: right;
     display: inline-block;
@@ -418,3 +362,5 @@ form div div input {
     width: calc(50% - 100px);
   }
 }
+
+/*# sourceMappingURL=screen.css.map */

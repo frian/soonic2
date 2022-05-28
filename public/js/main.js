@@ -202,7 +202,7 @@ $(function() {
                 }
             });
         }
-        $('#navigationSettings, #navigationRandom, #navigationSearchForm, #navigationRadioNew').css('display', 'none');
+        // $('#navigationSettings, #navigationRandom, #navigationSearchForm, #navigationRadioNew').css('display', 'none');
         $('#navigationLibrary, #navigationAlbums, #navigationRadios').css('display', 'list-item');
         setSongInfoSize();
         openView = '.settings-view';
