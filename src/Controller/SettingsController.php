@@ -3,29 +3,29 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Settings controller.
  *
  * @Route("settings")
  */
-
 class SettingsController extends AbstractController
 {
     /**
-     * Show settings page
+     * Show settings page.
      *
      * @Route("/", name="settings_index", methods={"GET"})
      */
-    public function index(Request $request): \Symfony\Component\HttpFoundation\Response
+    public function index(Request $request): Response
     {
         $em = $this->getDoctrine()->getManager();
 
         // -- get collection infos
-        $tables = array('song', 'artist', 'album');
-        $infos = array();
+        $tables = ['song', 'artist', 'album'];
+        $infos = [];
 
         foreach ($tables as $table) {
             $query = "select max(id) from $table";
@@ -43,9 +43,9 @@ class SettingsController extends AbstractController
         $editForm = $this->createForm('App\Form\ConfigType', $config);
         $editForm->handleRequest($request);
 
-        return $this->render('settings/index.html.twig', array(
+        return $this->render('settings/index.html.twig', [
             'infos' => $infos,
-            'edit_form' => $editForm->createView()
-        ));
+            'edit_form' => $editForm->createView(),
+        ]);
     }
 }

@@ -32,10 +32,12 @@ class Radio
      */
     private $homepageUrl;
 
-    public function __toString() {
-        if(is_null($this->name)) {
+    public function __toString()
+    {
+        if (is_null($this->name)) {
             return 'NULL';
         }
+
         return $this->name;
     }
 

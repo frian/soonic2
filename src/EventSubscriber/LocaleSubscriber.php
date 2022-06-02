@@ -5,30 +5,28 @@ namespace App\EventSubscriber;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use App\Entity\Config;
 
 class LocaleSubscriber implements EventSubscriberInterface
 {
     private $defaultLocale;
 
     /**
-	 * Entity Manager
-	 *
-	 * @var EntityManager $em
-	 */
-	protected $em;
+     * Entity Manager.
+     *
+     * @var EntityManager
+     */
+    protected $em;
 
-	/**
-	 * Constructor
-	 *
-	 * @param EntityManager $em
-	 */
-	public function __construct($defaultLocale = 'en', \Doctrine\ORM\EntityManager $em) {
-		$this->em = $em;
-		$this->defaultLocale = $defaultLocale;
-	}
-
-
+    /**
+     * Constructor.
+     *
+     * @param EntityManager $em
+     */
+    public function __construct($defaultLocale = 'en', \Doctrine\ORM\EntityManager $em)
+    {
+        $this->em = $em;
+        $this->defaultLocale = $defaultLocale;
+    }
 
     public function onKernelRequest(RequestEvent $event)
     {

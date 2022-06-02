@@ -21,7 +21,7 @@ class AlbumRepository extends ServiceEntityRepository
 
     public function findAll()
     {
-      return $this->createQueryBuilder('al')
+        return $this->createQueryBuilder('al')
           ->join('al.artists', 'ar')
           ->addSelect('ar')
           ->orderBy('al.name', 'ASC')

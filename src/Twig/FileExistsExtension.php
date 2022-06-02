@@ -2,9 +2,9 @@
 
 namespace App\Twig;
 
+use Symfony\Component\Filesystem\Filesystem;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
-use Symfony\Component\Filesystem\Filesystem;
 
 class FileExistsExtension extends AbstractExtension
 {

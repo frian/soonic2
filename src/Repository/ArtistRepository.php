@@ -21,7 +21,7 @@ class ArtistRepository extends ServiceEntityRepository
 
     public function findAll()
     {
-        return $this->findBy(array(), array('name' => 'ASC'));
+        return $this->findBy([], ['name' => 'ASC']);
     }
 
     public function findByFilter($filter)

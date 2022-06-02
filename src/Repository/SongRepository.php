@@ -19,7 +19,8 @@ class SongRepository extends ServiceEntityRepository
         parent::__construct($registry, Song::class);
     }
 
-    public function findByKeyword($keyword) {
+    public function findByKeyword($keyword)
+    {
         return $this->createQueryBuilder('s')
             ->leftJoin('s.album', 'al')
             ->addSelect('al')
@@ -36,8 +37,8 @@ class SongRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
-    public function findByArtistAndAlbum($artist, $album) {
+    public function findByArtistAndAlbum($artist, $album)
+    {
         return $this->createQueryBuilder('s')
             ->join('s.artist', 'ar')
             ->join('s.album', 'al')
@@ -50,9 +51,8 @@ class SongRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-
-    public function getRandom($number) {
-
+    public function getRandom($number)
+    {
         $maxId = $this->createQueryBuilder('s')
             ->select('MAX(s.id)')
             ->getQuery()
@@ -65,9 +65,9 @@ class SongRepository extends ServiceEntityRepository
             ->addSelect('ar')
             ;
 
-        for ($i = 1; $i <= $number ; $i++) {
-            $qb->orWhere("s.id = :num_".$i);
-            $qb->setParameter("num_".$i, random_int(1, $maxId));
+        for ($i = 1; $i <= $number; ++$i) {
+            $qb->orWhere('s.id = :num_'.$i);
+            $qb->setParameter('num_'.$i, random_int(1, $maxId));
         }
 
         return $qb->getQuery()->getResult();

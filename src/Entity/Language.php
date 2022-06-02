@@ -27,10 +27,11 @@ class Language
      */
     private $code;
 
-
-    public function __toString() {
+    public function __toString()
+    {
         return $this->name;
     }
+
     public function getId(): ?int
     {
         return $this->id;

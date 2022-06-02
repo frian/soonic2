@@ -4,18 +4,18 @@ namespace App\Controller;
 
 use App\Entity\Artist;
 use App\Repository\ArtistRepository;
-use App\Repository\AlbumRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class LibraryController extends AbstractController
 {
     /**
      * @Route("/", name="library", methods={"GET"})
      */
-    public function library(ArtistRepository $artistRepository, Request $request): \Symfony\Component\HttpFoundation\Response {
-
+    public function library(ArtistRepository $artistRepository, Request $request): Response
+    {
         if ($request->isXmlHttpRequest()) {
             return $this->render('library/screen-content.html.twig', [
                 'artists' => $artistRepository->findAll(),
@@ -32,14 +32,14 @@ class LibraryController extends AbstractController
      *
      * @Route("/albums/{artistSlug}", name="artist_albums", methods={"GET"})
      */
-    public function showArtistAlbums(Artist $artist): \Symfony\Component\HttpFoundation\Response {
-
+    public function showArtistAlbums(Artist $artist): Response
+    {
         $albums = $artist->getAlbums();
 
-        return $this->render('library/album-nav-list.html.twig', array(
+        return $this->render('library/album-nav-list.html.twig', [
             'albums' => $albums,
-            'artist' => $artist->getArtistSlug()
-        ));
+            'artist' => $artist->getArtistSlug(),
+        ]);
     }
 
     /**
@@ -47,17 +47,17 @@ class LibraryController extends AbstractController
      *
      * @Route("/songs/{artistSlug}/{albumSlug}", name="artist_albums_songs", methods={"GET"})
      */
-    public function showAlbumsSongs(Artist $artist, $albumSlug): \Symfony\Component\HttpFoundation\Response {
-
+    public function showAlbumsSongs(Artist $artist, $albumSlug): Response
+    {
         $em = $this->getDoctrine()->getManager();
 
-        $album = $em->getRepository('App:Album')->findOneByAlbumSlug($albumSlug);
+        $album = $em->getRepository('App\Entity\Album')->findOneByAlbumSlug($albumSlug);
 
-        $songs = $em->getRepository('App:Song')->findByArtistAndAlbum($artist->getName(), $album->getName());
+        $songs = $em->getRepository('App\Entity\Song')->findByArtistAndAlbum($artist->getName(), $album->getName());
 
-        return $this->render('common/songs-list.html.twig', array(
-            'songs' => $songs
-        ));
+        return $this->render('common/songs-list.html.twig', [
+            'songs' => $songs,
+        ]);
     }
 
     /**
@@ -66,15 +66,15 @@ class LibraryController extends AbstractController
      * @Route("/artist/filter/", name="artist_filter_all", methods={"GET"})
      * @Route("/artist/filter/{filter}", name="artist_filter", methods={"GET"})
      */
-    public function filterArtist($filter = null): \Symfony\Component\HttpFoundation\Response {
-
+    public function filterArtist($filter = null): Response
+    {
         $em = $this->getDoctrine()->getManager();
 
         $artists = $em->getRepository('App:Artist')->findByFilter($filter);
 
-        return $this->render('library/artist-nav-list.html.twig', array(
+        return $this->render('library/artist-nav-list.html.twig', [
             'artists' => $artists,
-        ));
+        ]);
     }
 
     /**
@@ -82,15 +82,14 @@ class LibraryController extends AbstractController
      *
      * @Route("/songs/random", name="random_songs", methods={"GET"})
      */
-    public function randomSongs($number = 20): \Symfony\Component\HttpFoundation\Response {
-
+    public function randomSongs($number = 20): Response
+    {
         $em = $this->getDoctrine()->getManager();
 
         $songs = $em->getRepository('App:Song')->getRandom($number);
 
-        return $this->render('common/songs-list.html.twig', array(
-            'songs' => $songs
-        ));
+        return $this->render('common/songs-list.html.twig', [
+            'songs' => $songs,
+        ]);
     }
-
 }

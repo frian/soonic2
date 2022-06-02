@@ -25,3 +25,9 @@ public/.sass-cache/
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+
+/tools/php-cs-fixer/vendor/
+/.php-cs-fixer.cache
+
+

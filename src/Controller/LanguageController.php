@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class LanguageController extends AbstractController
 {
-    /**
+    /*
      * @Route("/", name="language_index", methods={"GET"})
      */
     // public function index(LanguageRepository $languageRepository): Response
@@ -25,7 +25,7 @@ class LanguageController extends AbstractController
     //     ]);
     // }
 
-    /**
+    /*
      * @Route("/new", name="language_new", methods={"GET","POST"})
      */
     // public function new(Request $request): Response
@@ -48,7 +48,7 @@ class LanguageController extends AbstractController
     //     ]);
     // }
 
-    /**
+    /*
      * @Route("/{id}", name="language_show", methods={"GET"})
      */
     // public function show(Language $language): Response
@@ -58,7 +58,7 @@ class LanguageController extends AbstractController
     //     ]);
     // }
 
-    /**
+    /*
      * @Route("/{id}/edit", name="language_edit", methods={"GET","POST"})
      */
     // public function edit(Request $request, Language $language): Response
@@ -78,7 +78,7 @@ class LanguageController extends AbstractController
     //     ]);
     // }
 
-    /**
+    /*
      * @Route("/{id}", name="language_delete", methods={"DELETE"})
      */
     // public function delete(Request $request, Language $language): Response

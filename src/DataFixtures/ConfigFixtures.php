@@ -2,10 +2,10 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Config;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
-use App\Entity\Config;
 
 class ConfigFixtures extends Fixture implements DependentFixtureInterface
 {
@@ -18,15 +18,15 @@ class ConfigFixtures extends Fixture implements DependentFixtureInterface
         // add reference for further fixtures
         $this->addReference('config', $config);
 
-    	$manager->persist($config);
-    	$manager->flush();
+        $manager->persist($config);
+        $manager->flush();
     }
 
     public function getDependencies()
     {
-        return array(
+        return [
             LanguageFixtures::class,
-            ThemeFixtures::class
-        );
+            ThemeFixtures::class,
+        ];
     }
 }

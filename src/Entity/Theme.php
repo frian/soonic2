@@ -22,7 +22,8 @@ class Theme
      */
     private $name;
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->name;
     }
 

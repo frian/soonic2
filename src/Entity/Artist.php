@@ -45,7 +45,8 @@ class Artist
      */
     private $albums;
 
-    public function __toString() {
+    public function __toString()
+    {
         return $this->name;
     }
 

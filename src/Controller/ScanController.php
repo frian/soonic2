@@ -4,34 +4,34 @@ namespace App\Controller;
 
 // use AppBundle\Entity\Album;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\Process\Process;
-
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Album controller.
  *
  * @Route("scan")
  */
-class ScanController extends AbstractController {
-
+class ScanController extends AbstractController
+{
     /**
      * @var string
      */
-    private $kernelProjectDir;
-    public function __construct(string $kernelProjectDir)
+    private $projectDir;
+
+    public function __construct(string $projectDir)
     {
-        $this->kernelProjectDir = $kernelProjectDir;
+        $this->kernelProjectDir = $projectDir;
     }
+
     /**
-     * Scan
+     * Scan.
      *
      * @Route("/", name="scan", methods={"GET"})
      */
-    public function scan(): \Symfony\Component\HttpFoundation\Response {
-
+    public function scan(): Response
+    {
         $projectDir = $this->kernelProjectDir;
         $lockFile = $projectDir.'/public/soonic.lock';
 
@@ -45,12 +45,12 @@ class ScanController extends AbstractController {
     }
 
     /**
-     * Scan progress
+     * Scan progress.
      *
      * @Route("/progress", name="scan_progress", methods={"GET"})
      */
-    public function scanProgress(): \Symfony\Component\HttpFoundation\Response {
-
+    public function scanProgress(): Response
+    {
         $projectDir = $this->kernelProjectDir;
         $lockFile = $projectDir.'/public/soonic.lock';
         $status = 'stopped';
@@ -59,22 +59,21 @@ class ScanController extends AbstractController {
             $status = 'running';
         }
 
-        $files = array('song', 'artist', 'album');
-        $data = array();
+        $files = ['song', 'artist', 'album'];
+        $data = [];
         foreach ($files as $file) {
             $filePath = $projectDir.'/public/soonic-'.$file.'.sql';
             if (file_exists($filePath)) {
                 $file_handle = new \SplFileObject($projectDir.'/public/soonic-'.$file.'.sql', 'r');
                 $file_handle->seek(PHP_INT_MAX);
                 $data[$file] = $file_handle->key() - 1;
-            }
-            else {
+            } else {
                 $data[$file] = 0;
             }
         }
 
         $response = ['status' => $status, 'data' => $data];
+
         return new JsonResponse($response);
     }
-
 }
