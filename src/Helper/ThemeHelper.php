@@ -32,7 +32,7 @@ class ThemeHelper {
      */
     public function get() {
 
-        $config = $this->em->getRepository('App:Config')->find(1);
+        $config = $this->em->getRepository('App\Entity\Config')->find(1);
         $theme = $config->getTheme();
 
         return $theme;

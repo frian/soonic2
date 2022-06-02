@@ -34,7 +34,7 @@ class LocaleSubscriber implements EventSubscriberInterface
     {
         $request = $event->getRequest();
 
-        $config = $this->em->getRepository('App:Config')->find(1);
+        $config = $this->em->getRepository('App\Entity\Config')->find(1);
         $lang = $config->getLanguage()->getCode();
 
         $request->getSession()->set('_locale', $lang);
