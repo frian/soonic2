@@ -12,7 +12,7 @@ class SearchController extends AbstractController
     /**
      * @Route("/search", name="search")
      */
-     public function showSearch(Request $request) {
+     public function showSearch(Request $request): \Symfony\Component\HttpFoundation\Response {
 
          $form = $this->createFormBuilder()
              ->add('keyword', TextType::class)

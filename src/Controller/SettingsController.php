@@ -19,7 +19,7 @@ class SettingsController extends AbstractController
      *
      * @Route("/", name="settings_index", methods={"GET"})
      */
-    public function index(Request $request)
+    public function index(Request $request): \Symfony\Component\HttpFoundation\Response
     {
         $em = $this->getDoctrine()->getManager();
 

@@ -18,13 +18,21 @@ use Symfony\Component\Process\Process;
 class ScanController extends AbstractController {
 
     /**
+     * @var string
+     */
+    private $kernelProjectDir;
+    public function __construct(string $kernelProjectDir)
+    {
+        $this->kernelProjectDir = $kernelProjectDir;
+    }
+    /**
      * Scan
      *
      * @Route("/", name="scan", methods={"GET"})
      */
-    public function scan() {
+    public function scan(): \Symfony\Component\HttpFoundation\Response {
 
-        $projectDir = $this->getParameter('kernel.project_dir');
+        $projectDir = $this->kernelProjectDir;
         $lockFile = $projectDir.'/public/soonic.lock';
 
         $command = $projectDir.'/bin/console soonic:scan --guess';
@@ -41,9 +49,9 @@ class ScanController extends AbstractController {
      *
      * @Route("/progress", name="scan_progress", methods={"GET"})
      */
-    public function scanProgress() {
+    public function scanProgress(): \Symfony\Component\HttpFoundation\Response {
 
-        $projectDir = $this->getParameter('kernel.project_dir');
+        $projectDir = $this->kernelProjectDir;
         $lockFile = $projectDir.'/public/soonic.lock';
         $status = 'stopped';
 

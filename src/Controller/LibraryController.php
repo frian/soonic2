@@ -14,7 +14,7 @@ class LibraryController extends AbstractController
     /**
      * @Route("/", name="library", methods={"GET"})
      */
-    public function library(ArtistRepository $artistRepository, Request $request) {
+    public function library(ArtistRepository $artistRepository, Request $request): \Symfony\Component\HttpFoundation\Response {
 
         if ($request->isXmlHttpRequest()) {
             return $this->render('library/screen-content.html.twig', [
@@ -32,7 +32,7 @@ class LibraryController extends AbstractController
      *
      * @Route("/albums/{artistSlug}", name="artist_albums", methods={"GET"})
      */
-    public function showArtistAlbums(Artist $artist) {
+    public function showArtistAlbums(Artist $artist): \Symfony\Component\HttpFoundation\Response {
 
         $albums = $artist->getAlbums();
 
@@ -47,7 +47,7 @@ class LibraryController extends AbstractController
      *
      * @Route("/songs/{artistSlug}/{albumSlug}", name="artist_albums_songs", methods={"GET"})
      */
-    public function showAlbumsSongs(Artist $artist, $albumSlug) {
+    public function showAlbumsSongs(Artist $artist, $albumSlug): \Symfony\Component\HttpFoundation\Response {
 
         $em = $this->getDoctrine()->getManager();
 
@@ -66,7 +66,7 @@ class LibraryController extends AbstractController
      * @Route("/artist/filter/", name="artist_filter_all", methods={"GET"})
      * @Route("/artist/filter/{filter}", name="artist_filter", methods={"GET"})
      */
-    public function filterArtist($filter = null) {
+    public function filterArtist($filter = null): \Symfony\Component\HttpFoundation\Response {
 
         $em = $this->getDoctrine()->getManager();
 
@@ -82,7 +82,7 @@ class LibraryController extends AbstractController
      *
      * @Route("/songs/random", name="random_songs", methods={"GET"})
      */
-    public function randomSongs($number = 20) {
+    public function randomSongs($number = 20): \Symfony\Component\HttpFoundation\Response {
 
         $em = $this->getDoctrine()->getManager();
 
