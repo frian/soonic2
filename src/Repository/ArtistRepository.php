@@ -19,7 +19,7 @@ class ArtistRepository extends ServiceEntityRepository
         parent::__construct($registry, Artist::class);
     }
 
-    public function findAll()
+    public function findAll(): array
     {
         return $this->findBy([], ['name' => 'ASC']);
     }
