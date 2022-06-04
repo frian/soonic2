@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
 
 class LibraryController extends AbstractController
 {
@@ -47,13 +48,11 @@ class LibraryController extends AbstractController
      *
      * @Route("/songs/{artistSlug}/{albumSlug}", name="artist_albums_songs", methods={"GET"})
      */
-    public function showAlbumsSongs(Artist $artist, $albumSlug): Response
+    public function showAlbumsSongs(ManagerRegistry $doctrine, Artist $artist, $albumSlug): Response
     {
-        $em = $this->getDoctrine()->getManager();
+        $album = $doctrine->getRepository('App\Entity\Album')->findOneByAlbumSlug($albumSlug);
 
-        $album = $em->getRepository('App\Entity\Album')->findOneByAlbumSlug($albumSlug);
-
-        $songs = $em->getRepository('App\Entity\Song')->findByArtistAndAlbum($artist->getName(), $album->getName());
+        $songs = $doctrine->getRepository('App\Entity\Song')->findByArtistAndAlbum($artist->getName(), $album->getName());
 
         return $this->render('common/songs-list.html.twig', [
             'songs' => $songs,
@@ -66,11 +65,9 @@ class LibraryController extends AbstractController
      * @Route("/artist/filter/", name="artist_filter_all", methods={"GET"})
      * @Route("/artist/filter/{filter}", name="artist_filter", methods={"GET"})
      */
-    public function filterArtist($filter = null): Response
+    public function filterArtist(ManagerRegistry $doctrine, $filter = null): Response
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $artists = $em->getRepository('App:Artist')->findByFilter($filter);
+        $artists = $doctrine->getRepository('App\Entity\Artist')->findByFilter($filter);
 
         return $this->render('library/artist-nav-list.html.twig', [
             'artists' => $artists,
@@ -82,11 +79,9 @@ class LibraryController extends AbstractController
      *
      * @Route("/songs/random", name="random_songs", methods={"GET"})
      */
-    public function randomSongs($number = 20): Response
+    public function randomSongs(ManagerRegistry $doctrine, $number = 20): Response
     {
-        $em = $this->getDoctrine()->getManager();
-
-        $songs = $em->getRepository('App:Song')->getRandom($number);
+        $songs = $doctrine->getRepository('App:Song')->getRandom($number);
 
         return $this->render('common/songs-list.html.twig', [
             'songs' => $songs,

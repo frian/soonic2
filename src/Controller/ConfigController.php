@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Yaml\Yaml;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @Route("/config")
@@ -18,7 +19,7 @@ class ConfigController extends AbstractController
     /**
      * @Route("/{id}/edit", name="config_edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Config $config): JsonResponse
+    public function edit(ManagerRegistry $doctrine, Request $request, Config $config): JsonResponse
     {
         $form = $this->createForm(ConfigType::class, $config);
         $form->handleRequest($request);
@@ -27,11 +28,10 @@ class ConfigController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             $config = $request->request->get('config');
 
-            $em = $this->getDoctrine()->getManager();
-            $theme = $em->getRepository('App:Theme')->find($config['theme']);
+            $theme = $doctrine->getRepository('App\Entity\Theme')->find($config['theme']);
             $theme = $theme->getName();
 
-            $lang = $em->getRepository('App:Language')->find($config['language']);
+            $lang = $doctrine->getRepository('App\Entity\Language')->find($config['language']);
             $lang = $lang->getCode();
 
             $translations = Yaml::parse(file_get_contents('../translations/messages.'.$lang.'.yml'));

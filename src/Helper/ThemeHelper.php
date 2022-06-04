@@ -2,27 +2,24 @@
 
 namespace App\Helper;
 
+use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Security\Core\Security;
+
 /**
  * class representing a weekly calendar.
  */
 class ThemeHelper
 {
     /**
-     * Entity Manager.
-     *
-     * @var EntityManager
-     */
-    protected $em;
-
-    /**
      * Constructor.
      *
-     * @param EntityManager $em
+     * @param ManagerRegistry $doctrine
+     * @param Security $security
      */
-    public function __construct(\Doctrine\ORM\EntityManager $em, $securityContext)
+    public function __construct(ManagerRegistry $doctrine, Security $security)
     {
-        $this->em = $em;
-        $this->context = $securityContext;
+        $this->doctrine = $doctrine;
+        $this->security = $security;
     }
 
     /**
@@ -30,9 +27,9 @@ class ThemeHelper
      *
      * @return string $theme
      */
-    public function get()
+    public function get(): string
     {
-        $config = $this->em->getRepository('App\Entity\Config')->find(1);
+        $config = $this->doctrine->getRepository('App\Entity\Config')->find(1);
         $theme = $config->getTheme();
 
         return $theme;
