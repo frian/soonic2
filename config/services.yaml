@@ -30,6 +30,6 @@ services:
         arguments: ["@doctrine.orm.entity_manager", "@security.token_storage"]
 
     App\EventSubscriber\LocaleSubscriber:
-        arguments: ['%kernel.default_locale%',"@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine.orm.entity_manager",'%kernel.default_locale%']
         # redundant if you're using autoconfigure
         tags: [kernel.event_subscriber]

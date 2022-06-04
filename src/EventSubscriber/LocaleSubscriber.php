@@ -22,7 +22,7 @@ class LocaleSubscriber implements EventSubscriberInterface
      *
      * @param EntityManager $em
      */
-    public function __construct($defaultLocale = 'en', \Doctrine\ORM\EntityManager $em)
+    public function __construct(\Doctrine\ORM\EntityManager $em, $defaultLocale = 'en')
     {
         $this->em = $em;
         $this->defaultLocale = $defaultLocale;
@@ -40,7 +40,7 @@ class LocaleSubscriber implements EventSubscriberInterface
         $request->setLocale($request->getSession()->get('_locale', $lang));
     }
 
-    public static function getSubscribedEvents()
+    public static function getSubscribedEvents(): array
     {
         return [
             // must be registered before (i.e. with a higher priority than) the default Locale listener
