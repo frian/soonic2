@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * Settings controller.
@@ -19,17 +20,15 @@ class SettingsController extends AbstractController
      *
      * @Route("/", name="settings_index", methods={"GET"})
      */
-    public function index(Request $request): Response
+    public function index(ManagerRegistry $doctrine, Request $request): Response
     {
-        $em = $this->getDoctrine()->getManager();
-
         // -- get collection infos
         $tables = ['song', 'artist', 'album'];
         $infos = [];
 
         foreach ($tables as $table) {
             $query = "select max(id) from $table";
-            $statement = $em->getConnection()->prepare($query);
+            $statement = $doctrine->getConnection()->prepare($query);
             $result = $statement->execute();
             $result = $result->fetchAssociative()['max(id)'];
             if ($result === null) {
@@ -39,7 +38,7 @@ class SettingsController extends AbstractController
         }
 
         // -- get config form
-        $config = $em->getRepository('App\Entity\Config')->find(1);
+        $config = $doctrine->getRepository('App\Entity\Config')->find(1);
         if (! $config) {
             die;
         }
