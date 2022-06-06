@@ -81,7 +81,7 @@ class LibraryController extends AbstractController
      */
     public function randomSongs(ManagerRegistry $doctrine, $number = 20): Response
     {
-        $songs = $doctrine->getRepository('App:Song')->getRandom($number);
+        $songs = $doctrine->getRepository('App\Entity\Song')->getRandom($number);
 
         return $this->render('common/songs-list.html.twig', [
             'songs' => $songs,
