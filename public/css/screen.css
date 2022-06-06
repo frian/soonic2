@@ -1,72 +1,66 @@
 /*
   -- Default styling ----------------------------------------------------------
 */
-/* latin-ext */
-@font-face {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 300;
-  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh7USSwaPGR_p.woff2) format("woff2");
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,700,900");
+@import url("https://fonts.googleapis.com/css?family=Muli:300,400,600,700");
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  vertical-align: baseline;
 }
-/* latin */
-@font-face {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 300;
-  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh7USSwiPGQ.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+
+html {
+  line-height: 1;
 }
-/* latin-ext */
-@font-face {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/lato/v20/S6uyw4BMUTPHjxAwXjeu.woff2) format("woff2");
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+
+ol, ul {
+  list-style: none;
 }
-/* latin */
-@font-face {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/lato/v20/S6uyw4BMUTPHjx4wXg.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-/* latin-ext */
-@font-face {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 700;
-  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh6UVSwaPGR_p.woff2) format("woff2");
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+
+caption, th, td {
+  text-align: left;
+  font-weight: normal;
+  vertical-align: middle;
 }
-/* latin */
-@font-face {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 700;
-  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh6UVSwiPGQ.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+
+q, blockquote {
+  quotes: none;
 }
-/* latin-ext */
-@font-face {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 900;
-  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh50XSwaPGR_p.woff2) format("woff2");
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+
+q:before, q:after, blockquote:before, blockquote:after {
+  content: "";
+  content: none;
 }
-/* latin */
-@font-face {
-  font-family: "Lato";
-  font-style: normal;
-  font-weight: 900;
-  src: url(https://fonts.gstatic.com/s/lato/v20/S6u9w4BMUTPHh50XSwiPGQ.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+
+a img {
+  border: none;
 }
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
+  display: block;
+}
+
 /*
-  -- Global -------------------------------------------------------------------
+  --  1. Global ---------------------------------------------------------------
 */
 html, body {
   font-family: "Lato", sans-serif;
@@ -102,7 +96,7 @@ h2 {
 }
 
 /*
-  -- Topbar -------------------------------------------------------------------
+  --  2. Topbar ---------------------------------------------------------------
 */
 .topbar {
   border-bottom-color: #666;
@@ -152,7 +146,7 @@ nav.topbarNav a:hover {
 }
 
 /*
-  -- Artists navigation -------------------------------------------------------
+  --  3. Artists navigation ---------------------------------------------------
 */
 .artists-navigation .song {
   background-color: #fff;
@@ -179,7 +173,7 @@ a.active {
 }
 
 /*
-  -- Songs and playlist panels ------------------------------------------------
+  --  5. Songs and playlist panels --------------------------------------------
 */
 .playlist-header {
   font-family: "Muli", sans-serif;
@@ -221,7 +215,10 @@ a.active {
 }
 
 /*
-  -- Radios -------------------------------------------------------------------
+  --  6. Albums view ----------------------------------------------------------
+*/
+/*
+  --  7. Radios ---------------------------------------------------------------
 */
 .radio .radioName {
   font-family: "Lato", sans-serif;
@@ -245,28 +242,7 @@ a.active {
 }
 
 /*
-  -- Context menus ------------------------------------------------------------
-*/
-.songsContextMenu, .playlistContextMenu {
-  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
-}
-.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
-  list-style: none;
-  padding: 10px 0;
-  background-color: #eee;
-}
-.songsContextMenu .menu-options .menu-option, .playlistContextMenu .menu-options .menu-option {
-  font-family: "Muli", sans-serif;
-  letter-spacing: 1px;
-  padding: 10px 40px 10px 20px;
-  cursor: pointer;
-}
-.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
-  background-color: #ddd;
-}
-
-/*
-  -- Settings -----------------------------------------------------------------
+  --  8. Settings-view --------------------------------------------------------
 */
 .settings {
   padding-bottom: 20px;
@@ -282,7 +258,25 @@ a.active {
 }
 
 /*
-  -- Forms ---------------------------------------------------------------
+  --  9. Mobile menu ----------------------------------------------------------
+*/
+ul.topNav {
+  background-color: #eee;
+}
+
+/*
+  -- 10. Small screen buttons -------------------------------------------------
+*/
+.mobileButton {
+  border: 1px solid #666;
+  background-color: #eee;
+}
+.mobileButton:hover {
+  background-color: #ddd;
+}
+
+/*
+  -- 11. Forms ----------------------------------------------------------------
 */
 input[type=text] {
   color: #111;
@@ -302,7 +296,7 @@ input[type=text] {
 }
 
 /*
-  -- Crud forms ---------------------------------------------------------------
+  -- 12. Crud forms -----------------------------------------------------------
 */
 form div div label {
   font-family: "Lato", sans-serif;
@@ -340,6 +334,27 @@ form div div input {
 }
 .running:hover {
   background: linear-gradient(to top, #cc0000, rgba(204, 0, 0, 0.5)) !important;
+}
+
+/*
+  -- 13. Context menus --------------------------------------------------------
+*/
+.songsContextMenu, .playlistContextMenu {
+  box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.2);
+}
+.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
+  list-style: none;
+  padding: 10px 0;
+  background-color: #eee;
+}
+.songsContextMenu .menu-options .menu-option, .playlistContextMenu .menu-options .menu-option {
+  font-family: "Muli", sans-serif;
+  letter-spacing: 1px;
+  padding: 10px 40px 10px 20px;
+  cursor: pointer;
+}
+.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
+  background-color: #ddd;
 }
 
 /*

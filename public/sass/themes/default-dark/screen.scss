@@ -12,7 +12,7 @@ $default-gradient: linear-gradient(to top, rgba(34,34,34, 1), rgba(51,51,51, 0.9
 $hover-gradient: linear-gradient(to top, rgba(0,102,0, 1), rgba(0,102,0, 0.5) );
 
 /*
-  -- Global -------------------------------------------------------------------
+  --  1. Global ---------------------------------------------------------------
 */
 body {
     color: $fg-color;
@@ -53,7 +53,7 @@ h2 {
 
 
 /*
-  -- Topbar -------------------------------------------------------------------
+  --  2. Topbar ---------------------------------------------------------------
 */
 .topbar {
     border-bottom-color: $border-color;
@@ -77,7 +77,7 @@ nav.topbarNav {
 }
 
 /*
-  -- Artists navigation -------------------------------------------------------
+  --  3. Artists navigation ---------------------------------------------------
 */
 .artists-navigation {
     .song {
@@ -99,7 +99,7 @@ a.active {
 
 
 /*
-  -- Songs and playlist panels ------------------------------------------------
+  --  5. Songs and playlist panels --------------------------------------------
 */
 .songs-header-container, .playlist-header {
     background-color: $header-color;
@@ -129,7 +129,19 @@ a.active {
 
 
 /*
-  -- Radios -------------------------------------------------------------------
+  --  6. Albums view ----------------------------------------------------------
+*/
+.album-container-content {
+    .no-cover-art {
+        .album-info-album {
+
+        }
+    }
+}
+
+
+/*
+  --  7. Radios ---------------------------------------------------------------
 */
 .radio {
     &.activeRadio {
@@ -143,30 +155,35 @@ a.active {
 
 
 /*
-  -- Context menus ------------------------------------------------------------
+  --  8. Settings-view --------------------------------------------------------
 */
-.songsContextMenu, .playlistContextMenu {
-    box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
 
-    .menu-options {
-        background-color: black;
 
-        .menu-option {
-            &:hover {
-                background: rgba(0, 102, 0, 0.8);
-            }
-        }
-    }
+/*
+  --  9. Mobile menu ----------------------------------------------------------
+*/
+.hamburger-inner,
+.hamburger-inner::after,
+.hamburger-inner::before {
+    background-color: $fg-color!important;
 }
 
 
 /*
-  -- Settings -----------------------------------------------------------------
+  -- 10. Small screen buttons -------------------------------------------------
 */
+.mobileButton {
+    background-color: $bg-color;
+}
+
 
 /*
-  -- Forms ---------------------------------------------------------------
+  -- 11. Forms ----------------------------------------------------------------
 */
+#navigationSearchForm {
+    background-color: $bg-color;
+}
+
 input[type="text"] {
     color: $fg-color;
     background-color: $bg-color;
@@ -184,7 +201,7 @@ input[type="text"] {
 
 
 /*
-  -- Crud forms ---------------------------------------------------------------
+  -- 12. Crud forms -----------------------------------------------------------
 */
 form div div input {
     border: 1px solid $border-color;
@@ -197,4 +214,22 @@ form div div input {
 
 .button:hover {
     background: $hover-gradient;
+}
+
+
+/*
+  -- 13. Context menus --------------------------------------------------------
+*/
+.songsContextMenu, .playlistContextMenu {
+    box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
+
+    .menu-options {
+        background-color: black;
+
+        .menu-option {
+            &:hover {
+                background: rgba(0, 102, 0, 0.8);
+            }
+        }
+    }
 }

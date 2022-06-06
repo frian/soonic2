@@ -2,7 +2,7 @@
   -- Default clear theme -------------------------------------------------------
 */
 /*
-  -- Global -------------------------------------------------------------------
+  --  1. Global ---------------------------------------------------------------
 */
 body {
   color: #111;
@@ -24,7 +24,7 @@ h2 {
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #666 #111;
+  scrollbar-color: #111 #666;
 }
 
 *::-webkit-scrollbar {
@@ -42,7 +42,7 @@ h2 {
 }
 
 /*
-  -- Topbar -------------------------------------------------------------------
+  --  2. Topbar ---------------------------------------------------------------
 */
 .topbar {
   border-bottom-color: #666;
@@ -55,11 +55,11 @@ nav.topbarNav a {
   background: linear-gradient(to top, #dddddd, rgba(204, 204, 204, 0.9));
 }
 nav.topbarNav a:hover {
-  background: linear-gradient(to top, #bfff00, rgba(191, 255, 0, 0.5));
+  background: linear-gradient(to top, lightgreen, rgba(144, 238, 144, 0.5));
 }
 
 /*
-  -- Artists navigation -------------------------------------------------------
+  --  3. Artists navigation ---------------------------------------------------
 */
 .artists-navigation .song {
   background-color: #ccc;
@@ -73,11 +73,11 @@ nav.topbarNav a:hover {
 }
 
 a.active {
-  background-color: #bfff00 !important;
+  background-color: #90ee90 !important;
 }
 
 /*
-  -- Songs and playlist panels ------------------------------------------------
+  --  5. Songs and playlist panels --------------------------------------------
 */
 .songs-header-container, .playlist-header {
   background-color: #ccc;
@@ -90,17 +90,17 @@ a.active {
   background-color: #c8c8c8;
 }
 .list tr.playing {
-  background-color: #bfff00 !important;
+  background-color: #90ee90 !important;
 }
 .list .icon-plus, .list .icon-minus {
   color: #aaa;
 }
 
 /*
-  -- Radios -------------------------------------------------------------------
+  --  7. Radios ---------------------------------------------------------------
 */
 .radio.activeRadio {
-  background-color: #bfff00 !important;
+  background-color: #90ee90 !important;
 }
 
 .radio:nth-child(4n+2), .radio:nth-child(4n+3) {
@@ -108,24 +108,15 @@ a.active {
 }
 
 /*
-  -- Context menus ------------------------------------------------------------
+  --  8. Settings-view --------------------------------------------------------
 */
-.songsContextMenu, .playlistContextMenu {
-  box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
-}
-.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
-  background-color: white;
-}
-.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
-  background: rgba(191, 255, 0, 0.8);
+/*
+  -- 11. Forms ----------------------------------------------------------------
+*/
+#navigationSearchForm {
+  background-color: #c8c8c8;
 }
 
-/*
-  -- Settings -----------------------------------------------------------------
-*/
-/*
-  -- Forms ---------------------------------------------------------------
-*/
 input[type=text] {
   color: #111;
   background-color: #eee;
@@ -142,7 +133,7 @@ input[type=text] {
 }
 
 /*
-  -- Crud forms ---------------------------------------------------------------
+  -- 12. Crud forms -----------------------------------------------------------
 */
 form div div input {
   border: 1px solid #666;
@@ -154,7 +145,20 @@ form div div input {
 }
 
 .button:hover {
-  background: linear-gradient(to top, #bfff00, rgba(191, 255, 0, 0.5));
+  background: linear-gradient(to top, lightgreen, rgba(144, 238, 144, 0.5));
+}
+
+/*
+  -- 13. Context menus --------------------------------------------------------
+*/
+.songsContextMenu, .playlistContextMenu {
+  box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
+}
+.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
+  background-color: white;
+}
+.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
+  background: rgba(191, 255, 0, 0.8);
 }
 
 /*# sourceMappingURL=screen.css.map */

@@ -2,7 +2,7 @@
   -- Default dark theme -------------------------------------------------------
 */
 /*
-  -- Global -------------------------------------------------------------------
+  --  1. Global ---------------------------------------------------------------
 */
 body {
   color: #eee;
@@ -41,7 +41,7 @@ h2 {
 }
 
 /*
-  -- Topbar -------------------------------------------------------------------
+  --  2. Topbar ---------------------------------------------------------------
 */
 .topbar {
   border-bottom-color: #666;
@@ -61,7 +61,7 @@ nav.topbarNav a:hover .icon-cog {
 }
 
 /*
-  -- Artists navigation -------------------------------------------------------
+  --  3. Artists navigation ---------------------------------------------------
 */
 .artists-navigation .song {
   background-color: #333;
@@ -79,7 +79,7 @@ a.active {
 }
 
 /*
-  -- Songs and playlist panels ------------------------------------------------
+  --  5. Songs and playlist panels --------------------------------------------
 */
 .songs-header-container, .playlist-header {
   background-color: #333;
@@ -99,7 +99,10 @@ a.active {
 }
 
 /*
-  -- Radios -------------------------------------------------------------------
+  --  6. Albums view ----------------------------------------------------------
+*/
+/*
+  --  7. Radios ---------------------------------------------------------------
 */
 .radio.activeRadio {
   background-color: #060 !important;
@@ -110,24 +113,31 @@ a.active {
 }
 
 /*
-  -- Context menus ------------------------------------------------------------
+  --  8. Settings-view --------------------------------------------------------
 */
-.songsContextMenu, .playlistContextMenu {
-  box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
-}
-.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
-  background-color: black;
-}
-.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
-  background: rgba(0, 102, 0, 0.8);
+/*
+  --  9. Mobile menu ----------------------------------------------------------
+*/
+.hamburger-inner,
+.hamburger-inner::after,
+.hamburger-inner::before {
+  background-color: #eee !important;
 }
 
 /*
-  -- Settings -----------------------------------------------------------------
+  -- 10. Small screen buttons -------------------------------------------------
 */
+.mobileButton {
+  background-color: #111;
+}
+
 /*
-  -- Forms ---------------------------------------------------------------
+  -- 11. Forms ----------------------------------------------------------------
 */
+#navigationSearchForm {
+  background-color: #111;
+}
+
 input[type=text] {
   color: #eee;
   background-color: #111;
@@ -144,7 +154,7 @@ input[type=text] {
 }
 
 /*
-  -- Crud forms ---------------------------------------------------------------
+  -- 12. Crud forms -----------------------------------------------------------
 */
 form div div input {
   border: 1px solid #666;
@@ -157,6 +167,19 @@ form div div input {
 
 .button:hover {
   background: linear-gradient(to top, #006600, rgba(0, 102, 0, 0.5));
+}
+
+/*
+  -- 13. Context menus --------------------------------------------------------
+*/
+.songsContextMenu, .playlistContextMenu {
+  box-shadow: 0 0 5px 3px rgba(255, 255, 255, 0.2);
+}
+.songsContextMenu .menu-options, .playlistContextMenu .menu-options {
+  background-color: black;
+}
+.songsContextMenu .menu-options .menu-option:hover, .playlistContextMenu .menu-options .menu-option:hover {
+  background: rgba(0, 102, 0, 0.8);
 }
 
 /*# sourceMappingURL=screen.css.map */

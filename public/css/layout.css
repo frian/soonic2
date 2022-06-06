@@ -1,3 +1,6 @@
+/*
+-- Default layout -----------------------------------------------------------
+*/
 /*!
  * Hamburgers
  * @description Tasty CSS-animated hamburgers
@@ -43,10 +46,10 @@
 .hamburger-inner,
 .hamburger-inner::after,
 .hamburger-inner::before {
-  background-color: white !important;
+  background-color: #111 !important;
   width: 30px;
   height: 3px;
-  background-color: #000;
+  background-color: #eee;
   border-radius: 4px;
   position: absolute;
   transition-property: transform;
@@ -56,7 +59,7 @@
 
 .hamburger-inner::after,
 .hamburger-inner::before {
-  color: white !important;
+  color: #111 !important;
   content: "";
   display: block;
 }
@@ -100,67 +103,8 @@
   transition-delay: 0.075s;
 }
 
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-}
-
-html {
-  line-height: 1;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-caption, th, td {
-  text-align: left;
-  font-weight: normal;
-  vertical-align: middle;
-}
-
-q, blockquote {
-  quotes: none;
-}
-
-q:before, q:after, blockquote:before, blockquote:after {
-  content: "";
-  content: none;
-}
-
-a img {
-  border: none;
-}
-
-article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
-  display: block;
-}
-
 /*
-  -- Default layout -----------------------------------------------------------
-*/
-/*
-  -- Global -------------------------------------------------------------------
+  --  1. Global ---------------------------------------------------------------
 */
 html, body {
   height: 100%;
@@ -181,7 +125,7 @@ table {
 }
 
 /*
-  -- Topbar -------------------------------------------------------------------
+  --  2. Topbar ---------------------------------------------------------------
 */
 .topbar {
   height: 49px;
@@ -234,12 +178,6 @@ table {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.topbar .topbar-icons {
-  line-height: 49px;
-}
-.topbar .topbar-button {
-  height: 49px;
-}
 
 #searchForm {
   display: inline-block;
@@ -290,6 +228,7 @@ nav.topbarNav a {
 
 .icon-cog {
   float: right;
+  padding: 0 10px;
 }
 
 #navigationLibrary, #navigationRadioNew, #navigationBackToRadioIndex {
@@ -297,14 +236,7 @@ nav.topbarNav a {
 }
 
 /*
-  -- ajax wrapper -------------------------------------------------------------
-*/
-#ajax-wrapper {
-  height: calc(100% - (49px + 1px));
-}
-
-/*
-  -- Artists navigation -------------------------------------------------------
+  --  3. Artists navigation ---------------------------------------------------
 */
 .artists-navigation {
   float: left;
@@ -356,9 +288,34 @@ nav.topbarNav a {
 }
 
 /*
-  -- Songs and playlist panels ------------------------------------------------
+  --  4. Views ----------------------------------------------------------------
+*/
+.view {
+  position: absolute;
+  top: 50px;
+  height: calc(100% - (49px + 1px));
+  width: 100%;
+  border: 0px solid red;
+}
+
+.library-view {
+  overflow-x: hidden;
+}
+
+.albums-view {
+  overflow-y: scroll;
+}
+
+.radios-view {
+  font-size: 0;
+  overflow-y: scroll;
+}
+
+/*
+  --  5 .Songs and playlist panels --------------------------------------------
 */
 .songs-header {
+  display: none;
   position: relative;
   width: calc(100% - 10px) !important;
   height: 22px;
@@ -430,20 +387,8 @@ thead {
 }
 
 /*
-  -- Albums view --------------------------------------------------------------
+  --  6. Albums view ----------------------------------------------------------
 */
-.screen-view, .albums-view {
-  position: absolute;
-  top: 50px;
-  height: calc(100% - (49px + 1px));
-  width: 100%;
-  overflow: hidden;
-}
-
-.albums-view {
-  overflow-y: scroll;
-}
-
 .album-container {
   position: relative;
   float: left;
@@ -479,7 +424,6 @@ thead {
   text-align: center;
 }
 .album-container-content .no-cover-art .album-info-album {
-  color: white;
   letter-spacing: 0.4px;
   line-height: 1.3em;
   margin-bottom: 10px;
@@ -494,67 +438,10 @@ thead {
   height: 100%;
   z-index: 10;
 }
-.album-container-content .album-info {
-  display: none;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 30%;
-  color: white;
-  background: rgba(0, 0, 0, 0.8);
-  z-index: 10;
-}
-.album-container-content .album-info > div {
-  font-family: "Helvetica";
-  padding: 3px 10px 2px;
-}
-/*
-  -- Small screen buttons -----------------------------------------------------
-*/
-.mobileButton {
-  border: 1px solid grey;
-  height: 48px;
-  line-height: 48px;
-  width: 48px;
-  position: fixed;
-  top: calc(100% - 48px);
-  text-align: center;
-  cursor: pointer;
-  background-color: #333;
-}
-.mobileButton:hover {
-  background-color: #111;
-}
-
-.mobileForwardButton {
-  right: 0;
-}
-
-.mobileBackButton {
-  left: 0;
-}
-
-.mobileSongsToArtistsButton, .mobileSongsToPlaylistButton, .mobilePlaylistToSongsButton {
-  display: none;
-}
-
-button:active, button:focus {
-  border: none !important;
-}
 
 /*
-  -- Radios -------------------------------------------------------------------
+  --  7. Radios ---------------------------------------------------------------
 */
-.radios-view {
-  position: absolute;
-  top: 50px;
-  font-size: 0;
-  width: 100%;
-  height: calc(100% - (49px + 1px));
-  overflow-y: scroll;
-}
-
 .radio {
   font-size: 16px;
   box-sizing: border-box;
@@ -597,12 +484,36 @@ label[for=appbundle_radio_changed], #appbundle_radio_changed {
 }
 
 /*
-  -- Mobile menu --------------------------------------------------------------
+  --  8. Settings-view --------------------------------------------------------
+*/
+.settings-view {
+  border: 0px solid red;
+}
+.settings-view .libraryInfo {
+  margin-top: 20px;
+  width: 90%;
+}
+.settings-view table tr td {
+  padding: 15px 50px;
+  text-align: right;
+  border: 0px solid lime;
+}
+.settings-view table tr td:nth-child(1) {
+  padding: 0;
+  width: 40%;
+  text-align: right !important;
+}
+
+.info {
+  border: 0px solid red;
+}
+
+/*
+  --  9. Mobile menu ----------------------------------------------------------
 */
 ul.topNav {
   position: relative;
   width: 100% !important;
-  background-color: #555;
 }
 ul.topNav.is-active {
   position: absolute;
@@ -636,32 +547,36 @@ ul.topNav li {
 }
 
 /*
-  -- settings-view -----------------------------------------------------------------
+  -- 10. Small screen buttons -------------------------------------------------
 */
-.settings-view {
-  border: 0px solid red;
-}
-.settings-view .libraryInfo {
-  margin-top: 20px;
-  width: 90%;
-}
-.settings-view table tr td {
-  padding: 15px 50px;
-  text-align: right;
-  border: 0px solid lime;
-}
-.settings-view table tr td:nth-child(1) {
-  padding: 0;
-  width: 40%;
-  text-align: right !important;
+.mobileButton {
+  height: 48px;
+  line-height: 48px;
+  width: 48px;
+  position: fixed;
+  top: calc(100% - 48px);
+  text-align: center;
+  cursor: pointer;
 }
 
-.info {
-  border: 0px solid red;
+.mobileForwardButton {
+  right: 0;
+}
+
+.mobileBackButton {
+  left: 0;
+}
+
+.mobileSongsToArtistsButton, .mobileSongsToPlaylistButton, .mobilePlaylistToSongsButton {
+  display: none;
+}
+
+button:active, button:focus {
+  border: none !important;
 }
 
 /*
-  -- Forms ---------------------------------------------------------------
+  -- 11. Forms ----------------------------------------------------------------
 */
 /* neede for reset button */
 form {
@@ -734,7 +649,7 @@ table.form tr td.buttonRow {
 }
 
 /*
-  -- Crud forms ---------------------------------------------------------------
+  -- 12. Crud forms -----------------------------------------------------------
 */
 .buttonWrapper {
   padding: 20px 0;
@@ -752,7 +667,7 @@ table.form tr td.buttonRow {
 }
 
 /*
-  -- Context menus ------------------------------------------------------------
+  -- 13. Context menus --------------------------------------------------------
 */
 .songsContextMenu, .playlistContextMenu {
   position: absolute;
@@ -763,7 +678,7 @@ table.form tr td.buttonRow {
   -- Media query 500px --------------------------------------------------------
 */
 @media all and (min-width: 500px) {
-  /* -- albums-view -- */
+  /* --  4. Views -- */
   .album-container {
     width: 33.33%;
     padding-top: 33.33%;
@@ -773,7 +688,7 @@ table.form tr td.buttonRow {
   -- Media query 700px --------------------------------------------------------
 */
 @media all and (min-width: 700px) {
-  /* -- albums-view -- */
+  /* --  4. Views -- */
   .album-container {
     width: 25%;
     padding-top: 25%;
@@ -783,7 +698,7 @@ table.form tr td.buttonRow {
   -- Media query 1024px -------------------------------------------------------
 */
 @media all and (min-width: 1023px) {
-  /* -- Topbar -- */
+  /* --  2. Topbar -- */
   .topbar .logo > span {
     display: inline-block;
   }
@@ -804,7 +719,7 @@ table.form tr td.buttonRow {
     display: none;
   }
 
-  /* -- Artists navigation -- */
+  /* --  3. Artists navigation -- */
   .artists-navigation {
     width: 240px;
   }
@@ -820,7 +735,7 @@ table.form tr td.buttonRow {
     margin-top: 5px;
   }
 
-  /* -- Songs and playlist panels -- */
+  /* --  5. Songs and playlist panels -- */
   .songs, .playlist {
     display: block;
     height: 50%;
@@ -899,7 +814,7 @@ table.form tr td.buttonRow {
     display: none;
   }
 
-  /* -- albums-view -- */
+  /* --  4. Views -- */
   .album-container {
     width: 20%;
     padding-top: 20%;
@@ -923,7 +838,14 @@ table.form tr td.buttonRow {
     line-height: 1.3em;
   }
 
-  /* -- settings-view -- */
+  /* --  7. Radios -- */
+  .radio {
+    font-size: 16px !important;
+    display: inline-block;
+    width: 50%;
+  }
+
+  /* --  8. Settings-view -- */
   .settings-view .libraryInfo {
     margin-top: 20px;
     margin-left: auto;
@@ -931,19 +853,12 @@ table.form tr td.buttonRow {
     width: 40%;
   }
 
-  /* -- Small screen buttons -- */
+  /* -- 10. Small screen buttons -- */
   .mobileButton {
     display: none;
   }
 
-  /* -- Radios -- */
-  .radio {
-    font-size: 16px !important;
-    display: inline-block;
-    width: 50%;
-  }
-
-  /* -- Forms -- */
+  /* -- 11. Forms -- */
   table.form {
     margin: auto;
     width: 40%;
@@ -967,13 +882,13 @@ table.form tr td.buttonRow {
   -- Media query 1200px -------------------------------------------------------
 */
 @media all and (min-width: 1200px) {
-  /* -- Topbar -- */
-  /* -- Artists navigation -- */
+  /* --  2. Topbar -- */
+  /* --  3. Artists navigation -- */
   .artists-navigation {
     width: 360px;
   }
 
-  /* -- Songs and playlist panels -- */
+  /* --  5. Songs and playlist panels -- */
   thead tr th:nth-child(7) {
     display: table-cell;
   }
@@ -988,12 +903,13 @@ table.form tr td.buttonRow {
     display: table-cell;
   }
 
-  /* -- albums-view -- */
+  /* --  4. Views -- */
   .album-container {
     width: 16.66%;
     padding-top: 16.66%;
   }
 
+  /* --  6. Album voew -- */
   .album-container-content .no-cover-art {
     font-size: 1.1em;
   }
@@ -1012,7 +928,7 @@ table.form tr td.buttonRow {
     line-height: 1.5em;
   }
 
-  /* -- Forms -- */
+  /* -- 11. Forms -- */
   table.form tr td input[type=text] {
     width: 60%;
   }
@@ -1021,12 +937,12 @@ table.form tr td.buttonRow {
   -- Media query 1600px -------------------------------------------------------
 */
 @media all and (min-width: 1600px) {
-  /* -- Topbar -- */
+  /* --  2. Topbar -- */
   #searchForm input[type=text] {
     width: 200px;
   }
 
-  /* -- albums-view -- */
+  /* --  4. Views -- */
   .album-container {
     width: 12.5%;
     padding-top: 12.5%;
