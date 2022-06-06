@@ -18,12 +18,12 @@ class LibraryController extends AbstractController
     public function library(ArtistRepository $artistRepository, Request $request): Response
     {
         if ($request->isXmlHttpRequest()) {
-            return $this->render('library/screen-content.html.twig', [
+            return $this->render('library/index-content.html.twig', [
                 'artists' => $artistRepository->findAll(),
             ]);
         }
 
-        return $this->render('library/screen.html.twig', [
+        return $this->render('library/index.html.twig', [
             'artists' => $artistRepository->findAll(),
         ]);
     }
