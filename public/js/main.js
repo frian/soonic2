@@ -1,6 +1,7 @@
 'use strict';
 $(function() {
 
+    var debug = 1;
     var screenWidth = $(window).width();
     var mobileMenuState = 'closed';
 
@@ -46,6 +47,11 @@ $(function() {
         $('#navigationRandom, #navigationAlbums, #navigationRadios, #navigationSettings, #navigationSearchForm' ).css('display', 'list-item');
         $('#navigationLibrary, #navigationRadioNew').css('display', 'none');
         setSongInfoSize();
+
+        if (debug === 1) {
+            console.log('clicked on library');
+            console.log("- openView = " + openView);
+        }
     });
 
     /**
@@ -85,6 +91,11 @@ $(function() {
         $('#navigationLibrary, #navigationRadios, #navigationSettings').css('display', 'list-item');
         $('#navigationAlbums, #navigationRadioNew, #navigationSearchForm, #navigationRandom').css('display', 'none');
         openView = '.albums-view';
+
+        if (debug === 1) {
+            console.log('clicked on albums');
+            console.log("- openView = " + openView);
+        }
     });
 
 
@@ -119,6 +130,11 @@ $(function() {
         $('#navigationRadios, #navigationRandom, #navigationSearchForm').css('display', 'none');
         setSongInfoSize();
         openView = '.radios-view';
+
+        if (debug === 1) {
+            console.log('clicked on radio');
+            console.log("- openView = " + openView);
+        }
     });
 
 
@@ -153,6 +169,11 @@ $(function() {
         $('#navigationRandom, #navigationRadioNew').css('display', 'none');
         setSongInfoSize();
         openView = '.radio-new-view';
+
+        if (debug === 1) {
+            console.log('clicked on new radio');
+            console.log("- openView = " + openView);
+        }
     });
 
 
@@ -186,6 +207,11 @@ $(function() {
         $('#navigationLibrary, #navigationAlbums, #navigationRadios').css('display', 'list-item');
         setSongInfoSize();
         openView = '.settings-view';
+
+        if (debug === 1) {
+            console.log('clicked on settings');
+            console.log("- openView = " + openView);
+        }
     });
 
 
@@ -207,6 +233,11 @@ $(function() {
                 console.log("error");
             }
         });
+
+        if (debug === 1) {
+            console.log('clicked on random songs');
+            console.log("- openView = " + openView);
+        }
     });
 
 
