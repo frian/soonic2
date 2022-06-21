@@ -1,5 +1,5 @@
-'use strict';
 $(function() {
+    'use strict';
 
     var debug = 1;
     var screenWidth = $(window).width();
