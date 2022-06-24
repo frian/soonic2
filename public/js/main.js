@@ -1,14 +1,15 @@
 $(function() {
     'use strict';
 
-    var debug = 1;
-    var screenWidth = $(window).width();
-    var mobileMenuState = 'closed';
+    const debug = 1;
+    let screenWidth = $(window).width();
+    let mobileMenuState = 'closed';
+    let openView = null;
 
     _init();
 
     // -- on resize
-    var resizeTimer;
+    let resizeTimer;
     $(window).resize(function() {
         if(resizeTimer) {
             window.clearTimeout(resizeTimer);
@@ -23,14 +24,6 @@ $(function() {
     /**
      * -- Ajax navigation -----------------------------------------------------
      */
-    var openView;
-
-    function toggleMobileMenu() {
-        $(".topbarNav").toggleClass("is-active");
-        $(".topNav").toggleClass("is-active");
-        hamburger.toggleClass("is-active");
-    }
-
 
     /**
      * Load library page
@@ -74,7 +67,7 @@ $(function() {
         if ($('.albums-view').length) {
             $('.albums-view').css('display', 'block');
         } else {
-            var url = "/album/";
+            const url = "/album/";
             $.ajax({
                 url: url,
                 cache: true,
@@ -112,7 +105,7 @@ $(function() {
         if ($('.radios-view').length) {
             $('.radios-view').css('display', 'block');
         } else {
-            var url = "/radio/";
+            const url = "/radio/";
 
             $.ajax({
                 url: url,
@@ -151,7 +144,7 @@ $(function() {
         if ($('.radio-new-view').length) {
             $('.radio-new-view').css('display', 'block');
         } else {
-            var url = "/radio/new";
+            const url = "/radio/new";
 
             $.ajax({
                 url: url,
@@ -190,7 +183,7 @@ $(function() {
         if ($('.settings-view').length) {
             $('.settings-view').css('display', 'block');
         } else {
-            var url = "/settings/";
+            const url = "/settings/";
 
             $.ajax({
                 url: url,
@@ -223,7 +216,7 @@ $(function() {
 
         e.preventDefault();
 
-        var url = "/songs/random";
+        const url = "/songs/random";
 
         $.ajax({
             url: url,
@@ -249,7 +242,7 @@ $(function() {
 
         e.preventDefault();
 
-        var url = $(this).attr("href");
+        const url = $(this).attr("href");
 
         if ($(this).next('ul').length) {
             $(this).next().remove();
@@ -265,6 +258,10 @@ $(function() {
         }
         $(".active").removeClass("active");
         $(this).addClass('active');
+
+        if (debug === 1) {
+            console.log('clicked on an artist in artist nav');
+        }
     });
 
 
@@ -272,12 +269,12 @@ $(function() {
      * Filters the artists list
      * Updates the navigation panel
      */
-    var lastval = "";
-    var timeout = null;
+    let lastval = "";
+    let timeout = null;
 
     $("input[name=filter]").keyup(function() {
 
-        var url = '/artist/filter/';
+        const url = '/artist/filter/';
 
         // -- if input is cleared
         if (this.value.length === 0 && lastval.length > 0) {
@@ -304,7 +301,7 @@ $(function() {
             return;
         }
 
-        var filter = this.value;
+        const filter = this.value;
 
         if (timeout) {
             clearTimeout(timeout);
@@ -321,6 +318,10 @@ $(function() {
                 }
             });
         }, 300);
+
+        if (debug === 1) {
+            console.log('filetered artists');
+        }
     });
 
 
@@ -332,7 +333,7 @@ $(function() {
 
         e.preventDefault();
 
-        var url = $(this).attr("href");
+        const url = $(this).attr("href");
 
         $.get({
             url: url,
@@ -353,18 +354,21 @@ $(function() {
             $(".mobileSongsToArtistsButton").css('display', 'initial');
             $(".mobileSongsToPlaylistButton").css('display', 'block');
         }
+
+        if (debug === 1) {
+            console.log('clicked on an album in artist nav');
+        }
     });
 
 
     /**
      * Returns search results
      * Updates the songs panel
+     * TODO: search on smallscreen
      */
     $(document).on("click", "#searchButton", function(e) {
 
         e.preventDefault();
-
-        var keyword = $("#form_keyword").val().length;
 
         if ($("#form_keyword").val().length < 3) {
             $("#form_keyword").val('');
@@ -382,6 +386,10 @@ $(function() {
                 console.log("error");
             }
         });
+
+        if (debug === 1) {
+            console.log('clicked on search');
+        }
     });
 
 
@@ -389,19 +397,28 @@ $(function() {
      * Helper for the two methods above
      */
     function loadSongPanel(data) {
+
         $("#songs tbody").remove();
         $("#songs").append(data);
-        if ($("#topBarNav").hasClass('is-active')) {
-            $("#topBarNav").toggleClass('is-active');
-            $(".topNav").toggleClass('is-active');
-            $(".songs").css('display', 'initial');
-            $(".playlist").css('display', 'none');
-            $(".artists-navigation").css('display', 'none');
-            $(".mobileSongsToArtistsButton").css('display', 'initial');
-            $(".mobileSongsToPlaylistButton").css('display', 'initial');
-            hamburger.toggleClass("is-active");
+        // if ($("#topBarNav").hasClass('is-active')) {
+        //     $("#topBarNav").toggleClass('is-active');
+        //     $(".topNav").toggleClass('is-active');
+        //     $(".songs").css('display', 'initial');
+        //     $(".playlist").css('display', 'none');
+        //     $(".artists-navigation").css('display', 'none');
+        //     $(".mobileSongsToArtistsButton").css('display', 'initial');
+        //     $(".mobileSongsToPlaylistButton").css('display', 'initial');
+        //     hamburger.toggleClass("is-active");
+        //
+        //     if (debug === 1) {
+        //         console.log('after hamburger');
+        //     }
+        //
+        //     mobileMenuState = mobileMenuState == 'closed' ? 'open' : 'closed';
+        // }
 
-            mobileMenuState = mobileMenuState == 'closed' ? 'open' : 'closed';
+        if (debug === 1) {
+            console.log('in loadSongPanel');
         }
     }
 
@@ -433,6 +450,10 @@ $(function() {
         $("#scanStatus").text('scanning');
 
         $loop = setInterval(scanTimer, 1000);
+
+        if (debug === 1) {
+            console.log('clicked on scan');
+        }
     });
 
 
@@ -443,7 +464,7 @@ $(function() {
 
         e.preventDefault();
 
-        var form = $('#settingsForm');
+        const form = $('#settingsForm');
 
         $.ajax({
             type: form.attr('method'),
@@ -452,16 +473,17 @@ $(function() {
             dataType: 'json',
             success: function(data) {
 
+                let href = "";
                 if ($('#screenThemeCss')) {
-                    var href = "/css/themes/" + data.config.theme + "/screen.css";
+                    href = "/css/themes/" + data.config.theme + "/screen.css";
                     $('#screenThemeCss').attr('href', href );
                 }
                 if ($('#layoutThemeCss')) {
-                    var href = "/css/themes/" + data.config.theme + "/layout.css";
+                    href = "/css/themes/" + data.config.theme + "/layout.css";
                     $('#layoutThemeCss').attr('href', href );
                 }
 
-                var toTranslate = $('[data-text]');
+                const toTranslate = $('[data-text]');
 
                 $.each(toTranslate, function( index, value ) {
                     if ($(this).prop("tagName") === 'INPUT') {
@@ -483,13 +505,18 @@ $(function() {
                 console.log(data);
             }
         });
+
+        if (debug === 1) {
+            console.log('submitted settings form');
+        }
     });
+
 
     /**
      * reload artist artist on clear filter form
      */
     $(document).on("click", ".filterForm .input-reset", function(e) {
-        var url = '/artist/filter/';
+        const url = '/artist/filter/';
         $.get({
             url: url,
             cache: true,
@@ -499,6 +526,10 @@ $(function() {
             }
         });
         $('.filterInput').focus();
+
+        if (debug === 1) {
+            console.log('cleared artist filter');
+        }
     });
 
 
@@ -521,6 +552,10 @@ $(function() {
             $("#playlistDuration").text('00:00');
             $("#playlistInfos").css('display', 'none');
         }
+
+        if (debug === 1) {
+            console.log('clicked on empty palylist');
+        }
     });
 
 
@@ -536,7 +571,9 @@ $(function() {
         $(".mobileSongsToArtistsButton").css('display', 'initial');
         $(".mobileSongsToPlaylistButton").css('display', 'initial');
 
-        console.log('clicked 1');
+        if (debug === 1) {
+            console.log('show songs list (forward)');
+        }
     });
 
 
@@ -550,7 +587,10 @@ $(function() {
         $(".mobileSongsToArtistsButton").css('display', 'none');
         $(".mobileSongsToPlaylistButton").css('display', 'none');
         $(".mobileArtistsToSongsButton").css('display', 'initial');
-        console.log('clicked 2');
+
+        if (debug === 1) {
+            console.log('show artists list');
+        }
     });
 
 
@@ -574,7 +614,10 @@ $(function() {
         $(".songs").css('display', 'initial');
         $(".playlist").css('display', 'none');
         $(".mobileSongsToPlaylistButton").css('display', 'initial');
-        console.log('clicked 4');
+
+        if (debug === 1) {
+            console.log('show songs list (backward)');
+        }
     });
 
 
@@ -605,6 +648,10 @@ $(function() {
                 });
             }, 100);
         }
+
+        if (debug === 1) {
+            console.log('clicked on mobile menu');
+        }
     });
 
 
@@ -612,17 +659,21 @@ $(function() {
      * check if we are scanning
      */
     if ($(location).attr('pathname') === '/settings/') {
-        var $loop;
+        let loop;
         $.get({
             url: '/scan/progress',
             cache: true,
             success: function(data) {
                 if (data.status == 'running') {
                     $("#scanButton").toggleClass('running');
-                    $loop = setInterval(scanTimer, 1000);
+                    loop = setInterval(scanTimer, 1000);
                 }
             }
         });
+
+        if (debug === 1) {
+            console.log('check if we are scanning');
+        }
     }
 
 
@@ -651,7 +702,7 @@ $(function() {
     }
 
     function setSongInfoSize() {
-        var width;
+        let width;
         if (screenWidth < 1024) {
             width = screenWidth - ($('.logo').outerWidth() + $('#playerContainer').outerWidth() + $('.hamburger').outerWidth() + 50);
         }
@@ -662,7 +713,7 @@ $(function() {
     }
 
     function setFilterInputSize() {
-        var width;
+        let width;
         if (screenWidth < 1024) {
             var buttonWidth = $( "#searchButton" ).actual( 'outerWidth' );
             width = (screenWidth - buttonWidth );
