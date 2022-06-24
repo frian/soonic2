@@ -1,6 +1,6 @@
 $(function() {
 
-    var playerStatus = "paused";
+    let playerStatus = "paused";
 
     /**
      * Play / Pause currently loaded radio
@@ -8,9 +8,9 @@ $(function() {
     $(document).on("click", ".radioPlay", function(e) {
 
         // -- find currently active player and pause it
-        var activePlayerButton = $("i.activePlayer")[0];
+        const activePlayerButton = $("i.activePlayer")[0];
 
-        var activePlayer = null;
+        let activePlayer = null;
 
         if (activePlayerButton) {
             activePlayer = $(activePlayerButton).next()[0];
@@ -22,7 +22,7 @@ $(function() {
             $(activePlayerButton).parent().parent().removeClass("activeRadio");
         }
 
-        var radioPlayer = $(this).next()[0];
+        let radioPlayer = $(this).next()[0];
 
         if (radioPlayer == activePlayer) {
             playerStatus = "playing";
