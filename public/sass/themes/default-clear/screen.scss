@@ -114,7 +114,7 @@ a.active {
         }
     }
 
-    tr.playing {
+    tr.playing, tr.selected {
         background-color: $hover-active!important;
     }
 

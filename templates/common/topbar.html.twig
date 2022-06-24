@@ -1,14 +1,13 @@
 <section class="topbar">
 
     <div class="logo"><img alt="Soonic" src="/weblogo-grey.png"></div>
-    <!-- <div class="logo">S<span>oonic</span></div> -->
 
     {% if app.request.get('_route') == 'library' %}
-    <div class="player">
-        <i class="icon-to-start"></i><i id="startStopButton" class="icon-play musicPlayer"></i><i class="icon-to-end"></i>
+    <div id="playerContainer">
+        <i class="icon-to-start"></i><i id="playPauseButton" class="icon-play"></i><i class="icon-to-end"></i>
 
         <audio id="player" preload="none">
-            <source id="mpegSource" src="" type="audio/mpeg"/>
+            <source id="audioSource" src="" type="audio/mpeg"/>
         </audio>
 
         <div class="timeInfo">
@@ -21,12 +20,9 @@
         <span id="songTitle" class="songTitle"></span>
         <span id="songArtist" class="songArtist"></span>
     </div>
-    {% else %}
-
     {% endif %}
 
     <nav class="topbarNav" id="topBarNav">
-
         <ul class="topNav">
             <li id="navigationSearchForm">
                 {{ render(controller( 'App\\Controller\\SearchController::showSearch' )) }}
@@ -58,7 +54,6 @@
             </li>
         </ul>
     </nav>
-
 
     <button type="button" class="hamburger hamburger--elastic">
         <span class="hamburger-box">

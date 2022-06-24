@@ -645,7 +645,6 @@ $(function() {
         });
     }
 
-
     function _init() {
         setSongInfoSize();
         setFilterInputSize();
@@ -654,10 +653,10 @@ $(function() {
     function setSongInfoSize() {
         var width;
         if (screenWidth < 1024) {
-            width = screenWidth - ($('.logo').outerWidth() + $('.player').outerWidth() + $('.hamburger').outerWidth() + 50);
+            width = screenWidth - ($('.logo').outerWidth() + $('#playerContainer').outerWidth() + $('.hamburger').outerWidth() + 50);
         }
         else {
-            width = screenWidth - ($('.logo').outerWidth() + $('.player').outerWidth() + $('.topbarNav').outerWidth() + 50);
+            width = screenWidth - ($('.logo').outerWidth() + $('#playerContainer').outerWidth() + $('.topbarNav').outerWidth() + 50);
         }
         $('.songInfo').width(width);
     }

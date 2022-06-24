@@ -207,7 +207,7 @@ a.active {
 .list tbody tr:nth-child(even) {
   background-color: #ddd;
 }
-.list tr.playing {
+.list tr.playing, .list tr.selected {
   background-color: #ddd !important;
 }
 .list .icon-plus, .list .icon-minus {
