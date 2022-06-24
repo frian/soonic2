@@ -11,6 +11,10 @@ $(function() {
      * Play / Pause currently loaded song
      */
     $(document).on("click", "#playPauseButton", function(e) {
+
+        if (debug === 1) {
+            console.log('clicked on Play / Pause');
+        }
         playPause();
     });
 
@@ -19,6 +23,10 @@ $(function() {
      * load and play a song from the songs list or the playlist
      */
     $(document).on("click", "#songs tbody tr, #playlist tbody tr", function(e) {
+
+        if (debug === 1) {
+            console.log('clicked on a song');
+        }
 
         $("tbody .playing").removeClass('playing');
         loadSong($(this));
@@ -89,8 +97,11 @@ $(function() {
      * play next song in songslist
      */
     $(document).on("click", ".icon-to-end", function(e) {
+
+        if (debug === 1) {
+            console.log('clicked on next song');
+        }
         playNext();
-        // playerStatus = "playing";
     });
 
 
@@ -98,8 +109,11 @@ $(function() {
      * play previous song in songslist
      */
     $(document).on("click", ".icon-to-start", function(e) {
+
+        if (debug === 1) {
+            console.log('clicked on previous song');
+        }
         playNext('backward');
-        // playerStatus = "playing";
     });
 
 
@@ -121,7 +135,6 @@ $(function() {
             console.log('song ended');
             console.log("running playNext");
         }
-
         playNext();
     });
 
@@ -145,6 +158,10 @@ $(function() {
         }
 
         updatePlaylistInfo($copy);
+
+        if (debug === 1) {
+            console.log('clicked on add to playlist');
+        }
     });
 
 
@@ -155,6 +172,10 @@ $(function() {
         e.stopPropagation();
         updatePlaylistInfo($(this).parent(), 'remove');
         $(this).parent().remove();
+
+        if (debug === 1) {
+            console.log('remove song from playlist');
+        }
     });
 
 
@@ -247,7 +268,7 @@ $(function() {
         }
 
         if (debug === 1) {
-            console.log('clicked on Play / Pause');
+            console.log('in playPause');
             console.log("- playerStatus = " + playerStatus);
         }
     }
@@ -279,6 +300,10 @@ $(function() {
 
         if ($("#playPauseButton").attr("class") === 'icon-play') {
             $("#playPauseButton").attr("class", "icon-pause");
+        }
+
+        if (debug === 1) {
+            console.log('in loadSong');
         }
     }
 
@@ -362,5 +387,9 @@ $(function() {
             display = 'initial';
         }
         document.getElementById("playlistInfos").style.display = display;
+
+        if (debug === 1) {
+            console.log('in updatePlaylistInfo');
+        }
     }
 });
