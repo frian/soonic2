@@ -195,6 +195,9 @@ table {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+.topbar .material-icons {
+  line-height: 49px;
+}
 
 #searchForm {
   display: inline-block;
@@ -676,8 +679,8 @@ table.form tr td.buttonRow {
 
 .button {
   box-sizing: border-box;
-  height: 50px;
-  line-height: 50px;
+  height: 49px;
+  line-height: 49px;
   display: inline-block;
   padding: 0 20px;
   border: 0;
