@@ -36,19 +36,19 @@ h2 {
 }
 
 * {
-  // scrollbar-width: thin;
-  scrollbar-color: $border-color $bg-color;
+    // scrollbar-width: thin;
+    scrollbar-color: $border-color $bg-color;
 }
 *::-webkit-scrollbar {
-  width: 12px;
+    width: 12px;
 }
 *::-webkit-scrollbar-track {
-  background: $bg-color;
+    background: $bg-color;
 }
 *::-webkit-scrollbar-thumb {
-  background-color: $border-color;
-  border-radius: 20px;
-  border: 3px solid $bg-color;
+    background-color: $border-color;
+    border-radius: 20px;
+    border: 3px solid $bg-color;
 }
 
 
@@ -60,6 +60,10 @@ h2 {
 
     .songArtist {
         color: #ddd;
+    }
+
+    .progressbar {
+        background-color: #555;
     }
 }
 

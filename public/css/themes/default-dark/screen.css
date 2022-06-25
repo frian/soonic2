@@ -49,6 +49,9 @@ h2 {
 .topbar .songArtist {
   color: #ddd;
 }
+.topbar .progressbar {
+  background-color: #555;
+}
 
 nav.topbarNav a {
   background: linear-gradient(to top, #222222, rgba(51, 51, 51, 0.9));

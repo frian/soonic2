@@ -118,11 +118,48 @@ $(function() {
 
 
     /**
+     * move progress bar
+     */
+    $(document).on("click", ".progressbar", function(e) {
+
+        if (debug === 1) {
+            console.log('clicked on progress bar');
+        }
+
+        const player = document.getElementById("player");
+        const offset = $(this).offset();
+        const xVal = e.pageX - offset.left;
+        const percent = (xVal / $(this).width()) * 100;
+        const jumpTime = player.duration * percent / 100;
+
+        player.currentTime = jumpTime;
+
+        $(".progress-indicator").width(percent + "%");
+
+        if (debug === 1) {
+            console.log("jumpTime : " + toDuration(jumpTime));
+        }
+    });
+
+
+    /**
      * show time elapsed
      */
     $("#player").on("timeupdate", function() {
-        const player = document.getElementById("player");
-        $("#currentTime").text(toDuration(player.currentTime) + ' /');
+
+        $("#currentTime").text(toDuration(this.currentTime) + ' /');
+
+        let percentagePlayed = (this.currentTime / this.duration);
+
+        if (percentagePlayed > 1) {
+            percentagePlayed = 1;
+        } else if (percentagePlayed < 0) {
+            percentagePlayed = 0;
+        }
+
+        percentagePlayed = percentagePlayed * 100;
+
+        $(".progress-indicator").width(percentagePlayed + '%');
     });
 
 

@@ -131,7 +131,6 @@ table {
   height: 49px;
   border-bottom-width: 1px;
   border-bottom-style: solid;
-  /* -- Artists navigation -- */
 }
 .topbar div {
   display: inline-block;
@@ -170,6 +169,24 @@ table {
   height: 100%;
   font-size: 26px;
   text-align: center;
+}
+.topbar .timeInfo {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+}
+.topbar .ProgressBarContainer {
+  width: 100%;
+  height: 19px;
+  line-height: 19px;
+}
+.topbar .progressbar {
+  position: relative;
+  height: 10px;
+  width: calc(100% - 10px);
+  margin: 0 5px;
+  border-radius: 5px;
+  overflow: hidden;
 }
 .topbar .songInfo {
   display: inline-block;

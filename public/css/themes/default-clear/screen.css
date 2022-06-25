@@ -23,7 +23,6 @@ h2 {
 }
 
 * {
-  scrollbar-width: thin;
   scrollbar-color: #111 #666;
 }
 
@@ -49,6 +48,9 @@ h2 {
 }
 .topbar .songArtist {
   color: #333;
+}
+.topbar .progressbar {
+  background-color: #666;
 }
 
 nav.topbarNav a {

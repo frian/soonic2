@@ -64,7 +64,6 @@ $topbar-border-size: 1px;
         }
     }
 
-    /* -- Artists navigation -- */
     [class^="icon-"] {
         display: inline-block;
         box-sizing: border-box;
@@ -88,6 +87,27 @@ $topbar-border-size: 1px;
         height: 100%;
         font-size: 26px;
         text-align: center;
+    }
+
+    .timeInfo {
+        display: block;
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .ProgressBarContainer {
+        width: 100%;
+        height: 19px;
+        line-height: 19px;
+    }
+
+    .progressbar {
+        position: relative;
+        height: 10px;
+        width: calc(100% - 10px);
+        margin: 0 5px;
+        border-radius: 5px;
+        overflow: hidden;
     }
 
     .songInfo {

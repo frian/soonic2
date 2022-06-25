@@ -107,6 +107,19 @@ h2 {
   font-size: 1.6em;
   font-weight: 700;
 }
+.topbar .timeInfo {
+  font-family: "Muli", sans-serif;
+  font-weight: 700;
+  font-size: 80%;
+  padding: 0 10px;
+  letter-spacing: 1px;
+}
+.topbar .progressbar {
+  background-color: #ddd;
+}
+.topbar .progress-indicator {
+  background-color: #aaa;
+}
 .topbar .songInfo {
   font-family: "Lato", sans-serif;
   font-weight: 700;
@@ -118,13 +131,6 @@ h2 {
 }
 .topbar .songArtist {
   color: #333;
-}
-.topbar .timeInfo {
-  font-family: "Muli", sans-serif;
-  font-weight: 700;
-  font-size: 80%;
-  padding: 0 10px;
-  letter-spacing: 1px;
 }
 
 #searchForm input[type=submit] {

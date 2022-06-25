@@ -78,6 +78,23 @@ h2 {
         font-weight: 700;
     }
 
+
+    .timeInfo {
+        font-family: 'Muli', sans-serif;
+        font-weight: 700;
+        font-size: 80%;
+        padding: 0 10px;
+        letter-spacing: 1px;
+    }
+
+    .progressbar {
+        background-color: #ddd;
+    }
+
+    .progress-indicator {
+        background-color: #aaa;
+    }
+
     .songInfo {
         font-family: 'Lato', sans-serif;
         font-weight: 700;
@@ -91,14 +108,6 @@ h2 {
 
     .songArtist {
         color: #333;
-    }
-
-    .timeInfo {
-        font-family: 'Muli', sans-serif;
-        font-weight: 700;
-        font-size: 80%;
-        padding: 0 10px;
-        letter-spacing: 1px;
     }
 }
 
