@@ -22,6 +22,7 @@ playlist: playlist
 playlist.add: 'ajouter à la playlist'
 playlist.remove: 'retirer de la playlist'
 radio: radio
+radios: radios
 radio.new: 'nouvelle radio'
 radio.edit: 'modifier la radio'
 random: aléatoire
@@ -30,6 +31,7 @@ save: enregistrer
 search: chercher
 search.placeholder: 'min 3 caractères'
 settings: réglages
+songs.loadrandom: charger 20 chansons aléatoires
 streamUrl: 'url du flux'
 theme: thème
 title: titre

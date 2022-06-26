@@ -22,6 +22,7 @@ playlist: playlist
 playlist.add: 'add to playlist'
 playlist.remove: 'remove from playlist'
 radio: radio
+radios: radios
 radio.new: 'new radio'
 radio.edit: 'edit radio'
 random: random
@@ -30,6 +31,7 @@ scan: 'scan library'
 search: search
 search.placeholder: 'min 3 chars'
 settings: settings
+songs.loadrandom: load 20 random songs
 streamUrl: 'stream url'
 theme: theme
 title: title
