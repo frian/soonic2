@@ -3,7 +3,7 @@
         <input type="text" id="form_keyword" name="form[keyword]" required="required" placeholder="{{ 'search.placeholder'|trans }}" class="filterInput" data-text='search.placeholder'>
         <button class="input-reset" type="reset"></button>
     </div>
-    <button id="searchButton" type="submit" name="submit" class="button" title="search"><span class="material-icons">search</span></button>
+    <button id="searchButton" type="submit" name="submit" class="button" data-title="search" title="{{ 'search'|trans }}"><span class="material-icons">search</span></button>
 
     {{ form_widget(form._token) }}
 {{ form_end(form, {'render_rest': false}) }}

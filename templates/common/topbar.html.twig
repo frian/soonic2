@@ -35,27 +35,27 @@
                 {{ render(controller( 'App\\Controller\\SearchController::showSearch' )) }}
             </li>
             <li id="navigationLibrary">
-                <a id="libraryButton" href="{{ path('library') }}" title="artists"><span class="material-icons topbar-icons">people</span></a>
+                <a id="libraryButton" href="{{ path('library') }}" data-title="artists" title="{{ 'artists'|trans }}"><span class="material-icons">people</span></a>
             </li>
             <li id="navigationRandom">
-                <a id="randomButton" href="{{ path('random_songs') }}" title="load 20 random songs"><span class="material-icons topbar-icons">shuffle</span></a>
+                <a id="randomButton" href="{{ path('random_songs') }}" data-title="songs.loadrandom" title="{{ 'songs.loadrandom'|trans }}"><span class="material-icons">shuffle</span></a>
             </li>
             <li id="navigationAlbums">
-                <a id="albumsButton"  href="{{ path('album_index') }}" title="albums"><span class="material-icons topbar-icons">album</span></a>
+                <a id="albumsButton"  href="{{ path('album_index') }}" data-title="albums" title="{{ 'albums'|trans }}"><span class="material-icons">album</span></a>
             </li>
             <li id="navigationRadios">
-                <a id="radioButton" href="{{ path('radio_index') }}" title="radios"><span class="material-icons topbar-icons">radio</span></a>
+                <a id="radioButton" href="{{ path('radio_index') }}" data-title="radios" title="{{ 'radios'|trans }}"><span class="material-icons">radio</span></a>
             </li>
             <li id="navigationRadioNew">
-                <a id="radioNewButton" href="{{ path('radio_new') }}" title="">{{ 'radio.new'|trans }}</a>
+                <a id="radioNewButton" href="{{ path('radio_new') }}" data-title="radio.new" title="{{ 'radio.new'|trans }}"><span class="material-icons">radio</span><span class="material-icons radio-add">add</span></a>
             </li>
-            <li id="navigationBackToRadioIndex">
+            <!-- <li id="navigationBackToRadioIndex">
                 <a id="backToRadioIndexButton" href="{{ path('radio_index') }}">{{ 'back'|trans }}</a>
-            </li>
+            </li> -->
             <li id="navigationSettings">
                 {% if app.request.get('_route') != 'settings_index' %}
-                    <a id="settingsButton" title="settings" href="{{ path('settings_index') }}">
-                        <span class="material-icons  topbar-icons">settings</span>
+                    <a id="settingsButton" data-title="settings" title="{{ 'settings'|trans }}" href="{{ path('settings_index') }}">
+                        <span class="material-icons">settings</span>
                     </a>
                 {% endif %}
             </li>

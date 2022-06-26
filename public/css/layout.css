@@ -198,6 +198,14 @@ table {
 .topbar .material-icons {
   line-height: 49px;
 }
+.topbar #radioNewButton {
+  padding-right: 10px;
+}
+.topbar .radio-add {
+  position: relative;
+  vertical-align: top;
+  line-height: 30px;
+}
 
 #searchForm {
   display: inline-block;

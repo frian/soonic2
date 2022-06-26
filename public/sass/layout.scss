@@ -121,6 +121,16 @@ $topbar-border-size: 1px;
     .material-icons {
         line-height: 49px;
     }
+
+    #radioNewButton {
+        padding-right: 10px;
+    }
+
+    .radio-add {
+        position: relative;
+        vertical-align: top;
+        line-height: 30px;
+    }
 }
 
 #searchForm {

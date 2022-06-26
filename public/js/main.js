@@ -483,9 +483,9 @@ $(function() {
                     $('#layoutThemeCss').attr('href', href );
                 }
 
-                const toTranslate = $('[data-text]');
+                const textToTranslate = $('[data-text]');
 
-                $.each(toTranslate, function( index, value ) {
+                $.each(textToTranslate, function( index, value ) {
                     if ($(this).prop("tagName") === 'INPUT') {
                         if ($(this).attr('type') === 'submit') {
                             $(this).attr('value', data.config.translations[$(this).attr('data-text')])
@@ -497,6 +497,13 @@ $(function() {
                     else {
                         $(this).html(data.config.translations[$(this).attr('data-text')]);
                     }
+                });
+
+
+                const titlesToTranslate = $('[data-title]');
+
+                $.each(titlesToTranslate, function( index, value ) {
+                    $(this).attr('title', data.config.translations[$(this).attr('data-title')])
                 });
 
                 setSongInfoSize();
