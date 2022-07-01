@@ -6,7 +6,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * class representing a weekly calendar.
+ * A helper service for theme changing.
  */
 class ThemeHelper
 {
