@@ -1,9 +1,34 @@
+{% apply spaceless %}
 <div class="albums-view">
 {% for album in albums %}
-<div class="album-container">
-    <div class="album-container-content" data-album-path="{{ album.path }}">
+<div class="album-container" data-artist="" data-album="{{ album.albumSlug }}">
+
+    <div class="img-wrapper">
         <img class="lozad" data-src="{{ album.path }}/cover.jpg" alt="">
-        <div class="no-cover-art">
+        <!-- <div class="album-controls">
+            <span class="material-icons">info</span>
+            <span class="material-icons material-icons-big">play_arrow</span>
+        </div> -->
+    </div>
+
+    <div class="album-infos">
+        <div class="album-info-album">
+            {{ album.name }}
+        </div>
+
+        <div class="album-info-artist">
+            {% if album.artists is defined %}
+                    {% if album.artists|length > 1 %}
+                        {{ 'Various' }}
+                    {% else %}
+                        {{ album.artists[0] }}
+                    {% endif %}
+            {% endif %}
+        </div>
+    </div>
+    <!-- <div class="album-container-content" data-album-path="{{ album.path }}">
+        <img class="lozad" data-src="{{ album.path }}/cover.jpg" alt="">
+        <div class="album-infos">
             <div class="album-info-album">
                 {{ album.name|length > 33 ? album.name|upper|slice(0, 30) ~ '...' : album.name|upper }}
             </div>
@@ -31,7 +56,8 @@
                 {% endif %}
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 {% endfor %}
 </div>
+{% endapply %}

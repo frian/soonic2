@@ -53,9 +53,9 @@ $(function() {
     const observer = lozad();
     observer.observe();
 
-    $(document).on("click", ".album-container-content", function(e) {
-        $(this).children(".lozad").fadeOut('fast').delay(3000).fadeIn('fast');
-    });
+    // $(document).on("click", ".album-container-content", function(e) {
+    //     $(this).children(".lozad").fadeOut('fast').delay(3000).fadeIn('fast');
+    // });
 
     $(document).on("click", "#albumsButton", function(e) {
 
